@@ -49,6 +49,9 @@ public class sendRequest {
 	private String queryBuilder()
 	{
 		return "https://www.googleapis.com/webfonts/v1/webfonts?key=" + apikey ;
+		
+		//https://developers.google.com/fonts/docs/developer_api
+		//https://fonts.google.com/
 	}
 }
  
