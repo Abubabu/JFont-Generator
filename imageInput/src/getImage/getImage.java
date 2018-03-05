@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class getImage
 {
@@ -46,6 +48,27 @@ public class getImage
 	}
     
 	public static void main(String args[]) throws IOException{
-		getImage test = new getImage("Twitter.png");	
-    }
+		int sum = 0;
+		getImage test = new getImage("twittertest.png");	
+			for(RGBValue pos : test.getPixels().values()) {
+				int avgtotalrgb = pos.getR() + pos.getB() + pos.getG();
+				sum = avgtotalrgb + sum;
+			}
+			sum = sum / (test.getHeight() * test.getWidth());
+
+	
+	for(RGBValue pos2 : test.getPixels().values()) {
+		if((pos2.getR() + pos2.getG() + pos2.getB()) > sum) {
+			pos2.setR(255);
+			pos2.setB(255);
+			pos2.setG(255);
+		}
+		else {
+			pos2.setR(0);
+			pos2.setB(0);
+			pos2.setG(0);
+		}
+	}
+	BufferedImage newimg = new BufferedImage(500,500,BufferedImage.TYPE_INT_ARGB);
+}
 }
