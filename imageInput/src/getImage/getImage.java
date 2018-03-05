@@ -49,7 +49,7 @@ public class getImage
     
 	public static void main(String args[]) throws IOException{
 		int sum = 0;
-		getImage test = new getImage("twittertest.png");	
+		getImage test = new getImage("twitch.png");	
 			for(RGBValue pos : test.getPixels().values()) {
 				int avgtotalrgb = pos.getR() + pos.getB() + pos.getG();
 				sum = avgtotalrgb + sum;

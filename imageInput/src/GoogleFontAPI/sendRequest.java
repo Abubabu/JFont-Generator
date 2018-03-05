@@ -8,44 +8,24 @@ import java.net.URL;
 public class sendRequest {
 	final protected String apikey = "AIzaSyAgJ2Fpuffe-V-3TkmdTzJwjQ9sooh7TgU";
 	
-	
-	/*public static void main(String[] args)
-	{
-		try {
-			URL url = new URL("https://crunchify.com/");
-			BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
-			String strTemp = "";
-			while (null != (strTemp = br.readLine())) {
-				System.out.println(strTemp);
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-	}*/
-	
-	private final String USER_AGENT = "Mozilla/5.0";
+	final protected String USER_AGENT = "Chrome/41.0.2228.0";
 
 	public static void main(String[] args) throws Exception {
 
 		sendRequest http = new sendRequest();
-
-		System.out.println("Testing 1 - Send Http GET request");
-		http.sendGet();
+		http.sendGet(http.queryBuilder());
 
 	}
 
-	// HTTP GET request
-	private void sendGet() throws Exception {
+	private void sendGet(String string) throws Exception {
 
-		String url = "http://www.google.com/search?q=mkyong";
+		String url = string;
 
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
-		// optional default is GET
 		con.setRequestMethod("GET");
 
-		//add request header
 		con.setRequestProperty("User-Agent", USER_AGENT);
 
 		int responseCode = con.getResponseCode();
@@ -62,9 +42,13 @@ public class sendRequest {
 		}
 		in.close();
 
-		//print result
 		System.out.println(response.toString());
 
+	}
+	
+	private String queryBuilder()
+	{
+		return "https://www.googleapis.com/webfonts/v1/webfonts?key=" + apikey ;
 	}
 }
  
