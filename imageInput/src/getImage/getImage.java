@@ -25,7 +25,7 @@ public class getImage
 	public int getHeight() {
 		return height;
 	}
-
+ 
 	public getImage(String filepath) throws IOException
 	{
 		File file= new File(filepath);
@@ -70,5 +70,7 @@ public class getImage
 		}
 	}
 	BufferedImage newimg = new BufferedImage(500,500,BufferedImage.TYPE_INT_ARGB);
+	
+	newimg.
 }
 }
