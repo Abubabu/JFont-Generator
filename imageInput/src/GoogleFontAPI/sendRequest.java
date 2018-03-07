@@ -1,6 +1,7 @@
 package GoogleFontAPI;
 
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -39,11 +40,24 @@ public class sendRequest {
 		int responseCode = con.getResponseCode();
 		System.out.println("Response Code : " + responseCode);
 		
-		JSONObject myObject = new JSONObject(con.getInputStream());
 		
-		BufferedReader in = new BufferedReader(
+		InputStream inputStreamObject = con.getInputStream();
+	    BufferedReader streamReader = new BufferedReader(new InputStreamReader(inputStreamObject, "UTF-8"));
+	    StringBuilder responseStrBuilder = new StringBuilder();
+
+	    String inputStr;
+	    while ((inputStr = streamReader.readLine()) != null)
+	    {
+	        responseStrBuilder.append(inputStr);
+	    }
+
+	    JSONObject jsonObject = new JSONObject(responseStrBuilder.toString());
+	    
+	    System.out.print(jsonObject);
+		
+		/*BufferedReader in = new BufferedReader(
 		        new InputStreamReader(con.getInputStream()));
-	
+			    
 		String inputLine;
 		StringBuffer response = new StringBuffer();
 
@@ -52,7 +66,7 @@ public class sendRequest {
 		}
 		in.close();
 
-		System.out.println(response.toString());
+		System.out.println(response.toString());*/
 
 	}
 	
