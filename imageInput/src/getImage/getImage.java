@@ -83,10 +83,21 @@ public class getImage
 	
 	public BufferedImage createImg() throws IOException {
 		int sum = 0;
+		 BufferedImage orignal = new BufferedImage(500,500,BufferedImage.TYPE_INT_RGB); 
+		 
+		 
+		 
 		getImage test = new getImage("twitch.png");	
+		
+		for(pixelPosition pixel : test.getPixels().keySet()) {  // the long list of colors is required. for each color we must get the orignal pixel using the pixellocation which is by gettingpixelsthenget class
+			Color color = new Color(test.getPixels().get(pixel).getR(),test.getPixels().get(pixel).getG(),test.getPixels().get(pixel).getB());
+			orignal.setRGB(pixel.getxPos(), pixel.getyPos(), color.getRGB());
+		}
+		
 			for(RGBValue pos : test.getPixels().values()) {
 				int avgtotalrgb = pos.getR() + pos.getB() + pos.getG();
 				sum = avgtotalrgb + sum;
+			
 			}
 			sum = sum / (test.getHeight() * test.getWidth());
 
@@ -103,7 +114,7 @@ public class getImage
 				pos2.setG(0);
 			}
 		}
-		BufferedImage newimg = new BufferedImage(500,500,BufferedImage.TYPE_INT_ARGB); //copy paste this line outside and
+		BufferedImage newimg = new BufferedImage(500,500,BufferedImage.TYPE_INT_RGB); //copy paste this line outside and
 	
 		for(pixelPosition pixel : test.getPixels().keySet()) {  // the long list of colors is required. for each color we must get the orignal pixel using the pixellocation which is by gettingpixelsthenget class
 			Color color = new Color(test.getPixels().get(pixel).getR(),test.getPixels().get(pixel).getG(),test.getPixels().get(pixel).getB());
