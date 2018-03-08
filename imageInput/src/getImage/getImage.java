@@ -87,7 +87,7 @@ public class getImage
 		 
 		 
 		 
-		getImage test = new getImage("twitch.png");	
+		getImage test = new getImage("Panda.png");	
 		
 		for(pixelPosition pixel : test.getPixels().keySet()) {  // the long list of colors is required. for each color we must get the orignal pixel using the pixellocation which is by gettingpixelsthenget class
 			Color color = new Color(test.getPixels().get(pixel).getR(),test.getPixels().get(pixel).getG(),test.getPixels().get(pixel).getB());
@@ -103,16 +103,16 @@ public class getImage
 
 	
 		for(RGBValue pos2 : test.getPixels().values()) {
-		//	if((pos2.getR() + pos2.getG() + pos2.getB()) > sum) {
+			if((pos2.getR() + pos2.getG() + pos2.getB()) > sum) {
 				pos2.setR(255);
 				pos2.setB(255);
 				pos2.setG(255);
-		/*	}
+			}
 			else {
 				pos2.setR(0);
 				pos2.setB(0);
 				pos2.setG(0);
-			}*/
+			}
 		}
 		BufferedImage newimg = new BufferedImage(500,500,BufferedImage.TYPE_INT_RGB); //copy paste this line outside and
 	

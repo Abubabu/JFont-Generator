@@ -1,5 +1,7 @@
 package getImage;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Insets;
@@ -19,10 +21,12 @@ public class testImage extends Application {
     }
     
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
+    	
+    	getImage getimage = new getImage("Twitch.png");
         primaryStage.setTitle("Title");
         Group root = new Group();
-        Scene scene = new Scene(root, 600, 330, Color.WHITE);
+        Scene scene = new Scene(root, 150, 150, Color.WHITE);
         
         GridPane gridpane = new GridPane();
         gridpane.setPadding(new Insets(5));
@@ -30,7 +34,7 @@ public class testImage extends Application {
         gridpane.setVgap(10);
         
         final ImageView imv = new ImageView();
-        final Image image2 = SwingFXUtils.toFXImage(capture, null);
+        final Image image2 = SwingFXUtils.toFXImage(getimage.createImg(), null);
         imv.setImage(image2);
 
         final HBox pictureRegion = new HBox();
