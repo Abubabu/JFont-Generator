@@ -95,24 +95,24 @@ public class getImage
 		}
 		
 			for(RGBValue pos : test.getPixels().values()) {
-				int avgtotalrgb = pos.getR() + pos.getB() + pos.getG();
-				sum = avgtotalrgb + sum;
+				/*int avgtotalrgb = pos.getR() + pos.getB() + pos.getG();
+				sum = avgtotalrgb + sum;*/
 			
 			}
-			sum = sum / (test.getHeight() * test.getWidth());
+			//sum = sum / (test.getHeight() * test.getWidth());
 
 	
 		for(RGBValue pos2 : test.getPixels().values()) {
-		//	if((pos2.getR() + pos2.getG() + pos2.getB()) > sum) {
+			if((pos2.getR() + pos2.getG() + pos2.getB()) > 382) {
 				pos2.setR(255);
 				pos2.setB(255);
 				pos2.setG(255);
-		/*	}
+			}
 			else {
 				pos2.setR(0);
 				pos2.setB(0);
 				pos2.setG(0);
-			}*/
+			}
 		}
 		BufferedImage newimg = new BufferedImage(500,500,BufferedImage.TYPE_INT_RGB); //copy paste this line outside and
 	
