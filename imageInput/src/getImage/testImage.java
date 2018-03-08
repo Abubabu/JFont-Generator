@@ -9,6 +9,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -23,7 +24,7 @@ public class testImage extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
     	
-    	getImage getimage = new getImage("Twitch.png");
+    	/*getImage getimage = new getImage("Twitch.png");
         primaryStage.setTitle("Title");
         Group root = new Group();
         Scene scene = new Scene(root, 150, 150, Color.WHITE);
@@ -44,6 +45,20 @@ public class testImage extends Application {
         
         
         root.getChildren().add(gridpane);        
+        primaryStage.setScene(scene);
+        primaryStage.show();*/
+    	
+    	BorderPane pane = new BorderPane();
+    	ImageView imv = new ImageView();
+    	getImage i = new getImage("Panda.png");
+        Image image2 = SwingFXUtils.toFXImage(i.createImg(), null);
+        imv.setImage(image2);
+
+        imv.fitWidthProperty().bind(primaryStage.widthProperty()); 
+
+        pane.setCenter(imv);
+
+        Scene scene = new Scene(pane);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
