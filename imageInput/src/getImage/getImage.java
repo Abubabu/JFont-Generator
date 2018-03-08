@@ -4,6 +4,8 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import javax.imageio.ImageIO;
+
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -70,6 +72,11 @@ public class getImage
 			}
 		}
 	BufferedImage newimg = new BufferedImage(500,500,BufferedImage.TYPE_INT_ARGB);
+	
+	for(pixelPosition pixel : test.getPixels().keySet()) {  // the long list of colors is required. for each color we must get the orignal pixel using the pixellocation which is by gettingpixelsthenget class
+		Color color = new Color(test.getPixels().get(pixel).getR(),test.getPixels().get(pixel).getG(),test.getPixels().get(pixel).getB());
+		newimg.setRGB(pixel.getxPos(), pixel.getyPos(), color.getRGB());
+	}
 	
 
 	}
