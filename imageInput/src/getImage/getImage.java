@@ -49,10 +49,10 @@ public class getImage
 	      }
 	}
     
-	public static void main(String args[]) throws IOException{
+	/*public static void main(String args[]) throws IOException{
 		int sum = 0;
 		getImage test = new getImage("twitch.png");	
-		/*	for(RGBValue pos : test.getPixels().values()) {
+			for(RGBValue pos : test.getPixels().values()) {
 				int avgtotalrgb = pos.getR() + pos.getB() + pos.getG();
 				sum = avgtotalrgb + sum;
 			}
@@ -76,12 +76,17 @@ public class getImage
 	for(pixelPosition pixel : test.getPixels().keySet()) {  // the long list of colors is required. for each color we must get the orignal pixel using the pixellocation which is by gettingpixelsthenget class
 		Color color = new Color(test.getPixels().get(pixel).getR(),test.getPixels().get(pixel).getG(),test.getPixels().get(pixel).getB());
 		newimg.setRGB(pixel.getxPos(), pixel.getyPos(), color.getRGB());
-	}*/
+	}
 	System.out.println("hashmap: RGB " + pixels.get(new pixelPosition(0,0)).getR() + " " +  pixels.get(new pixelPosition(0,0)).getG() + " " + pixels.get(new pixelPosition(0,0)).getB());
 	RGBValue[][] testvalues = test.getArrayRGB();
 	System.out.println("ArrayValues: RGB" + testvalues[0][0].getR() + " " + testvalues[0][0].getG() + " " + testvalues[0][0].getB());
 
+	}*/
+	public RGBValue getRGB(int x, int y)
+	{
+		return pixels.get(new pixelPosition(x,y));
 	}
+	
 	
 	public pixelPosition[][] getArrayPixels() {
 		 pixelPosition[][] positions = new pixelPosition[width][height];
@@ -154,5 +159,5 @@ public class getImage
 		return newimg;
 		
 	}
-	
+		 
 }
