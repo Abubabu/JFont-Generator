@@ -52,7 +52,7 @@ public class getImage
 	public static void main(String args[]) throws IOException{
 		int sum = 0;
 		getImage test = new getImage("twitch.png");	
-			for(RGBValue pos : test.getPixels().values()) {
+		/*	for(RGBValue pos : test.getPixels().values()) {
 				int avgtotalrgb = pos.getR() + pos.getB() + pos.getG();
 				sum = avgtotalrgb + sum;
 			}
@@ -76,11 +76,42 @@ public class getImage
 	for(pixelPosition pixel : test.getPixels().keySet()) {  // the long list of colors is required. for each color we must get the orignal pixel using the pixellocation which is by gettingpixelsthenget class
 		Color color = new Color(test.getPixels().get(pixel).getR(),test.getPixels().get(pixel).getG(),test.getPixels().get(pixel).getB());
 		newimg.setRGB(pixel.getxPos(), pixel.getyPos(), color.getRGB());
-	}
-	
+	}*/
+	System.out.println("hashmap: RGB " + pixels.get(new pixelPosition(0,0)).getR() + " " +  pixels.get(new pixelPosition(0,0)).getG() + " " + pixels.get(new pixelPosition(0,0)).getB());
+	RGBValue[][] testvalues = test.getArrayRGB();
+	System.out.println("ArrayValues: RGB" + testvalues[0][0].getR() + " " + testvalues[0][0].getG() + " " + testvalues[0][0].getB());
 
 	}
 	
+	public pixelPosition[][] getArrayPixels() {
+		 pixelPosition[][] positions = new pixelPosition[width][height];
+		 int arrayHeight = height;
+		 int arrayWidth = 0;
+		 for(pixelPosition pos : this.getPixels().keySet()) {
+			 positions[arrayWidth][arrayHeight] = pos;
+			 arrayWidth++;
+			 if(arrayWidth > width) {
+				 arrayWidth = 0;
+				 arrayHeight--;
+			 }
+		 }
+		 return positions;
+	}
+	
+	public RGBValue[][] getArrayRGB() {
+		 RGBValue[][] positions = new RGBValue[width][height];
+		 int arrayHeight = height;
+		 int arrayWidth = 0;
+		 for(RGBValue pos : this.getPixels().values()) {
+			 positions[arrayWidth][arrayHeight] = pos;
+			 arrayWidth++;
+			 if(arrayWidth > width) {
+				 arrayWidth = 0;
+				 arrayHeight--;
+			 }
+		 }
+		 return positions;
+	}
 	public BufferedImage createImg() throws IOException {
 		int sum = 0;
 		 BufferedImage orignal = new BufferedImage(500,500,BufferedImage.TYPE_INT_RGB); 
@@ -121,5 +152,7 @@ public class getImage
 			newimg.setRGB(pixel.getxPos(), pixel.getyPos(), color.getRGB());
 		}
 		return newimg;
+		
 	}
+	
 }
