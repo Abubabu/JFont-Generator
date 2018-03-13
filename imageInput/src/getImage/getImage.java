@@ -107,14 +107,14 @@ public class getImage
 	
 	public pixelPosition[][] getArrayPixels() {
 		 pixelPosition[][] positions = new pixelPosition[width][height];
-		 int arrayHeight = height;
+		 int arrayHeight = 0;
 		 int arrayWidth = 0;
 		 for(pixelPosition pos : this.getPixels().keySet()) {
 			 positions[arrayWidth][arrayHeight] = pos;
 			 arrayWidth++;
-			 if(arrayWidth > width) {
+			 if(arrayWidth > width - 1) {
 				 arrayWidth = 0;
-				 arrayHeight--;
+				 arrayHeight++;
 			 }
 		 }
 		 return positions;
