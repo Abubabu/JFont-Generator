@@ -48,19 +48,23 @@ public class getImage
 			 }
 	      }
 	}
+	public static RGBValue getRGB(int xcoord, int ycoord)
+	{
+		for (pixelPosition key : pixels.keySet()) {
+			if(key.getxPos() == xcoord && key.getyPos() == ycoord)
+			{
+				return pixels.get(key);
+			}
+		}
+		return null;
+	}
 	public static void main(String args[]) throws IOException{
 		
 		getImage test = new getImage("Panda.png");	
 		Map<pixelPosition, RGBValue> pixel = test.getPixels();
 		//System.out.println("hashmap: RGB " + pixel.get(new pixelPosition(0,0)).getR() + " " +  pixel.get(new pixelPosition(0,0)).getG() + " " + pixel.get(new pixelPosition(0,0)).getB());
 		
-		for (pixelPosition key : test.getPixels().keySet()) {
-			RGBValue rgb = test.getPixels().get(key);
-			System.out.println(rgb.getR());
-			break;
-		}
-		
-		RGBValue[][] potato = test.getArrayRGB();
+		//RGBValue[][] potato = test.getArrayRGB();
 		//System.out.println(potato[0][0]);
 		
 		
@@ -100,11 +104,6 @@ public class getImage
 	System.out.println("ArrayValues: RGB" + testvalues[0][0].getR() + " " + testvalues[0][0].getG() + " " + testvalues[0][0].getB());
 
 	}*/
-	public RGBValue getRGB(int x, int y)
-	{
-		return pixels.get(new pixelPosition(x,y));
-	}
-	
 	
 	public pixelPosition[][] getArrayPixels() {
 		 pixelPosition[][] positions = new pixelPosition[width][height];
@@ -135,7 +134,7 @@ public class getImage
 		 }
 		 return positions;
 	}
-	public BufferedImage createImg() throws IOException {
+	public BufferedImage getBW() throws IOException {
 		int sum = 0;
 		 BufferedImage orignal = new BufferedImage(500,500,BufferedImage.TYPE_INT_RGB); 
 		 
