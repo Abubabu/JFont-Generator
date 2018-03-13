@@ -138,7 +138,7 @@ public class getImage
 		int sum = 0;
 		 BufferedImage orignal = new BufferedImage(500,500,BufferedImage.TYPE_INT_RGB); 
 		 
-		 
+		     
 		 
 		getImage test = new getImage("Panda.png");	
 		
