@@ -122,14 +122,14 @@ public class getImage
 	
 	public RGBValue[][] getArrayRGB() {
 		 RGBValue[][] positions = new RGBValue[width][height];
-		 int arrayHeight = height;
+		 int arrayHeight = 0;
 		 int arrayWidth = 0;
 		 for(RGBValue pos : this.getPixels().values()) {
 			 positions[arrayWidth][arrayHeight] = pos;
 			 arrayWidth++;
-			 if(arrayWidth > width) {
+			 if(arrayWidth > width - 1) {
 				 arrayWidth = 0;
-				 arrayHeight--;
+				 arrayHeight++;
 			 }
 		 }
 		 return positions;
