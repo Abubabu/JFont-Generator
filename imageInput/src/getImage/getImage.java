@@ -50,10 +50,22 @@ public class getImage
 	}
 	public static void main(String args[]) throws IOException{
 		
-		getImage test = new getImage("twitch.png");	
-		System.out.println("hashmap: RGB " + test.pixels.get(new pixelPosition(0,0)).getR() + " " +  test.pixels.get(new pixelPosition(0,0)).getG() + " " + test.pixels.get(new pixelPosition(0,0)).getB());
-		RGBValue[][] testvalues = test.getArrayRGB();
-		System.out.println("ArrayValues: RGB" + testvalues[0][0].getR() + " " + testvalues[0][0].getG() + " " + testvalues[0][0].getB());
+		getImage test = new getImage("Panda.png");	
+		Map<pixelPosition, RGBValue> pixel = test.getPixels();
+		//System.out.println("hashmap: RGB " + pixel.get(new pixelPosition(0,0)).getR() + " " +  pixel.get(new pixelPosition(0,0)).getG() + " " + pixel.get(new pixelPosition(0,0)).getB());
+		
+		for (pixelPosition key : test.getPixels().keySet()) {
+			RGBValue rgb = test.getPixels().get(key);
+			System.out.println(rgb.getR());
+			break;
+		}
+		
+		RGBValue[][] potato = test.getArrayRGB();
+		//System.out.println(potato[0][0]);
+		
+		
+		/*RGBValue[][] testvalues = test.getArrayRGB();
+		System.out.println("ArrayValues: RGB" + testvalues[0][0].getR() + " " + testvalues[0][0].getG() + " " + testvalues[0][0].getB());*/
 	}
 	/*public static void main(String args[]) throws IOException{
 		int sum = 0;
