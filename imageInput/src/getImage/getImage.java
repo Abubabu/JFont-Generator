@@ -21,7 +21,7 @@ public class getImage
 	}
 
 	public int getWidth() {
-		return width;
+		return width; 
 	}
 
 	public int getHeight() {
