@@ -48,7 +48,12 @@ public class getImage
 			 }
 	      }
 	}
-    
+	public static void main(String args[]) throws IOException{
+		
+		System.out.println("hashmap: RGB " + pixels.get(new pixelPosition(0,0)).getR() + " " +  pixels.get(new pixelPosition(0,0)).getG() + " " + pixels.get(new pixelPosition(0,0)).getB());
+		RGBValue[][] testvalues = test.getArrayRGB();
+		System.out.println("ArrayValues: RGB" + testvalues[0][0].getR() + " " + testvalues[0][0].getG() + " " + testvalues[0][0].getB());
+	}
 	/*public static void main(String args[]) throws IOException{
 		int sum = 0;
 		getImage test = new getImage("twitch.png");	
