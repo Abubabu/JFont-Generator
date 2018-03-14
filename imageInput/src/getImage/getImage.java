@@ -32,6 +32,7 @@ public class getImage
 	{
 		File file= new File(filepath);
 		BufferedImage image = ImageIO.read(file);
+		//System.out.print(image.getType());
 		 
 		this.width = image.getWidth();
 		this.height = image.getHeight();
@@ -43,7 +44,7 @@ public class getImage
 			  int red = (pixel >> 16) & 0xFF;
 			  int green = (pixel >> 8) & 0xFF;
 			  int blue = (pixel) & 0xFF;
-			  //System.out.println(i + " , " + j + "    :   " + alpha + " , " + red + " , " + green + " , " + blue);
+			  System.out.println(i + " , " + j + "    :   " + alpha + " , " + red + " , " + green + " , " + blue);
 			  pixels.put(new pixelPosition(j,i), new RGBValue(alpha,red,green,blue));
 			 }
 	      }
@@ -60,12 +61,13 @@ public class getImage
 	}
 	public static void main(String args[]) throws IOException{
 		
-		getImage test = new getImage("Panda.png");	
+		getImage test = new getImage("colors.png");	
 		Map<pixelPosition, RGBValue> pixel = test.getPixels();
-		//System.out.println("hashmap: RGB " + pixel.get(new pixelPosition(0,0)).getR() + " " +  pixel.get(new pixelPosition(0,0)).getG() + " " + pixel.get(new pixelPosition(0,0)).getB());
+	//	System.out.println("hashmap: RGB " + pixel.get(new pixelPosition(500,500)).getR() + " " +  pixel.get(new pixelPosition(500,500)).getG() + " " + pixel.get(new pixelPosition(500,500)).getB());
 		
-		//RGBValue[][] potato = test.getArrayRGB();
-		//System.out.println(potato[0][0]);
+		RGBValue[][] potato = test.getArrayRGB();
+		System.out.print(potato[0][0].getR() + " , " + potato[0][0].getG() + " , " + potato[0][0].getB() );
+	//	System.out.println(test.getRGB(0,0).getR());
 		
 		
 		/*RGBValue[][] testvalues = test.getArrayRGB();
@@ -107,12 +109,12 @@ public class getImage
 	
 	public pixelPosition[][] getArrayPixels() {
 		 pixelPosition[][] positions = new pixelPosition[width][height];
-		 int arrayHeight = 0;
-		 int arrayWidth = 0;
+		 int arrayHeight = width - 1;
+		 int arrayWidth = height - 1;
 		 for(pixelPosition pos : this.getPixels().keySet()) {
 			 positions[arrayWidth][arrayHeight] = pos;
-			 arrayWidth++;
-			 if(arrayWidth > width - 1) {
+			 arrayHeight++;
+			 if(arrayWidth >= width) {
 				 arrayWidth = 0;
 				 arrayHeight++;
 			 }
@@ -123,13 +125,13 @@ public class getImage
 	public RGBValue[][] getArrayRGB() {
 		 RGBValue[][] positions = new RGBValue[width][height];
 		 int arrayHeight = 0;
-		 int arrayWidth = 0;
-		 for(RGBValue pos : this.getPixels().values()) {
+		 int arrayWidth = width - 1;
+		 for(RGBValue pos : this.getPixels().values()) {  //	THE HASH MAP IS JUMPING EVERYWHERE FOR THE COLORS
 			 positions[arrayWidth][arrayHeight] = pos;
-			 arrayWidth++;
-			 if(arrayWidth > width - 1) {
-				 arrayWidth = 0;
-				 arrayHeight++;
+			 arrayHeight++;
+			 if(arrayHeight == 500) {
+				 arrayHeight = 0;
+				 arrayWidth--;
 			 }
 		 }
 		 return positions;
