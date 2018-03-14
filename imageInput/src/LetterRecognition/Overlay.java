@@ -10,6 +10,10 @@ import getImage.getImage;
 public class Overlay {
 	public static void main(String[] args) throws IOException
 	{
+		
+		//https://stackoverflow.com/questions/29024456/image-overlay-comparison-and-pixel-color-change
+		
+		
 		getImage a = new getImage("a.png"); //H; 116 W: 207 ImageType: 12
 		getImage aplus = new getImage("aplus.png");
 		
@@ -20,8 +24,9 @@ public class Overlay {
 			{
 				if(isRGBEqual(a.getRGB(j, i),aplus.getRGB(j, i)))
 				{
-					Color a = new color()
-					negative.setRGB(j, i,  color here);
+					RGBValue colo = a.getRGB(j, i);
+					Color color = new Color(colo.getR(),colo.getG(),colo.getB());
+					negative.setRGB(j, i,  color.getRGB());
 				}
 			}
 		}
