@@ -69,6 +69,11 @@ public class getImage
 	//	System.out.println("hashmap: RGB " + pixel.get(new pixelPosition(500,500)).getR() + " " +  pixel.get(new pixelPosition(500,500)).getG() + " " + pixel.get(new pixelPosition(500,500)).getB());
 		
 		RGBValue[][] potato = test.getArrayRGB();
+		for(int x = 0; x < potato.length; x++) {
+			for(int y = 0; y < potato[x].length; y++) {
+				System.out.println(x + " , " + y + "    :    " + potato[x][y].getR() + " , " + potato[x][y].getG() + " , " + potato[x][y].getB());
+			}
+		}
 		//System.out.print(potato[436][332].getR() + " , " + potato[436][332].getG() + " , " + potato[436][332].getB() );
 	//	System.out.println(test.getRGB(0,0).getR());
 		
