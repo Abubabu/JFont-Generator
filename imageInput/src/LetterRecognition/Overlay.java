@@ -20,18 +20,18 @@ public class Overlay {
 		getImage a = new getImage("Twitch.png"); //H; 208 W: 208 ImageType: 12
 		getImage aplus = new getImage("Twitter.png");
 		
-		System.out.println(a.getHeight() + " " + a.getWidth());
+		//System.out.println(a.getHeight() + " " + a.getWidth());
 		
 		RGBValue[][] apix = a.getArrayRGB();
 		RGBValue[][] bpix = aplus.getArrayRGB();
-		System.out.println(apix.length);
+		//System.out.println(apix.length);
 		int overlap = 0;
 		int nolap = 0;
 		for(int i = 0; i < 300; i++)
 		{
 			for(int j = 0; j < 300; j++)
 			{
-				System.out.println(apix[j][i].getB() + "  " + bpix[j][i].getB());
+				//System.out.println(apix[j][i].getB() + "  " + bpix[j][i].getB());
 				//System.out.println("x:"+ i + "  y:" + j + "  " + "A:" + a.getRGB(j,i).getR() + ", " + aplus.getRGB(j,i).getR());
 				if(isRGBEqual(apix[j][i],bpix[j][i]))
 				{
@@ -44,6 +44,7 @@ public class Overlay {
 			}
 		}
 		System.out.println(overlap + " " + nolap);
+		System.out.print(((double) overlap/ (double) nolap));
 	}
 	public static boolean isRGBEqual(RGBValue one, RGBValue two)
 	{

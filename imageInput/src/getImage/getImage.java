@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class getImage
 {
-	final private static Map<pixelPosition, RGBValue> pixels = new HashMap<pixelPosition, RGBValue>();
+	final private Map<pixelPosition, RGBValue> pixels = new HashMap<pixelPosition, RGBValue>();
 	final private int width;
 	final private int height;
 	
@@ -46,12 +46,13 @@ public class getImage
 			  int red = (pixel >> 16) & 0xFF;
 			  int green = (pixel >> 8) & 0xFF;
 			  int blue = (pixel) & 0xFF;
-			 System.out.println(i + " , " + j + "    :   " + alpha + " , " + red + " , " + green + " , " + blue);
+			  //System.out.println(i + " , " + j + "    :   " + alpha + " , " + red + " , " + green + " , " + blue);
 			  pixels.put(new pixelPosition(j,i), new RGBValue(alpha,red,green,blue));
 			 }
 	      }
+		  //System.out.println();
 	}
-	public static RGBValue getRGB(int xcoord, int ycoord)
+	/*public static RGBValue getRGB(int xcoord, int ycoord)
 	{
 		for (pixelPosition key : pixels.keySet()) {
 			if(key.getxPos() == xcoord && key.getyPos() == ycoord)
@@ -60,7 +61,7 @@ public class getImage
 			}
 		}
 		return null;
-	}
+	}*/
 	public static void main(String args[]) throws IOException{
 		
 		getImage test = new getImage("colors.png");	
