@@ -17,19 +17,23 @@ public class Overlay {
 		//https://stackoverflow.com/questions/29024456/image-overlay-comparison-and-pixel-color-change
 		
 		
-		getImage a = new getImage("a.png"); //H; 116 W: 207 ImageType: 12
-		getImage aplus = new getImage("aplus.png");
+		getImage a = new getImage("Twitch.png"); //H; 208 W: 208 ImageType: 12
+		getImage aplus = new getImage("Twitter.png");
+		
+		System.out.println(a.getHeight() + " " + a.getWidth());
 		
 		RGBValue[][] apix = a.getArrayRGB();
-		RGBValue[][] aplix = aplus.getArrayRGB();
+		RGBValue[][] bpix = aplus.getArrayRGB();
+		System.out.println(apix.length);
 		int overlap = 0;
 		int nolap = 0;
-		for(int i = 0; i < 116; i++)
+		for(int i = 0; i < 300; i++)
 		{
-			for(int j = 0; j < 207; j++)
+			for(int j = 0; j < 300; j++)
 			{
+				System.out.println(apix[j][i].getB() + "  " + bpix[j][i].getB());
 				//System.out.println("x:"+ i + "  y:" + j + "  " + "A:" + a.getRGB(j,i).getR() + ", " + aplus.getRGB(j,i).getR());
-				if(isRGBEqual(apix[j][i],aplix[j][i]))
+				if(isRGBEqual(apix[j][i],bpix[j][i]))
 				{
 					overlap++;		
 				}

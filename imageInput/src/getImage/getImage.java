@@ -68,7 +68,7 @@ public class getImage
 	//	System.out.println("hashmap: RGB " + pixel.get(new pixelPosition(500,500)).getR() + " " +  pixel.get(new pixelPosition(500,500)).getG() + " " + pixel.get(new pixelPosition(500,500)).getB());
 		
 		RGBValue[][] potato = test.getArrayRGB();
-		System.out.print(potato[436][332].getR() + " , " + potato[436][332].getG() + " , " + potato[436][332].getB() );
+		//System.out.print(potato[436][332].getR() + " , " + potato[436][332].getG() + " , " + potato[436][332].getB() );
 	//	System.out.println(test.getRGB(0,0).getR());
 		
 		
@@ -132,7 +132,9 @@ public class getImage
 			/* if(arrayHeight >= height - 1) {
 				 arrayWidth++;
 			 }*/
-			 positions[pos.getyPos()][pos.getxPos()] = this.getPixels().get(pos);
+			 if(pos.getyPos() < height && pos.getxPos() < width) {
+				 positions[pos.getyPos()][pos.getxPos()] = this.getPixels().get(pos);
+			 }
 			 
 			 
 		 }
@@ -150,7 +152,7 @@ public class getImage
 		 
 		     
 		 
-		getImage test = new getImage("Panda.png");	
+		getImage test = new getImage("Twitter.png");	
 		
 		for(pixelPosition pixel : test.getPixels().keySet()) {  // the long list of colors is required. for each color we must get the orignal pixel using the pixellocation which is by gettingpixelsthenget class
 			Color color = new Color(test.getPixels().get(pixel).getR(),test.getPixels().get(pixel).getG(),test.getPixels().get(pixel).getB());
