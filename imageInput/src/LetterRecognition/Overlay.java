@@ -17,10 +17,11 @@ public class Overlay {
 		//https://stackoverflow.com/questions/29024456/image-overlay-comparison-and-pixel-color-change
 		
 		
-		getImage a = new getImage("1.jpg"); //H; 116 W: 207 ImageType: 12
-		getImage aplus = new getImage("2.jpg");
+		getImage a = new getImage("a.png"); //H; 116 W: 207 ImageType: 12
+		getImage aplus = new getImage("aplus.png");
 		
-		BufferedImage negative = new BufferedImage(500,500, 12); 
+		int overlap = 0;
+		int nolap = 0;
 		for(int i = 0; i < 116; i++)
 		{
 			for(int j = 0; j < 207; j++)
@@ -28,24 +29,15 @@ public class Overlay {
 				//System.out.println("x:"+ i + "  y:" + j + "  " + "A:" + a.getRGB(j,i).getR() + ", " + aplus.getRGB(j,i).getR());
 				if(isRGBEqual(a.getRGB(j, i),aplus.getRGB(j, i)))
 				{
-					System.out.println(2);
-					Color color = new Color(255,255,255);
-					negative.setRGB(j, i,  color.getRGB());
+					overlap++;		
 				}
 				else
 				{
-					System.out.println(1);
-					Color color = new Color(0,0,0);
-					negative.setRGB(j, i,  color.getRGB());
+					nolap++;
 				}
 			}
 		}
-		
-		ImageIO.write(negative, "png", new File("yes.png"));
-		
-		
-	
-		
+		System.out.println(overlap + " " + nolap);
 	}
 	public static boolean isRGBEqual(RGBValue one, RGBValue two)
 	{
