@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.imageio.ImageIO;
 
+import javafx.scene.control.TreeTableView.TreeTableViewSelectionModel;
+
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -44,7 +46,7 @@ public class getImage
 			  int red = (pixel >> 16) & 0xFF;
 			  int green = (pixel >> 8) & 0xFF;
 			  int blue = (pixel) & 0xFF;
-			  //System.out.println(i + " , " + j + "    :   " + alpha + " , " + red + " , " + green + " , " + blue);
+			  System.out.println(i + " , " + j + "    :   " + alpha + " , " + red + " , " + green + " , " + blue);
 			  pixels.put(new pixelPosition(j,i), new RGBValue(alpha,red,green,blue));
 			 }
 	      }
@@ -66,7 +68,7 @@ public class getImage
 	//	System.out.println("hashmap: RGB " + pixel.get(new pixelPosition(500,500)).getR() + " " +  pixel.get(new pixelPosition(500,500)).getG() + " " + pixel.get(new pixelPosition(500,500)).getB());
 		
 		RGBValue[][] potato = test.getArrayRGB();
-		System.out.print(potato[0][0].getR() + " , " + potato[0][0].getG() + " , " + potato[0][0].getB() );
+		System.out.print(potato[54][12].getR() + " , " + potato[54][12].getG() + " , " + potato[54][12].getB() );
 	//	System.out.println(test.getRGB(0,0).getR());
 		
 		
@@ -124,17 +126,23 @@ public class getImage
 	
 	public RGBValue[][] getArrayRGB() {
 		 RGBValue[][] positions = new RGBValue[width][height];
-		 int arrayHeight = 0;
-		 int arrayWidth = width - 1;
-		 for(RGBValue pos : this.getPixels().values()) {  //	THE HASH MAP IS JUMPING EVERYWHERE FOR THE COLORS
-			 positions[arrayWidth][arrayHeight] = pos;
-			 arrayHeight++;
-			 if(arrayHeight == 500) {
-				 arrayHeight = 0;
-				 arrayWidth--;
-			 }
+		// int arrayHeight = 0;
+		// int arrayWidth = 0;
+		 for(pixelPosition pos : this.getPixels().keySet()) {
+			/* if(arrayHeight >= height - 1) {
+				 arrayWidth++;
+			 }*/
+			 positions[pos.getxPos()][pos.getyPos()] = this.getPixels().get(pos);
+			 
+			 
 		 }
 		 return positions;
+	/*	 for(int x = 0; x < width; x++) {
+			 for(int y = 0; y < height; y++) {
+				 positions[x][y] = this.getRGB(x,y);
+			 }
+		 }
+		 return positions;*/
 	}
 	public BufferedImage getBW() throws IOException {
 		int sum = 0;
