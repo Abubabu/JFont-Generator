@@ -20,6 +20,8 @@ public class Overlay {
 		getImage a = new getImage("a.png"); //H; 116 W: 207 ImageType: 12
 		getImage aplus = new getImage("aplus.png");
 		
+		RGBValue[][] apix = a.getArrayRGB();
+		RGBValue[][] aplix = aplus.getArrayRGB();
 		int overlap = 0;
 		int nolap = 0;
 		for(int i = 0; i < 116; i++)
@@ -27,7 +29,7 @@ public class Overlay {
 			for(int j = 0; j < 207; j++)
 			{
 				//System.out.println("x:"+ i + "  y:" + j + "  " + "A:" + a.getRGB(j,i).getR() + ", " + aplus.getRGB(j,i).getR());
-				if(isRGBEqual(a.getRGB(j, i),aplus.getRGB(j, i)))
+				if(isRGBEqual(apix[j][i],aplix[j][i]))
 				{
 					overlap++;		
 				}
