@@ -62,6 +62,75 @@ public class getImage
 		}
 		return null;
 	}*/
+	
+	public pixelPosition locateVertex() {
+		pixelPosition [][] rgbs = this.getArrayPixels();
+		pixelPosition first = this.getLeftMost();
+		pixelPosition last = this.getRightMost();
+		int middle  = (first.getxPos() + last.getxPos()) / 2;
+		for(int z = 0; z < rgbs[middle].length; z++) {
+			int r = this.getPixels().get(rgbs[middle][z]).getR();
+			int g = this.getPixels().get(rgbs[middle][z]).getG();
+			int b = this.getPixels().get(rgbs[middle][z]).getB();
+			if(r == 0 && g == 0 && b == 0) {
+				return rgbs[middle][z];
+			}
+		}
+		return null;
+	}
+	
+	public pixelPosition getRightMost() {
+		pixelPosition [][] rgbs = this.getArrayPixels();
+		pixelPosition last = null;
+		boolean foundLast = false;
+		for(int x = 0; x < rgbs.length; x++) {
+			for(int y = rgbs[x].length - 1;  y >= 0; y--) {
+				int r = this.getPixels().get(rgbs[x][y]).getR();
+				int g = this.getPixels().get(rgbs[x][y]).getG();
+				int b = this.getPixels().get(rgbs[x][y]).getB();
+				if(foundLast != false) {
+					if(last.getxPos() < rgbs[x][y].getxPos())
+						last = rgbs[x][y];
+					else if( last.getxPos() == rgbs[x][y].getxPos() && last.getyPos() < rgbs[x][y].getyPos())
+						last = rgbs[x][y];
+				}
+				else if(last == null && r == 0 && g == 0 && b == 0) {
+					last = rgbs[x][y];
+					foundLast = true;
+				}
+				
+			}
+		}
+		return last;
+				
+	}
+	
+	public pixelPosition getLeftMost() {
+		pixelPosition [][] rgbs = this.getArrayPixels();
+		pixelPosition first = null;
+		boolean foundFirst = false;
+		for(int x = 0; x < rgbs.length; x++) {
+			for(int y = rgbs[x].length - 1;  y >= 0; y--) {
+				int r = this.getPixels().get(rgbs[x][y]).getR();
+				int g = this.getPixels().get(rgbs[x][y]).getG();
+				int b = this.getPixels().get(rgbs[x][y]).getB();
+				if(foundFirst != false) {
+					if(first.getxPos() > rgbs[x][y].getxPos())
+						first = rgbs[x][y];
+					else if( first.getxPos() == rgbs[x][y].getxPos() && first.getyPos() < rgbs[x][y].getyPos())
+						first = rgbs[x][y];
+				}
+				else if(first == null && r == 0 && g == 0 && b == 0) {
+					first = rgbs[x][y];
+					foundFirst = true;
+				}
+			}
+				
+		}
+		return first;
+	}
+	
+	
 	public static void main(String args[]) throws IOException{
 		
 		getImage test = new getImage("colors.png");	
@@ -116,18 +185,18 @@ public class getImage
 	}*/
 	
 	public pixelPosition[][] getArrayPixels() {
-		 pixelPosition[][] positions = new pixelPosition[width][height];
-		 int arrayHeight = width - 1;
-		 int arrayWidth = height - 1;
-		 for(pixelPosition pos : this.getPixels().keySet()) {
-			 positions[arrayWidth][arrayHeight] = pos;
-			 arrayHeight++;
-			 if(arrayWidth >= width) {
-				 arrayWidth = 0;
-				 arrayHeight++;
+		pixelPosition[][] positions = new pixelPosition[height][width];
+			// int arrayHeight = 0;
+			// int arrayWidth = 0;
+			 for(pixelPosition pos : this.getPixels().keySet()) {
+				/* if(arrayHeight >= height - 1) {
+					 arrayWidth++;
+				 }*/
+				 if(pos.getyPos() < height && pos.getxPos() < width) {
+					 positions[pos.getyPos()][pos.getxPos()] = pos;
+				 }
 			 }
-		 }
-		 return positions;
+			 return positions;
 	}
 	
 	public RGBValue[][] getArrayRGB() {
