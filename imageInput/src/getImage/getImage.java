@@ -17,6 +17,7 @@ public class getImage
 	final private Map<pixelPosition, RGBValue> pixels = new HashMap<pixelPosition, RGBValue>();
 	final private int width;
 	final private int height;
+	final private String filepath;
 	
 	public Map<pixelPosition, RGBValue> getPixels() {
 		return pixels;
@@ -32,8 +33,31 @@ public class getImage
  
 	public getImage(String filepath) throws IOException
 	{
+		this.filepath = filepath;
 		File file= new File(filepath);
 		BufferedImage image = ImageIO.read(file);
+		//System.out.print(image.getType());
+		 
+		this.width = image.getWidth();
+		this.height = image.getHeight();
+		  
+		  for(int i = 0; i < this.height; i++) {
+			for(int j = 0; j < this.width; j++) {
+			  int pixel = image.getRGB(j, i);
+			  int alpha = (pixel >> 24) & 0xFF;
+			  int red = (pixel >> 16) & 0xFF;
+			  int green = (pixel >> 8) & 0xFF;
+			  int blue = (pixel) & 0xFF;
+			  //System.out.println(i + " , " + j + "    :   " + alpha + " , " + red + " , " + green + " , " + blue);
+			  pixels.put(new pixelPosition(j,i), new RGBValue(alpha,red,green,blue));
+			 }
+	      }
+		  //System.out.println();
+	}
+	public getImage(BufferedImage images) throws IOException
+	{
+		this.filepath = "null";
+		BufferedImage image = images;
 		//System.out.print(image.getType());
 		 
 		this.width = image.getWidth();
@@ -239,11 +263,11 @@ public class getImage
 	}
 	public BufferedImage getBW(String filepath) throws IOException {
 		int sum = 0;
-		 BufferedImage orignal = new BufferedImage(500,500,BufferedImage.TYPE_INT_RGB); 
+		 BufferedImage orignal = new BufferedImage(this.width,this.height,BufferedImage.TYPE_INT_RGB); 
 		 
 		     
 		 
-		getImage test = new getImage(filepath);	
+		getImage test = new getImage(this.filepath);	
 		
 		for(pixelPosition pixel : test.getPixels().keySet()) {  // the long list of colors is required. for each color we must get the orignal pixel using the pixellocation which is by gettingpixelsthenget class
 			Color color = new Color(test.getPixels().get(pixel).getR(),test.getPixels().get(pixel).getG(),test.getPixels().get(pixel).getB());
@@ -278,6 +302,10 @@ public class getImage
 		}
 		return newimg;
 		
+	}
+
+	public String getFilepath() {
+		return filepath;
 	}
 		 
 }

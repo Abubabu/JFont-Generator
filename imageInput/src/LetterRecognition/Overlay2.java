@@ -16,19 +16,19 @@ public class Overlay2 {
 		
 		//https://stackoverflow.com/questions/29024456/image-overlay-comparison-and-pixel-color-change
 		
-		
-		getImage a = new getImage("1.jpg"); 
+		 
 		getImage b = new getImage("2.jpg");
-		
-		System.out.println(a.getHeight() + " " + a.getWidth());
 		
 		ImageResizer imageresizer = new ImageResizer();
 		imageresizer.resize("1.jpg", "1.jpg", b.getWidth(), b.getHeight());
 		
-		getImage aScaled = new getImage("1.jpg"); 
+		getImage a = new getImage("1.jpg"); 
 		
-		RGBValue[][] apix = aScaled.getArrayRGB();
-		RGBValue[][] bpix = b.getArrayRGB();
+		getImage aConverted = new getImage(a.getBW(a.getFilepath()));
+		getImage bConverted = new getImage(b.getBW(b.getFilepath()));
+		
+		RGBValue[][] apix = aConverted.getArrayRGB();
+		RGBValue[][] bpix = bConverted.getArrayRGB();
 		int overlap = 0;
 		int nolap = 0;
 		
