@@ -79,6 +79,22 @@ public class getImage
 		return null;
 	}
 	
+	public pixelPosition southMost() {
+		pixelPosition [][] rgbs = this.getArrayPixels();
+		pixelPosition first = this.getLeftMost();
+		pixelPosition last = this.getRightMost();
+		int middle  = (first.getxPos() + last.getxPos()) / 2;
+		for(int z = rgbs[middle].length; z >= 0; z--) {
+			int r = this.getPixels().get(rgbs[middle][z]).getR();
+			int g = this.getPixels().get(rgbs[middle][z]).getG();
+			int b = this.getPixels().get(rgbs[middle][z]).getB();
+			if(r == 0 && g == 0 && b == 0) {
+				return rgbs[middle][z];
+			}
+		}
+		return null;
+	}
+	
 	public pixelPosition getRightMost() {
 		pixelPosition [][] rgbs = this.getArrayPixels();
 		pixelPosition last = null;
