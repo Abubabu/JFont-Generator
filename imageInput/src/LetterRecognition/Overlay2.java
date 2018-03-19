@@ -17,12 +17,12 @@ public class Overlay2 {
 		//https://stackoverflow.com/questions/29024456/image-overlay-comparison-and-pixel-color-change
 		
 		 
-		getImage b = new getImage("2.jpg");
+		getImage b = new getImage("MYB.png");
 		
 		ImageResizer imageresizer = new ImageResizer();
-		imageresizer.resize("1.jpg", "1.jpg", b.getWidth(), b.getHeight());
+		imageresizer.resize("MYA.png", "MYA.png", b.getWidth(), b.getHeight());
 		
-		getImage a = new getImage("1.jpg"); 
+		getImage a = new getImage("MYA.png"); 
 		
 		getImage aConverted = new getImage(a.getBW(a.getFilepath()));
 		getImage bConverted = new getImage(b.getBW(b.getFilepath()));
