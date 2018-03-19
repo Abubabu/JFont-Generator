@@ -108,7 +108,7 @@ public class getImage
 		pixelPosition first = this.getLeftMost();
 		pixelPosition last = this.getRightMost();
 		int middle  = (first.getxPos() + last.getxPos()) / 2;
-		for(int z = rgbs[middle].length; z >= 0; z--) {
+		for(int z = rgbs[middle].length - 1; z >= 0; z--) {
 			int r = this.getPixels().get(rgbs[middle][z]).getR();
 			int g = this.getPixels().get(rgbs[middle][z]).getG();
 			int b = this.getPixels().get(rgbs[middle][z]).getB();
