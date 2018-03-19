@@ -237,13 +237,13 @@ public class getImage
 		 }
 		 return positions;*/
 	}
-	public BufferedImage getBW() throws IOException {
+	public BufferedImage getBW(String filepath) throws IOException {
 		int sum = 0;
 		 BufferedImage orignal = new BufferedImage(500,500,BufferedImage.TYPE_INT_RGB); 
 		 
 		     
 		 
-		getImage test = new getImage("Twitter.png");	
+		getImage test = new getImage(filepath);	
 		
 		for(pixelPosition pixel : test.getPixels().keySet()) {  // the long list of colors is required. for each color we must get the orignal pixel using the pixellocation which is by gettingpixelsthenget class
 			Color color = new Color(test.getPixels().get(pixel).getR(),test.getPixels().get(pixel).getG(),test.getPixels().get(pixel).getB());
