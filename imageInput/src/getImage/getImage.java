@@ -129,10 +129,12 @@ public class getImage
 				int g = this.getPixels().get(rgbs[x][y]).getG();
 				int b = this.getPixels().get(rgbs[x][y]).getB();
 				if(foundLast != false) {
-					if(last.getxPos() < rgbs[x][y].getxPos())
-						last = rgbs[x][y];
-					else if( last.getxPos() == rgbs[x][y].getxPos() && last.getyPos() < rgbs[x][y].getyPos())
-						last = rgbs[x][y];
+					if(r == 0 && g == 0 && b == 0) {
+						if(last.getxPos() < rgbs[x][y].getxPos())
+							last = rgbs[x][y];
+						else if( last.getxPos() == rgbs[x][y].getxPos() && last.getyPos() < rgbs[x][y].getyPos())
+							last = rgbs[x][y];
+					}
 				}
 				else if(foundLast == false && r == 0 && g == 0 && b == 0) {
 					last = rgbs[x][y];
@@ -155,10 +157,12 @@ public class getImage
 				int g = this.getPixels().get(rgbs[x][y]).getG();
 				int b = this.getPixels().get(rgbs[x][y]).getB();
 				if(foundFirst != false) {
-					if(first.getxPos() > rgbs[x][y].getxPos())
-						first = rgbs[x][y];
-					else if( first.getxPos() == rgbs[x][y].getxPos() && first.getyPos() < rgbs[x][y].getyPos())
-						first = rgbs[x][y];
+					if(r == 0 && g == 0 && b == 0) {
+						if(first.getxPos() > rgbs[x][y].getxPos())
+							first = rgbs[x][y];
+						else if( first.getxPos() == rgbs[x][y].getxPos() && first.getyPos() < rgbs[x][y].getyPos())
+							first = rgbs[x][y];
+					}
 				}
 				else if(foundFirst == false && r == 0 && g == 0 && b == 0) {
 					first = rgbs[x][y];
