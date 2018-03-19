@@ -33,9 +33,10 @@ public class Overlay2 {
 		int nolap = 0;
 		
 		
-		System.out.println(aConverted.getRightMost().getxPos() + " " + aConverted.getLeftMost().getxPos());
-		System.out.println(aConverted.getRightMost().getyPos()+ " " +aConverted.getLeftMost().getyPos());
-		
+		System.out.println(aConverted.getRightMost().getxPos() + " " + aConverted.getRightMost().getyPos());
+		System.out.println(aConverted.getLeftMost().getxPos() + " " +aConverted.getLeftMost().getyPos());
+		System.out.println(aConverted.southMost().getxPos() + " " + aConverted.southMost().getyPos());
+		System.out.println(aConverted.locateVertex().getxPos() + " " + aConverted.locateVertex().getyPos());
 		
 		//A LOOP
 		for(int i = aConverted.getLeftMost().getxPos() ; i < aConverted.getRightMost().getxPos(); i++)
