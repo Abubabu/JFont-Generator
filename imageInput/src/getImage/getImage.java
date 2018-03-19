@@ -68,7 +68,7 @@ public class getImage
 			  int red = (pixel >> 16) & 0xFF;
 			  int green = (pixel >> 8) & 0xFF;
 			  int blue = (pixel) & 0xFF;
-			//System.out.println("x: " + j + " " + "y: " + i + "    :   " + alpha + " , " + red + " , " + green + " , " + blue);
+			  //System.out.println("x: " + j + " " + "y: " + i + "    :   " + alpha + " , " + red + " , " + green + " , " + blue);
 			  pixels.put(new pixelPosition(j,i), new RGBValue(alpha,red,green,blue));
 			 }
 	      }
