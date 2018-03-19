@@ -41,51 +41,38 @@ public class getImage
 		this.width = image.getWidth();
 		this.height = image.getHeight();
 		  
-		  for(int i = 0; i < this.height; i++) {
-			for(int j = 0; j < this.width; j++) {
+		  for(int i = 0; i < this.height; i++) {//y
+			for(int j = 0; j < this.width; j++) {//x
 			  int pixel = image.getRGB(j, i);
 			  int alpha = (pixel >> 24) & 0xFF;
 			  int red = (pixel >> 16) & 0xFF;
 			  int green = (pixel >> 8) & 0xFF;
 			  int blue = (pixel) & 0xFF;
-			  //System.out.println(i + " , " + j + "    :   " + alpha + " , " + red + " , " + green + " , " + blue);
+			  //System.out.println("x: " + j + " " + "y: " + i + "    :   " + alpha + " , " + red + " , " + green + " , " + blue);
 			  pixels.put(new pixelPosition(j,i), new RGBValue(alpha,red,green,blue));
 			 }
 	      }
-		  //System.out.println();
 	}
 	public getImage(BufferedImage images) throws IOException
 	{
 		this.filepath = "null";
 		BufferedImage image = images;
-		//System.out.print(image.getType());
 		 
 		this.width = image.getWidth();
 		this.height = image.getHeight();
 		  
-		  for(int i = 0; i < this.height; i++) {
-			for(int j = 0; j < this.width; j++) {
+		  for(int i = 0; i < this.height; i++) {//y
+			for(int j = 0; j < this.width; j++) {//x
 			  int pixel = image.getRGB(j, i);
 			  int alpha = (pixel >> 24) & 0xFF;
 			  int red = (pixel >> 16) & 0xFF;
 			  int green = (pixel >> 8) & 0xFF;
 			  int blue = (pixel) & 0xFF;
-			  //System.out.println(i + " , " + j + "    :   " + alpha + " , " + red + " , " + green + " , " + blue);
+			//System.out.println("x: " + j + " " + "y: " + i + "    :   " + alpha + " , " + red + " , " + green + " , " + blue);
 			  pixels.put(new pixelPosition(j,i), new RGBValue(alpha,red,green,blue));
 			 }
 	      }
-		  //System.out.println();
 	}
-	/*public static RGBValue getRGB(int xcoord, int ycoord)
-	{
-		for (pixelPosition key : pixels.keySet()) {
-			if(key.getxPos() == xcoord && key.getyPos() == ycoord)
-			{
-				return pixels.get(key);
-			}
-		}
-		return null;
-	}*/
 	
 	public pixelPosition locateVertex() {
 		pixelPosition [][] rgbs = this.getArrayPixels();
@@ -187,6 +174,7 @@ public class getImage
 				System.out.println(x + " , " + y + "    :    " + potato[x][y].getR() + " , " + potato[x][y].getG() + " , " + potato[x][y].getB());
 			}
 		}
+		//System.out.print(potato[0][100].getR() + " " + potato[0][100].getG() + " " + potato[0][100].getB());
 		//System.out.print(potato[436][332].getR() + " , " + potato[436][332].getG() + " , " + potato[436][332].getB() );
 	//	System.out.println(test.getRGB(0,0).getR());
 		
@@ -265,11 +253,9 @@ public class getImage
 		 }
 		 return positions;*/
 	}
-	public BufferedImage getBW(String filepath) throws IOException {
+	public BufferedImage getBW() throws IOException {
 		int sum = 0;
-		 BufferedImage orignal = new BufferedImage(this.width,this.height,BufferedImage.TYPE_INT_RGB); 
-		 
-		     
+		BufferedImage orignal = new BufferedImage(this.width,this.height,BufferedImage.TYPE_INT_RGB); 
 		 
 		getImage test = new getImage(this.filepath);	
 		
@@ -278,12 +264,12 @@ public class getImage
 			orignal.setRGB(pixel.getxPos(), pixel.getyPos(), color.getRGB());
 		}
 		
-			for(RGBValue pos : test.getPixels().values()) {
-				/*int avgtotalrgb = pos.getR() + pos.getB() + pos.getG();
-				sum = avgtotalrgb + sum;*/
-			
-			}
-			//sum = sum / (test.getHeight() * test.getWidth());
+		/*for(RGBValue pos : test.getPixels().values()) {
+			int avgtotalrgb = pos.getR() + pos.getB() + pos.getG();
+			sum = avgtotalrgb + sum;
+		
+		}*/
+		//sum = sum / (test.getHeight() * test.getWidth());
 
 	
 		for(RGBValue pos2 : test.getPixels().values()) {

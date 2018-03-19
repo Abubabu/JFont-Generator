@@ -24,8 +24,8 @@ public class Overlay2 {
 		
 		getImage a = new getImage("MYA.png"); 
 		
-		getImage aConverted = new getImage(a.getBW(a.getFilepath()));
-		getImage bConverted = new getImage(b.getBW(b.getFilepath()));
+		getImage aConverted = new getImage(a.getBW());
+		getImage bConverted = new getImage(b.getBW());
 		
 		RGBValue[][] apix = aConverted.getArrayRGB();
 		RGBValue[][] bpix = bConverted.getArrayRGB();
@@ -39,13 +39,13 @@ public class Overlay2 {
 		System.out.println(aConverted.locateVertex().getxPos() + " " + aConverted.locateVertex().getyPos());
 		
 		//A LOOP
-		for(int i = aConverted.getLeftMost().getxPos() ; i < aConverted.getRightMost().getxPos(); i++)
+		for(int i = aConverted.locateVertex().getyPos(); i < aConverted.southMost().getyPos(); i++)//y  apix[ycoord][xcoord]
 		{
-			for(int j = aConverted.southMost().getyPos(); j < aConverted.locateVertex().getyPos(); j++)
+			for(int j = aConverted.getLeftMost().getxPos(); j < aConverted.getRightMost().getxPos(); j++)//x
 			{
 				//System.out.println(apix[j][i].getB() + "  " + bpix[j][i].getB());
-				//System.out.println("x:"+ i + "  y:" + j + "  " + "A:" + a.getRGB(j,i).getR() + ", " + aplus.getRGB(j,i).getR());
-				if(isRGBEqual(apix[j][i],bpix[j][i]))
+				//System.out.println("x:"+ i + "  y:" + j + "  " + "A:" + apix[j][i].getR() + ", " + bpix[j][i].getR());
+				if(isRGBEqual(apix[i][j],bpix[i][j]))
 				{
 					overlap++;		
 				}
@@ -56,23 +56,6 @@ public class Overlay2 {
 			}
 		}
 		
-		//B LOOP
-		/*for(int i = (int) (aScaled.getLeftMost().getxPos()*1.5); i < aScaled.getRightMost().getxPos()*1.5; i++)
-		{
-			for(int j = (int) (aScaled.getLeftMost().getyPos()*1.5); j < aScaled.getRightMost().getyPos()*1.5; j++)
-			{
-				//System.out.println(apix[j][i].getB() + "  " + bpix[j][i].getB());
-				//System.out.println("x:"+ i + "  y:" + j + "  " + "A:" + a.getRGB(j,i).getR() + ", " + aplus.getRGB(j,i).getR());
-				if(isRGBEqual(apix[j][i],bpix[j][i]))
-				{
-					overlap++;		
-				}
-				else
-				{
-					nolap++;
-				}
-			}
-		}*/
 		System.out.println(overlap + " " + nolap);
 		System.out.print(((double) overlap/ (double) (nolap+overlap)));
 	}
