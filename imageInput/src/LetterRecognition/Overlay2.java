@@ -39,9 +39,9 @@ public class Overlay2 {
 //		System.out.println(aScaled.getRightMost().getxPos() + " " + aScaled.getLeftMost().getxPos());
 //		System.out.println(bRange);
 		//A LOOP
-		for(int i = 0; i < aScaled.getWidth(); i++)
+		for(int i = 0; i < aConverted.getWidth(); i++)
 		{
-			for(int j = 0; j < aScaled.getHeight(); j++)
+			for(int j = 0; j < aConverted.getHeight(); j++)
 			{
 				//System.out.println(apix[j][i].getB() + "  " + bpix[j][i].getB());
 				//System.out.println("x:"+ i + "  y:" + j + "  " + "A:" + a.getRGB(j,i).getR() + ", " + aplus.getRGB(j,i).getR());
