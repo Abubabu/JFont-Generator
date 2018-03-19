@@ -110,7 +110,7 @@ public class getImage
 					else if( last.getxPos() == rgbs[x][y].getxPos() && last.getyPos() < rgbs[x][y].getyPos())
 						last = rgbs[x][y];
 				}
-				else if(last == null && r == 0 && g == 0 && b == 0) {
+				else if(foundLast == false && r == 0 && g == 0 && b == 0) {
 					last = rgbs[x][y];
 					foundLast = true;
 				}
@@ -136,7 +136,7 @@ public class getImage
 					else if( first.getxPos() == rgbs[x][y].getxPos() && first.getyPos() < rgbs[x][y].getyPos())
 						first = rgbs[x][y];
 				}
-				else if(first == null && r == 0 && g == 0 && b == 0) {
+				else if(foundFirst == false && r == 0 && g == 0 && b == 0) {
 					first = rgbs[x][y];
 					foundFirst = true;
 				}
