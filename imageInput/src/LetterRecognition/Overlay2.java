@@ -20,7 +20,7 @@ public class Overlay2 {
 		getImage a = new getImage("a2.png"); 
 		getImage b = new getImage("b2.png");
 		
-		//System.out.println(a.getHeight() + " " + a.getWidth());
+		System.out.println(a.getHeight() + " " + a.getWidth());
 		
 		ImageResizer imageresizer = new ImageResizer();
 		imageresizer.resize("a2.png", "a2.png", b.getWidth(), b.getHeight());
@@ -36,10 +36,12 @@ public class Overlay2 {
 		int aRange =  aScaled.getRightMost().getxPos() - aScaled.getLeftMost().getxPos();
 		int bRange =  bScaled.getRightMost().getxPos() - bScaled.getLeftMost().getxPos();
 		
+		System.out.println(aScaled.getRightMost().getxPos() + " " + aScaled.getLeftMost().getxPos());
+		System.out.println(bRange);
 		//A LOOP
-		for(int i = (int) (aScaled.getLeftMost().getxPos()*1.5); i < aScaled.getRightMost().getxPos()*1.5; i++)
+		for(int i = aScaled.getLeftMost().getxPos(); i < aScaled.getRightMost().getxPos(); i++)
 		{
-			for(int j = (int) (aScaled.getLeftMost().getyPos()*1.5); j < aScaled.getRightMost().getyPos()*1.5; j++)
+			for(int j = aScaled.locateVertex().getyPos(); j </*get bottommost pixel function here*/ aScaled.locateVertex().getyPos(); j++)
 			{
 				//System.out.println(apix[j][i].getB() + "  " + bpix[j][i].getB());
 				//System.out.println("x:"+ i + "  y:" + j + "  " + "A:" + a.getRGB(j,i).getR() + ", " + aplus.getRGB(j,i).getR());
@@ -55,7 +57,7 @@ public class Overlay2 {
 		}
 		
 		//B LOOP
-		for(int i = (int) (aScaled.getLeftMost().getxPos()*1.5); i < aScaled.getRightMost().getxPos()*1.5; i++)
+		/*for(int i = (int) (aScaled.getLeftMost().getxPos()*1.5); i < aScaled.getRightMost().getxPos()*1.5; i++)
 		{
 			for(int j = (int) (aScaled.getLeftMost().getyPos()*1.5); j < aScaled.getRightMost().getyPos()*1.5; j++)
 			{
@@ -70,7 +72,7 @@ public class Overlay2 {
 					nolap++;
 				}
 			}
-		}
+		}*/
 		System.out.println(overlap + " " + nolap);
 		System.out.print(((double) overlap/ (double) (nolap+overlap)));
 	}

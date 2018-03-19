@@ -12,4 +12,7 @@ public class JStrokeRecognition {
 	}
 	
 	public static boolean checkforIntersection()
+	{
+		return false;
+	}
 }
