@@ -298,7 +298,7 @@ public class getImage
 				pos2.setG(0);
 			}
 		}
-		BufferedImage newimg = new BufferedImage(500,500,BufferedImage.TYPE_INT_RGB); //copy paste this line outside and
+		BufferedImage newimg = new BufferedImage(this.width,this.height,BufferedImage.TYPE_INT_RGB); //copy paste this line outside and
 	
 		for(pixelPosition pixel : test.getPixels().keySet()) {  // the long list of colors is required. for each color we must get the orignal pixel using the pixellocation which is by gettingpixelsthenget class
 			Color color = new Color(test.getPixels().get(pixel).getR(),test.getPixels().get(pixel).getG(),test.getPixels().get(pixel).getB());

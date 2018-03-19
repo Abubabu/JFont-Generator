@@ -32,16 +32,15 @@ public class Overlay2 {
 		int overlap = 0;
 		int nolap = 0;
 		
-		/*int aRange =  aScaled.getRightMost().getxPos() - aScaled.getLeftMost().getxPos();
-		int bRange =  b.getRightMost().getxPos() - b.getLeftMost().getxPos();*/
+		
+		System.out.println(aConverted.getRightMost().getxPos() + " " + aConverted.getLeftMost().getxPos());
+		System.out.println(aConverted.getRightMost().getyPos()+ " " +aConverted.getLeftMost().getyPos());
 		
 		
-//		System.out.println(aScaled.getRightMost().getxPos() + " " + aScaled.getLeftMost().getxPos());
-//		System.out.println(bRange);
 		//A LOOP
-		for(int i = 0; i < aConverted.getWidth(); i++)
+		for(int i = aConverted.getLeftMost().getxPos() ; i < aConverted.getRightMost().getxPos(); i++)
 		{
-			for(int j = 0; j < aConverted.getHeight(); j++)
+			for(int j = aConverted.getLeftMost().getyPos(); j < aConverted.getRightMost().getyPos(); j++)
 			{
 				//System.out.println(apix[j][i].getB() + "  " + bpix[j][i].getB());
 				//System.out.println("x:"+ i + "  y:" + j + "  " + "A:" + a.getRGB(j,i).getR() + ", " + aplus.getRGB(j,i).getR());
