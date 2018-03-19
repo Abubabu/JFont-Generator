@@ -40,7 +40,7 @@ public class Overlay2 {
 		//A LOOP
 		for(int i = aConverted.getLeftMost().getxPos() ; i < aConverted.getRightMost().getxPos(); i++)
 		{
-			for(int j = aConverted.getLeftMost().getyPos(); j < aConverted.getRightMost().getyPos(); j++)
+			for(int j = aConverted.southMost().getyPos(); j < aConverted.locateVertex().getyPos(); j++)
 			{
 				//System.out.println(apix[j][i].getB() + "  " + bpix[j][i].getB());
 				//System.out.println("x:"+ i + "  y:" + j + "  " + "A:" + a.getRGB(j,i).getR() + ", " + aplus.getRGB(j,i).getR());
