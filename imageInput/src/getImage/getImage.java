@@ -106,7 +106,7 @@ public class getImage
 				int b = this.getPixels().get(rgbs[x][y]).getB();
 				if(foundTop != false) {
 					if(r == 0 && g == 0 && b == 0) {
-						if(top.getyPos() < rgbs[x][y].getyPos())
+						if(top.getyPos() > rgbs[x][y].getyPos())
 							top = rgbs[x][y];
 						else if( top.getyPos() == rgbs[x][y].getyPos() && top.getxPos() > rgbs[x][y].getxPos())
 							top = rgbs[x][y];
@@ -133,7 +133,7 @@ public class getImage
 				int b = this.getPixels().get(rgbs[x][y]).getB();
 				if(foundBottom != false) {
 					if(r == 0 && g == 0 && b == 0) {
-						if(bottom.getyPos() > rgbs[x][y].getyPos())
+						if(bottom.getyPos() < rgbs[x][y].getyPos())
 							bottom = rgbs[x][y];
 						else if( bottom.getyPos() == rgbs[x][y].getyPos() && bottom.getxPos() > rgbs[x][y].getxPos())
 							bottom = rgbs[x][y];

@@ -36,7 +36,7 @@ public class Overlay2 {
 		System.out.println(bConverted.getRightMost().getxPos() + " " + bConverted.getRightMost().getyPos());
 	System.out.println(bConverted.getLeftMost().getxPos() + " " +bConverted.getLeftMost().getyPos());
 		System.out.println(bConverted.southMost().getxPos() + " " + bConverted.southMost().getyPos());
-		System.out.println(bConverted.locateVertex().getxPos() + " " + bConverted.locateVertex().getyPos());
+		System.out.println(bConverted.locateVertex().getxPos() + " " + bConverted.northMost().getyPos());
 		
 		//A LOOP
 		for(int i = 0; i < a.getHeight(); i++)//y  apix[ycoord][xcoord]
