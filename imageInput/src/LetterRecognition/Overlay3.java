@@ -38,14 +38,15 @@ public class Overlay3 {
 //		System.out.println(bConverted.southMost().getxPos() + " " + bConverted.southMost().getyPos());
 //		System.out.println(bConverted.locateVertex().getxPos() + " " + bConverted.locateVertex().getyPos());
 //		
+		int loop = 0;
 		//A LOOP
-		for(int ay = 0, by = 0; ay < a.getHeight(); ay++, by++)//y  apix[ycoord][xcoord]
+		for(int ay = aConverted.northMost().getyPos(), by = bConverted.northMost().getyPos(); ay < a.getHeight() && by < b.getHeight(); ay++, by++)//y  apix[ycoord][xcoord]
 		{
-			for(int ax = 0, bx = 0; ax < a.getWidth() && bx < b.getWidth(); ax++, bx++)//x
+			for(int ax = aConverted.getLeftMost().getxPos(), bx = bConverted.getLeftMost().getxPos(); ax < a.getWidth() && bx < b.getWidth(); ax++, bx++)//x
 			{
 				//System.out.println(apix[j][i].getB() + "  " + bpix[j][i].getB());
-				System.out.println("x:"+ ax + "  y:" + ay + "  " + "A:" + apix[ax][ay].getR() + ", " + bpix[ax][ay].getR());
-				if(isRGBEqual(apix[ax][ay],bpix[ax][ay]))
+				System.out.println("x:"+ ax + "  y:" + ay + "  " + "A:" + apix[ax][ay].getR() + ", " + bpix[bx][by].getR());
+				if(isRGBEqual(apix[ax][ay],bpix[bx][by]))
 				{
 					overlap++;		
 				}
@@ -56,6 +57,7 @@ public class Overlay3 {
 			}
 		}
 		
+		System.out.println(loop);
 		System.out.println(overlap + " " + nolap);
 		System.out.print(((double) overlap/ (double) (nolap+overlap)));
 	}
