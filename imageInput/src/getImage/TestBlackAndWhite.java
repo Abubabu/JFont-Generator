@@ -49,8 +49,8 @@ public class TestBlackAndWhite {  //https://stackoverflow.com/questions/14513542
 
         public TestPane() {
             try {
-                master = ImageIO.read(new File("/imageInput/Panda.png"));
-                grayScale = ImageIO.read(new File("/imageInput/Panda.png"));
+                master = ImageIO.read(new File("2.jpg"));
+                grayScale = ImageIO.read(new File("2.jpg"));
                 ColorConvertOp op = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
                 op.filter(grayScale, grayScale);
 

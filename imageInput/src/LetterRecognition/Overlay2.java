@@ -17,34 +17,34 @@ public class Overlay2 {
 		//https://stackoverflow.com/questions/29024456/image-overlay-comparison-and-pixel-color-change
 		
 		 
-		getImage b = new getImage("MYB.png");
+		getImage b = new getImage("2.jpg");
 		
 		ImageResizer imageresizer = new ImageResizer();
-		imageresizer.resize("MYA.png", "MYA.png", b.getWidth(), b.getHeight());
+		imageresizer.resize("1.jpg", "1.jpg", b.getWidth(), b.getHeight());
 		
-		getImage a = new getImage("MYA.png"); 
+		getImage a = new getImage("1.jpg"); 
 		
 		getImage aConverted = new getImage(a.getBW());
 		getImage bConverted = new getImage(b.getBW());
 		
-		RGBValue[][] apix = aConverted.getArrayRGB();
-		RGBValue[][] bpix = bConverted.getArrayRGB();
+		RGBValue[][] apix = aConverted.getPixelsArray();
+		RGBValue[][] bpix = bConverted.getPixelsArray();
 		int overlap = 0;
 		int nolap = 0;
 		
 		
-		System.out.println(aConverted.getRightMost().getxPos() + " " + aConverted.getRightMost().getyPos());
-		System.out.println(aConverted.getLeftMost().getxPos() + " " +aConverted.getLeftMost().getyPos());
-		System.out.println(aConverted.southMost().getxPos() + " " + aConverted.southMost().getyPos());
-		System.out.println(aConverted.locateVertex().getxPos() + " " + aConverted.locateVertex().getyPos());
-		
+//		System.out.println(bConverted.getRightMost().getxPos() + " " + bConverted.getRightMost().getyPos());
+//		System.out.println(bConverted.getLeftMost().getxPos() + " " +bConverted.getLeftMost().getyPos());
+//		System.out.println(bConverted.southMost().getxPos() + " " + bConverted.southMost().getyPos());
+//		System.out.println(bConverted.locateVertex().getxPos() + " " + bConverted.locateVertex().getyPos());
+//		
 		//A LOOP
-		for(int i = aConverted.locateVertex().getyPos(); i < aConverted.southMost().getyPos(); i++)//y  apix[ycoord][xcoord]
+		for(int i = 0; i < a.getHeight(); i++)//y  apix[ycoord][xcoord]
 		{
-			for(int j = aConverted.getLeftMost().getxPos(); j < aConverted.getRightMost().getxPos(); j++)//x
+			for(int j = 0; j < a.getWidth(); j++)//x
 			{
 				//System.out.println(apix[j][i].getB() + "  " + bpix[j][i].getB());
-				//System.out.println("x:"+ i + "  y:" + j + "  " + "A:" + apix[j][i].getR() + ", " + bpix[j][i].getR());
+				System.out.println("x:"+ j + "  y:" + i + "  " + "A:" + apix[i][j].getR() + ", " + bpix[i][j].getR());
 				if(isRGBEqual(apix[i][j],bpix[i][j]))
 				{
 					overlap++;		

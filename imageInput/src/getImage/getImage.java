@@ -18,6 +18,7 @@ public class getImage
 	final private int width;
 	final private int height;
 	final private String filepath;
+	final private RGBValue[][] pixelsArray;
 	
 	public Map<pixelPosition, RGBValue> getPixels() {
 		return pixels;
@@ -52,10 +53,12 @@ public class getImage
 			  pixels.put(new pixelPosition(j,i), new RGBValue(alpha,red,green,blue));
 			 }
 	      }
+		 
+		  this.pixelsArray = getArrayRGB();
 	}
 	public getImage(BufferedImage images) throws IOException
 	{
-		this.filepath = "null";
+		this.filepath = null;
 		BufferedImage image = images;
 		 
 		this.width = image.getWidth();
@@ -72,6 +75,8 @@ public class getImage
 			  pixels.put(new pixelPosition(j,i), new RGBValue(alpha,red,green,blue));
 			 }
 	      }
+		  
+		  this.pixelsArray = getArrayRGB();
 	}
 	
 	public pixelPosition locateVertex() {
@@ -296,6 +301,10 @@ public class getImage
 
 	public String getFilepath() {
 		return filepath;
+	}
+
+	public RGBValue[][] getPixelsArray() {
+		return pixelsArray;
 	}
 		 
 }
