@@ -222,7 +222,7 @@ public class getImage
 	}*/
 	
 	public pixelPosition[][] getArrayPixels() {
-		pixelPosition[][] positions = new pixelPosition[height][width];
+		pixelPosition[][] positions = new pixelPosition[width][height];
 			// int arrayHeight = 0;
 			// int arrayWidth = 0;
 			 for(pixelPosition pos : this.getPixels().keySet()) {
@@ -230,14 +230,14 @@ public class getImage
 					 arrayWidth++;
 				 }*/
 				 if(pos.getyPos() < height && pos.getxPos() < width) {
-					 positions[pos.getyPos()][pos.getxPos()] = pos;
+					 positions[pos.getxPos()][pos.getyPos()] = pos;
 				 }
 			 }
 			 return positions;
 	}
 	
 	public RGBValue[][] getArrayRGB() {
-		 RGBValue[][] positions = new RGBValue[height][width];
+		 RGBValue[][] positions = new RGBValue[width][height];
 		// int arrayHeight = 0;
 		// int arrayWidth = 0;
 		 for(pixelPosition pos : this.getPixels().keySet()) {
@@ -245,7 +245,7 @@ public class getImage
 				 arrayWidth++;
 			 }*/
 			 if(pos.getyPos() < height && pos.getxPos() < width) {
-				 positions[pos.getyPos()][pos.getxPos()] = this.getPixels().get(pos);
+				 positions[pos.getxPos()][pos.getyPos()] = this.getPixels().get(pos);
 			 }
 			 
 			 
