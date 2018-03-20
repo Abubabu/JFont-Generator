@@ -39,13 +39,13 @@ public class Overlay3 {
 //		System.out.println(bConverted.locateVertex().getxPos() + " " + bConverted.locateVertex().getyPos());
 //		
 		//A LOOP
-		for(int i = 0; i < a.getHeight(); i++)//x  apix[ycoord][xcoord]
+		for(int ay = 0, by = 0; ay < a.getHeight(); ay++, by++)//y  apix[ycoord][xcoord]
 		{
-			for(int j = 0; j < a.getWidth(); j++)//y
+			for(int ax = 0, bx = 0; ax < a.getWidth() && bx < b.getWidth(); ax++, bx++)//x
 			{
 				//System.out.println(apix[j][i].getB() + "  " + bpix[j][i].getB());
-				System.out.println("x:"+ i + "  y:" + j + "  " + "A:" + apix[j][i].getR() + ", " + bpix[j][i].getR());
-				if(isRGBEqual(apix[j][i],bpix[j][i]))
+				System.out.println("x:"+ ax + "  y:" + ay + "  " + "A:" + apix[ax][ay].getR() + ", " + bpix[ax][ay].getR());
+				if(isRGBEqual(apix[ax][ay],bpix[ax][ay]))
 				{
 					overlap++;		
 				}
