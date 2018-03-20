@@ -94,21 +94,59 @@ public class getImage
 		}
 		return null;
 	}
-	
-	public pixelPosition southMost() {
+	public pixelPosition northMost() {
 		pixelPosition [][] rgbs = this.getArrayPixels();
-		pixelPosition first = this.getLeftMost();
-		pixelPosition last = this.getRightMost();
-		int middle  = (first.getxPos() + last.getxPos()) / 2;
-		for(int z = rgbs[middle].length - 1; z >= 0; z--) {
-			int r = this.getPixels().get(rgbs[middle][z]).getR();
-			int g = this.getPixels().get(rgbs[middle][z]).getG();
-			int b = this.getPixels().get(rgbs[middle][z]).getB();
-			if(r == 0 && g == 0 && b == 0) {
-				return rgbs[middle][z];
+		pixelPosition top = null;
+		boolean foundTop = false;
+		
+		for(int x = 0; x < rgbs.length; x++) {
+			for(int y = rgbs[x].length - 1;  y >= 0; y--) {
+				int r = this.getPixels().get(rgbs[x][y]).getR();
+				int g = this.getPixels().get(rgbs[x][y]).getG();
+				int b = this.getPixels().get(rgbs[x][y]).getB();
+				if(foundTop != false) {
+					if(r == 0 && g == 0 && b == 0) {
+						if(top.getyPos() < rgbs[x][y].getyPos())
+							top = rgbs[x][y];
+						else if( top.getyPos() == rgbs[x][y].getyPos() && top.getxPos() > rgbs[x][y].getxPos())
+							top = rgbs[x][y];
+					}
+				}
+				else if(foundTop == false && r == 0 && g == 0 && b == 0) {
+					top = rgbs[x][y];
+					foundTop = true;
+				}
+				
 			}
 		}
-		return null;
+		return top;
+	}
+	public pixelPosition southMost() {
+		pixelPosition [][] rgbs = this.getArrayPixels();
+		pixelPosition bottom = null;
+		boolean foundBottom = false;
+		
+		for(int x = 0; x < rgbs.length; x++) {
+			for(int y = rgbs[x].length - 1;  y >= 0; y--) {
+				int r = this.getPixels().get(rgbs[x][y]).getR();
+				int g = this.getPixels().get(rgbs[x][y]).getG();
+				int b = this.getPixels().get(rgbs[x][y]).getB();
+				if(foundBottom != false) {
+					if(r == 0 && g == 0 && b == 0) {
+						if(bottom.getyPos() > rgbs[x][y].getyPos())
+							bottom = rgbs[x][y];
+						else if( bottom.getyPos() == rgbs[x][y].getyPos() && bottom.getxPos() > rgbs[x][y].getxPos())
+							bottom = rgbs[x][y];
+					}
+				}
+				else if(foundBottom == false && r == 0 && g == 0 && b == 0) {
+					bottom = rgbs[x][y];
+					foundBottom = true;
+				}
+				
+			}
+		}
+		return bottom;
 	}
 	
 	public pixelPosition getRightMost() {
