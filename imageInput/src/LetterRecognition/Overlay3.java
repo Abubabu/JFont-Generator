@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import getImage.CardinalPixels;
 import getImage.RGBValue;
 import getImage.getImage;
 
@@ -32,6 +33,11 @@ public class Overlay3 {
 		int overlap = 0;
 		int nolap = 0;
 		
+		CardinalPixels alocation = new CardinalPixels(aConverted);
+		CardinalPixels blocation = new CardinalPixels(bConverted);
+		
+		
+		
 		
 //		System.out.println(bConverted.getRightMost().getxPos() + " " + bConverted.getRightMost().getyPos());
 //		System.out.println(bConverted.getLeftMost().getxPos() + " " +bConverted.getLeftMost().getyPos());
@@ -39,10 +45,9 @@ public class Overlay3 {
 //		System.out.println(bConverted.locateVertex().getxPos() + " " + bConverted.locateVertex().getyPos());
 //		
 		int loop = 0;
-		//A LOOP
-		for(int ay = aConverted.northMost().getyPos(), by = bConverted.northMost().getyPos(); ay < a.getHeight() && by < b.getHeight(); ay++, by++)//y  apix[ycoord][xcoord]
+		for(int ay = alocation.getNorth().getyPos(), by = blocation.getNorth().getyPos(); ay < alocation.getSouth().getyPos() && by < blocation.getSouth().getyPos(); ay++, by++)//y  apix[ycoord][xcoord]
 		{
-			for(int ax = aConverted.getLeftMost().getxPos(), bx = bConverted.getLeftMost().getxPos(); ax < a.getWidth() && bx < b.getWidth(); ax++, bx++)//x
+			for(int ax = alocation.getLeft().getxPos(), bx = blocation.getLeft().getxPos(); ax < alocation.getRight().getxPos() && bx < blocation.getRight().getxPos(); ax++, bx++)//x
 			{
 				//System.out.println(apix[j][i].getB() + "  " + bpix[j][i].getB());
 				System.out.println("x:"+ ax + "  y:" + ay + "  " + "A:" + apix[ax][ay].getR() + ", " + bpix[bx][by].getR());
