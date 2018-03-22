@@ -45,11 +45,15 @@ public class Overlay3 {
 		System.out.println("circleLeft: " + blocation.getLeft().getxPos() + "," + blocation.getLeft().getyPos());
 		System.out.println("circleRight: " + blocation.getRight().getxPos() + "," + blocation.getRight().getyPos());
 		
+		int ybuffer = alocation.getNorth().getyPos()-alocation.getNorth().getyPos()/blocation.
+		int xbuffer = aConverted.getWidth()/bConverted.getWidth();
 		
+		
+		System.out.println(ybuffer + " ," + xbuffer);
 		int loop = 0;
-		for(int ay = alocation.getNorth().getyPos(), by = blocation.getNorth().getyPos(); ay < alocation.getSouth().getyPos() && by < blocation.getSouth().getyPos(); ay++, by++)//y  apix[ycoord][xcoord]
+		for(int ay = alocation.getNorth().getyPos(), by = blocation.getNorth().getyPos(); ay < alocation.getSouth().getyPos() && by < blocation.getSouth().getyPos(); ay++, by = by + ybuffer)//y  apix[ycoord][xcoord]
 		{
-			for(int ax = alocation.getLeft().getxPos(), bx = blocation.getLeft().getxPos(); ax < alocation.getRight().getxPos() && bx < blocation.getRight().getxPos(); ax++, bx++)//x
+			for(int ax = alocation.getLeft().getxPos(), bx = blocation.getLeft().getxPos(); ax < alocation.getRight().getxPos() && bx < blocation.getRight().getxPos(); ax++, bx = bx + xbuffer)//x
 			{
 				//System.out.println(apix[j][i].getB() + "  " + bpix[j][i].getB());
 				System.out.println("x:"+ ax + "  y:" + ay + "  " + "A:" + apix[ax][ay].getR() + ", " + bpix[bx][by].getR());
