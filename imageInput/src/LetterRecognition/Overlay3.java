@@ -18,12 +18,12 @@ public class Overlay3 {
 		//https://stackoverflow.com/questions/29024456/image-overlay-comparison-and-pixel-color-change
 		
 		 
-		getImage b = new getImage("square2.png");
+		getImage b = new getImage("circle.png");
 		
 		ImageResizer imageresizer = new ImageResizer();
-		imageresizer.resize("square.png", "square.png", b.getWidth(), b.getHeight());
+		imageresizer.resize("heart.png", "heart.png", b.getWidth(), b.getHeight());
 		
-		getImage a = new getImage("square.png"); 
+		getImage a = new getImage("heart.png"); 
 		
 		getImage aConverted = new getImage(a.getBW());
 		getImage bConverted = new getImage(b.getBW());
@@ -36,14 +36,16 @@ public class Overlay3 {
 		CardinalPixels alocation = new CardinalPixels(aConverted);
 		CardinalPixels blocation = new CardinalPixels(bConverted);
 		
+		System.out.println("heartNorth: " + alocation.getNorth().getxPos() + "," + alocation.getNorth().getyPos());
+		System.out.println("heartSouth: " + alocation.getSouth().getxPos() + "," + alocation.getSouth().getyPos());
+		System.out.println("heartLeft: " + alocation.getLeft().getxPos() + "," + alocation.getLeft().getyPos());
+		System.out.println("heartRight: " + alocation.getRight().getxPos() + "," + alocation.getRight().getyPos());
+		System.out.println("circleNorth: " + blocation.getNorth().getxPos() + "," + blocation.getNorth().getyPos());
+		System.out.println("circleSouth: " + blocation.getSouth().getxPos() + "," + blocation.getSouth().getyPos());
+		System.out.println("circleLeft: " + blocation.getLeft().getxPos() + "," + blocation.getLeft().getyPos());
+		System.out.println("circleRight: " + blocation.getRight().getxPos() + "," + blocation.getRight().getyPos());
 		
 		
-		
-//		System.out.println(bConverted.getRightMost().getxPos() + " " + bConverted.getRightMost().getyPos());
-//		System.out.println(bConverted.getLeftMost().getxPos() + " " +bConverted.getLeftMost().getyPos());
-//		System.out.println(bConverted.southMost().getxPos() + " " + bConverted.southMost().getyPos());
-//		System.out.println(bConverted.locateVertex().getxPos() + " " + bConverted.locateVertex().getyPos());
-//		
 		int loop = 0;
 		for(int ay = alocation.getNorth().getyPos(), by = blocation.getNorth().getyPos(); ay < alocation.getSouth().getyPos() && by < blocation.getSouth().getyPos(); ay++, by++)//y  apix[ycoord][xcoord]
 		{
