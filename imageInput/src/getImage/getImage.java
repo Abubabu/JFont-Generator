@@ -309,21 +309,42 @@ public class getImage
 		 
 		getImage test = new getImage(this.filepath);	
 		
-		for(pixelPosition pixel : test.getPixels().keySet()) {  // the long list of colors is required. for each color we must get the orignal pixel using the pixellocation which is by gettingpixelsthenget class
+		/*for(pixelPosition pixel : test.getPixels().keySet()) {  // the long list of colors is required. for each color we must get the orignal pixel using the pixellocation which is by gettingpixelsthenget class
 			Color color = new Color(test.getPixels().get(pixel).getR(),test.getPixels().get(pixel).getG(),test.getPixels().get(pixel).getB());
 			orignal.setRGB(pixel.getxPos(), pixel.getyPos(), color.getRGB());
+		} this is what we used until now */
+		int averager = 0;
+		int averageg = 0;
+		int averageb = 0;
+		for(RGBValue pos : test.getPixels().values()) {
+			averager += pos.getR();
+			averageg += pos.getG();
+			averageb += pos.getB();
+		
 		}
 		
-		/*for(RGBValue pos : test.getPixels().values()) {
-			int avgtotalrgb = pos.getR() + pos.getB() + pos.getG();
-			sum = avgtotalrgb + sum;
-		
-		}*/
+		averager = averager / (this.height * this.width);
+		averageg = averageg / (this.height * this.width);
+		averageb = averageb / (this.height * this.width);
 		//sum = sum / (test.getHeight() * test.getWidth());
+		/*for(pixelPosition pixel : test.getPixels().keySet()) {  // the long list of colors is required. for each color we must get the orignal pixel using the pixellocation which is by gettingpixelsthenget class
+			Color color = new Color(test.getPixels().get(pixel).getR(),test.getPixels().get(pixel).getG(),test.getPixels().get(pixel).getB());
+			orignal.setRGB(pixel.getxPos(), pixel.getyPos(), color.getRGB());
+		}*/
 
 	
 		for(RGBValue pos2 : test.getPixels().values()) {
-			if((pos2.getR() + pos2.getG() + pos2.getB()) > 382) {
+			int r = pos2.getR();
+			int g = pos2.getG();
+			int b = pos2.getB();
+			int whiter = 0;
+			if(r > averager)
+				whiter++;
+			if(b > averageb)
+				whiter++;
+			if(g > averageg)
+				whiter++;
+			if(whiter > 1) {
 				pos2.setR(255);
 				pos2.setB(255);
 				pos2.setG(255);
@@ -342,7 +363,7 @@ public class getImage
 		}
 		return newimg;
 		
-	}
+	} 
 
 	public String getFilepath() {
 		return filepath;

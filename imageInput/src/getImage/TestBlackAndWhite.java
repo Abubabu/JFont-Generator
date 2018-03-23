@@ -30,7 +30,7 @@ public class TestBlackAndWhite {  //https://stackoverflow.com/questions/14513542
                 } catch (Exception ex) {
                 }
 
-                JFrame frame = new JFrame("Test");
+                JFrame frame = new JFrame("google.jpg");
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.add(new TestPane());
                 frame.pack();
@@ -49,13 +49,14 @@ public class TestBlackAndWhite {  //https://stackoverflow.com/questions/14513542
 
         public TestPane() {
             try {
-                master = ImageIO.read(new File("2.jpg"));
-                grayScale = ImageIO.read(new File("2.jpg"));
+                master = ImageIO.read(new File("google.jpg"));
+                grayScale = ImageIO.read(new File("google.jpg"));
+                getImage og = new getImage("google.jpg");
+                blackWhite = og.getBW();
                 ColorConvertOp op = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
                 op.filter(grayScale, grayScale);
-
-                blackWhite = new BufferedImage(master.getWidth(), master.getHeight(), BufferedImage.TYPE_BYTE_BINARY);
-                Graphics2D g2d = blackWhite.createGraphics();
+                
+                Graphics2D g2d = master.createGraphics();
                 g2d.drawImage(master, 0, 0, this);
                 g2d.dispose();
 
