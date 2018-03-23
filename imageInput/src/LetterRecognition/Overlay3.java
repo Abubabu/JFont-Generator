@@ -45,15 +45,25 @@ public class Overlay3 {
 		System.out.println("circleLeft: " + blocation.getLeft().getxPos() + "," + blocation.getLeft().getyPos());
 		System.out.println("circleRight: " + blocation.getRight().getxPos() + "," + blocation.getRight().getyPos());
 		
-		int ybuffer = alocation.getNorth().getyPos()-alocation.getNorth().getyPos()/blocation.
-		int xbuffer = aConverted.getWidth()/bConverted.getWidth();
+		int bWidth = blocation.getRight().getxPos()-blocation.getLeft().getxPos();
+		int bHeight = blocation.getSouth().getyPos()-blocation.getNorth().getyPos();
 		
+		int aWidth = alocation.getRight().getxPos()-alocation.getLeft().getxPos();
+		int aHeight = alocation.getSouth().getyPos()-alocation.getNorth().getyPos();
+		System.out.println(bWidth + " " + bHeight + " : " + aWidth + " " + aHeight);
 		
-		System.out.println(ybuffer + " ," + xbuffer);
-		int loop = 0;
-		for(int ay = alocation.getNorth().getyPos(), by = blocation.getNorth().getyPos(); ay < alocation.getSouth().getyPos() && by < blocation.getSouth().getyPos(); ay++, by = by + ybuffer)//y  apix[ycoord][xcoord]
+		scale(bWidth,bHeight,"heart.png");
+		
+		getImage test = new getImage(new getImage("heart.png").getBW());
+		alocation = new CardinalPixels(test);
+		
+		aWidth = alocation.getRight().getxPos()-alocation.getLeft().getxPos();
+		aHeight = alocation.getSouth().getyPos()-alocation.getNorth().getyPos();
+		System.out.println(bWidth + " " + bHeight + " : " + aWidth + " " + aHeight);
+		
+		for(int ay = alocation.getNorth().getyPos(), by = blocation.getNorth().getyPos(); ay < alocation.getSouth().getyPos() && by < blocation.getSouth().getyPos(); ay++, by++)//y  apix[ycoord][xcoord]
 		{
-			for(int ax = alocation.getLeft().getxPos(), bx = blocation.getLeft().getxPos(); ax < alocation.getRight().getxPos() && bx < blocation.getRight().getxPos(); ax++, bx = bx + xbuffer)//x
+			for(int ax = alocation.getLeft().getxPos(), bx = blocation.getLeft().getxPos(); ax < alocation.getRight().getxPos() && bx < blocation.getRight().getxPos(); ax++, bx++)//x
 			{
 				//System.out.println(apix[j][i].getB() + "  " + bpix[j][i].getB());
 				System.out.println("x:"+ ax + "  y:" + ay + "  " + "A:" + apix[ax][ay].getR() + ", " + bpix[bx][by].getR());
@@ -68,12 +78,52 @@ public class Overlay3 {
 			}
 		}
 		
-		System.out.println(loop);
 		System.out.println(overlap + " " + nolap);
 		System.out.print(((double) overlap/ (double) (nolap+overlap)));
 	}
 	public static boolean isRGBEqual(RGBValue one, RGBValue two)
 	{
 		return (one.getR() == two.getR() && one.getG() == two.getG() && one.getB() == two.getB());
+	}
+	public static void scale(int bWidth, int bHeight, String filepath) throws IOException
+	{
+		getImage scale = null;
+		CardinalPixels alocation = null;
+		ImageResizer imageresizer = new ImageResizer();
+		int aWidth = 0;
+		int aHeight = 0;
+		int xinc = 0;
+		int yinc = 0;
+		while(true)
+		{
+			scale = new getImage(filepath);
+			alocation = new CardinalPixels(scale);
+			aWidth = alocation.getRight().getxPos()-alocation.getLeft().getxPos();
+			aHeight = alocation.getSouth().getyPos()-alocation.getNorth().getyPos();
+			if(aWidth == bWidth && aHeight == bHeight )
+			{
+				break;
+			}
+			if(aWidth > bWidth)
+			{
+				xinc--;
+			}
+			if(aWidth < bWidth)
+			{
+				xinc++;
+			}
+			if(aHeight > bHeight)
+			{
+				yinc--;
+			}
+			if(aHeight < bHeight)
+			{
+				yinc++;
+			}
+			imageresizer.resize(filepath, filepath, scale.getWidth()+xinc, scale.getHeight()+yinc);
+			xinc = 0;
+			yinc = 0;
+		}
+		
 	}
 }
