@@ -50,7 +50,10 @@ public class Overlay3 {
 		
 		double aRatio = gcd(a.getHeight(),a.getWidth());
 		double bratio = b.getHeight()/b.getWidth();
-		
+		int incrementfirst = asFractionnumerator(a.getHeight,a.getWidth); // first get the aspect ration, then get the factor from the orignal size to their respective
+		// aspect ration, for example with an original size of 450 and the ratio 9 the factor is 50. Then multiply the respective RATIOS for each image. so in a 16:9 and 4:5 multiply 4 and 5
+		// put the ration(5 or 9) over the product of the two and make it equal to the factors denomanator, the resulting numerator is the increment 
+		// ROOUND DOWN BTW
 		
 		for(int ay = alocation.getNorth().getyPos(), by = blocation.getNorth().getyPos(); ay < alocation.getSouth().getyPos() && by < blocation.getSouth().getyPos(); ay++, by++)//y  apix[ycoord][xcoord]
 		{
@@ -148,4 +151,22 @@ public class Overlay3 {
 	    for(int i = 1; i < input.length; i++) result = lcm(result, input[i]);
 	    return result;
 	}
+	public static int asFractionnumerator(long a, long b) {
+	    long gcm = gcm(a, b);
+	    return (a / gcm);
+	}
+	
+	public static void gcd(int a, int b) {
+        System.out.print("Type in two numbers and I will print outs its Greatest Common Divisor: ");
+        int gcdNum1 = console.nextInt();
+        int gcdNum2 = console.nextInt();
+        while (gcdNum1 == 0) {
+            gcdNum1 = 0;
+        }
+        while (gcdNum2 > gcdNum1) {
+            int gcd = gcdNum1 % gcdNum2;
+        }
+        System.out.print(gcdNum1 + gcdNum2);
+    }
+}
 }
