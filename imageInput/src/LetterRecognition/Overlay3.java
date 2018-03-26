@@ -47,13 +47,31 @@ public class Overlay3 {
 		int aHeight = alocation.getSouth().getyPos()-alocation.getNorth().getyPos();
 		
 		System.out.println(bWidth + " " + bHeight + " : " + aWidth + " " + aHeight);
-		
-		double aRatio = gcd(a.getHeight(),a.getWidth());
+		// THIS IS ALL FOR THE INCREMENT HEIGHT
+		double aRatio = gcd(a.getHeight(),a.getWidth());// these are probably useless dont mind them
 		double bratio = b.getHeight()/b.getWidth();
-		int incrementfirst = asFractionnumerator(a.getHeight,a.getWidth); // first get the aspect ration, then get the factor from the orignal size to their respective
+		int aspectHeightA = asFractionnumerator(a.getHeight,a.getWidth);
+		int aspectHeightB = asFractionnumerator(b.getHeight,b.getWidth);
+		int scaleHeightA = a.getHeight() / aspectHeightA;
+		int scaleHeightB = b.getWidth() / aspectHeightB;
+		int heightDenomanator =  aspectHeightA * aspectHeightB;
+		incrementHeightA = (scaleHeightA / heightDenomonator) * aspectHeightA;
+		incrementHeightB = (scaleHeightB / heightDenomonator) * aspectHeightB;
+		// first get the aspect ration, then get the factor from the orignal size to their respective
 		// aspect ration, for example with an original size of 450 and the ratio 9 the factor is 50. Then multiply the respective RATIOS for each image. so in a 16:9 and 4:5 multiply 4 and 5
 		// put the ration(5 or 9) over the product of the two and make it equal to the factors denomanator, the resulting numerator is the increment 
 		// ROOUND DOWN BTW
+		
+		// THIS IS ALL FOR THE INCREMENT WIDTHS
+		double aRatio = gcd(a.getHeight(),a.getWidth());
+		double bratio = b.getHeight()/b.getWidth();
+		int aspectWidthA = asFractiondenomanator(a.getHeight,a.getWidth);
+		int aspectWidthB = asFractiondenomanator(b.getHeight,b.getWidth);
+		int scaleWidthA = a.getWidth() / aspectWidthA;
+		int scaleWidthB = b.getWidth() / aspectWidthB;
+		int heightDenomanator =  aspectWidthA * aspectWidthB;
+		incrementWidthA = (scaleWidthA / heightDenomonator) * aspectWidthA;
+		incrementWidthB = (scaleWidthB / heightDenomonator) * aspectWidthB;
 		
 		for(int ay = alocation.getNorth().getyPos(), by = blocation.getNorth().getyPos(); ay < alocation.getSouth().getyPos() && by < blocation.getSouth().getyPos(); ay++, by++)//y  apix[ycoord][xcoord]
 		{
@@ -155,7 +173,10 @@ public class Overlay3 {
 	    long gcm = gcm(a, b);
 	    return (a / gcm);
 	}
-	
+	public static int asFractiondenomanator(long a, long b) {
+	    long gcm = gcm(a, b);
+	    return (b / gcm);
+	}
 	public static void gcd(int a, int b) {
         System.out.print("Type in two numbers and I will print outs its Greatest Common Divisor: ");
         int gcdNum1 = console.nextInt();
