@@ -14,14 +14,8 @@ import getImage.getImage;
 public class Overlay3 {
 	public static void main(String[] args) throws IOException
 	{
-		
-		//https://stackoverflow.com/questions/29024456/image-overlay-comparison-and-pixel-color-change
-		
 		 
 		getImage b = new getImage("circle.png");
-		
-		ImageResizer imageresizer = new ImageResizer();
-		imageresizer.resize("heart.png", "heart.png", b.getWidth(), b.getHeight());
 		
 		getImage a = new getImage("heart.png"); 
 		
@@ -30,6 +24,7 @@ public class Overlay3 {
 		
 		RGBValue[][] apix = aConverted.getPixelsArray();
 		RGBValue[][] bpix = bConverted.getPixelsArray();
+		
 		int overlap = 0;
 		int nolap = 0;
 		
@@ -50,16 +45,12 @@ public class Overlay3 {
 		
 		int aWidth = alocation.getRight().getxPos()-alocation.getLeft().getxPos();
 		int aHeight = alocation.getSouth().getyPos()-alocation.getNorth().getyPos();
+		
 		System.out.println(bWidth + " " + bHeight + " : " + aWidth + " " + aHeight);
 		
-		scale(bWidth,bHeight,"heart.png");
+		double aRatio = gcd(a.getHeight(),a.getWidth());
+		double bratio = b.getHeight()/b.getWidth();
 		
-		getImage test = new getImage(new getImage("heart.png").getBW());
-		alocation = new CardinalPixels(test);
-		
-		aWidth = alocation.getRight().getxPos()-alocation.getLeft().getxPos();
-		aHeight = alocation.getSouth().getyPos()-alocation.getNorth().getyPos();
-		System.out.println(bWidth + " " + bHeight + " : " + aWidth + " " + aHeight);
 		
 		for(int ay = alocation.getNorth().getyPos(), by = blocation.getNorth().getyPos(); ay < alocation.getSouth().getyPos() && by < blocation.getSouth().getyPos(); ay++, by++)//y  apix[ycoord][xcoord]
 		{
@@ -128,5 +119,33 @@ public class Overlay3 {
 	public static boolean isBlack(RGBValue rgb)
 	{
 		return rgb.getR() == 0 && rgb.getG() == 0 && rgb.getB() == 0;
+	}
+	private static double gcd(double a, double b)
+	{
+	    while (b > 0)
+	    {
+	        double temp = b;
+	        b = a % b; // % is remainder
+	        a = temp;
+	    }
+	    return a;
+	}
+
+	private static long gcd(long[] input)
+	{
+	    long result = input[0];
+	    for(int i = 1; i < input.length; i++) result = gcd(result, input[i]);
+	    return result;
+	}
+	private static long lcm(long a, long b)
+	{
+	    return a * (b / gcd(a, b));
+	}
+
+	private static long lcm(long[] input)
+	{
+	    long result = input[0];
+	    for(int i = 1; i < input.length; i++) result = lcm(result, input[i]);
+	    return result;
 	}
 }
