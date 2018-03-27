@@ -91,7 +91,7 @@ public class Overlay3 {
 			{
 				//System.out.println(apix[j][i].getB() + "  " + bpix[j][i].getB());
 				//System.out.println("x:"+ ax + "  y:" + ay + "  " + "A:" + apix[ax][ay].getR() + ", " + bpix[bx][by].getR());
-				if (isBlack(apix[ax][ay]) || isBlack(bpix[bx][by])) {
+				if (isBlack(bpix[bx][by])) {
 					if (isRGBEqual(apix[ax][ay], bpix[bx][by])) {
 						overlap++;
 					} else {
