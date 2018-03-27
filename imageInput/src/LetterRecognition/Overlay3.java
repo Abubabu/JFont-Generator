@@ -12,12 +12,19 @@ import getImage.RGBValue;
 import getImage.getImage;
 
 public class Overlay3 {
-	public static void main(String[] args) throws IOException
+	private final getImage testCase;
+	
+	public Overlay3(String filepath) throws IOException
+	{
+		getImage testcase = new getImage(filepath);
+		this.testCase = testcase;
+	}
+	public double overlay(String filepath) throws IOException
 	{
 		 
-		getImage b = new getImage("circle.png");
+		getImage b = getTestCase();
 		
-		getImage a = new getImage("heart.png"); 
+		getImage a = new getImage(filepath); 
 		
 		getImage aConverted = new getImage(a.getBW());
 		getImage bConverted = new getImage(b.getBW());
@@ -31,7 +38,7 @@ public class Overlay3 {
 		CardinalPixels alocation = new CardinalPixels(aConverted);
 		CardinalPixels blocation = new CardinalPixels(bConverted);
 		
-		System.out.println("heartNorth: " + alocation.getNorth().getxPos() + "," + alocation.getNorth().getyPos());
+		/*System.out.println("heartNorth: " + alocation.getNorth().getxPos() + "," + alocation.getNorth().getyPos());
 		System.out.println("heartSouth: " + alocation.getSouth().getxPos() + "," + alocation.getSouth().getyPos());
 		System.out.println("heartLeft: " + alocation.getLeft().getxPos() + "," + alocation.getLeft().getyPos());
 		System.out.println("heartRight: " + alocation.getRight().getxPos() + "," + alocation.getRight().getyPos());
@@ -39,7 +46,7 @@ public class Overlay3 {
 		System.out.println("circleSouth: " + blocation.getSouth().getxPos() + "," + blocation.getSouth().getyPos());
 		System.out.println("circleLeft: " + blocation.getLeft().getxPos() + "," + blocation.getLeft().getyPos());
 		System.out.println("circleRight: " + blocation.getRight().getxPos() + "," + blocation.getRight().getyPos());
-		
+		*/
 		int bWidth = blocation.getRight().getxPos()-blocation.getLeft().getxPos();
 		int bHeight = blocation.getSouth().getyPos()-blocation.getNorth().getyPos();
 		
@@ -48,37 +55,37 @@ public class Overlay3 {
 		
 		System.out.println(bWidth + " " + bHeight + " : " + aWidth + " " + aHeight);
 		// THIS IS ALL FOR THE INCREMENT HEIGHT
-		double aRatio = gcd(a.getHeight(),a.getWidth());// these are probably useless dont mind them
+		//double aRatio = gcd(a.getHeight(),a.getWidth());// these are probably useless dont mind them
 		double bratio = b.getHeight()/b.getWidth();
-		int aspectHeightA = asFractionnumerator(a.getHeight,a.getWidth);
-		int aspectHeightB = asFractionnumerator(b.getHeight,b.getWidth);
+		int aspectHeightA = asFractionnumerator(a.getHeight(),a.getWidth());
+		int aspectHeightB = asFractionnumerator(b.getHeight(),b.getWidth());
 		int scaleHeightA = a.getHeight() / aspectHeightA;
 		int scaleHeightB = b.getWidth() / aspectHeightB;
 		int heightDenomanator =  aspectHeightA * aspectHeightB;
-		incrementHeightA = (scaleHeightA / heightDenomonator) * aspectHeightA;
-		incrementHeightB = (scaleHeightB / heightDenomonator) * aspectHeightB;
+		int incrementHeightA = (scaleHeightA / heightDenomanator) * aspectHeightA;
+		int incrementHeightB = (scaleHeightB / heightDenomanator) * aspectHeightB;
 		// first get the aspect ration, then get the factor from the orignal size to their respective
 		// aspect ration, for example with an original size of 450 and the ratio 9 the factor is 50. Then multiply the respective RATIOS for each image. so in a 16:9 and 4:5 multiply 4 and 5
 		// put the ration(5 or 9) over the product of the two and make it equal to the factors denomanator, the resulting numerator is the increment 
 		// ROOUND DOWN BTW
 		
 		// THIS IS ALL FOR THE INCREMENT WIDTHS
-		double aRatio = gcd(a.getHeight(),a.getWidth());
-		double bratio = b.getHeight()/b.getWidth();
-		int aspectWidthA = asFractiondenomanator(a.getHeight,a.getWidth);
-		int aspectWidthB = asFractiondenomanator(b.getHeight,b.getWidth);
+		//double aRatio = gcd(a.getHeight(),a.getWidth());
+		//double bratio = b.getHeight()/b.getWidth();
+		int aspectWidthA = asFractiondenomanator(a.getHeight(),a.getWidth());
+		int aspectWidthB = asFractiondenomanator(b.getHeight(),b.getWidth());
 		int scaleWidthA = a.getWidth() / aspectWidthA;
 		int scaleWidthB = b.getWidth() / aspectWidthB;
-		int heightDenomanator =  aspectWidthA * aspectWidthB;
-		incrementWidthA = (scaleWidthA / heightDenomonator) * aspectWidthA;
-		incrementWidthB = (scaleWidthB / heightDenomonator) * aspectWidthB;
+		int widthDenomanator =  aspectWidthA * aspectWidthB;
+		int incrementWidthA = (scaleWidthA / widthDenomanator) * aspectWidthA;
+		int incrementWidthB = (scaleWidthB / widthDenomanator) * aspectWidthB;
 		
 		for(int ay = alocation.getNorth().getyPos(), by = blocation.getNorth().getyPos(); ay < alocation.getSouth().getyPos() && by < blocation.getSouth().getyPos(); ay++, by++)//y  apix[ycoord][xcoord]
 		{
 			for(int ax = alocation.getLeft().getxPos(), bx = blocation.getLeft().getxPos(); ax < alocation.getRight().getxPos() && bx < blocation.getRight().getxPos(); ax++, bx++)//x
 			{
 				//System.out.println(apix[j][i].getB() + "  " + bpix[j][i].getB());
-				System.out.println("x:"+ ax + "  y:" + ay + "  " + "A:" + apix[ax][ay].getR() + ", " + bpix[bx][by].getR());
+				//System.out.println("x:"+ ax + "  y:" + ay + "  " + "A:" + apix[ax][ay].getR() + ", " + bpix[bx][by].getR());
 				if (isBlack(apix[ax][ay]) || isBlack(bpix[bx][by])) {
 					if (isRGBEqual(apix[ax][ay], bpix[bx][by])) {
 						overlap++;
@@ -91,6 +98,7 @@ public class Overlay3 {
 		
 		System.out.println(overlap + " " + nolap);
 		System.out.print(((double) overlap/ (double) (nolap+overlap)));
+		return ((double) overlap/ (double) (nolap+overlap));
 	}
 	public static boolean isRGBEqual(RGBValue one, RGBValue two)
 	{
@@ -155,12 +163,12 @@ public class Overlay3 {
 	private static long gcd(long[] input)
 	{
 	    long result = input[0];
-	    for(int i = 1; i < input.length; i++) result = gcd(result, input[i]);
+	    for(int i = 1; i < input.length; i++) result = (long) gcd(result, input[i]);
 	    return result;
 	}
 	private static long lcm(long a, long b)
 	{
-	    return a * (b / gcd(a, b));
+	    return (long) (a * (b / gcd(a, b)));
 	}
 
 	private static long lcm(long[] input)
@@ -171,16 +179,16 @@ public class Overlay3 {
 	}
 	public static int asFractionnumerator(long a, long b) {
 	    long gcm = gcm(a, b);
-	    return (a / gcm);
+	    return (int) (a / gcm);
 	}
 	public static int asFractiondenomanator(long a, long b) {
 	    long gcm = gcm(a, b);
-	    return (b / gcm);
+	    return (int) (b / gcm);
 	}
 	public static void gcd(int a, int b) {
         System.out.print("Type in two numbers and I will print outs its Greatest Common Divisor: ");
-        int gcdNum1 = console.nextInt();
-        int gcdNum2 = console.nextInt();
+        int gcdNum1 =a;
+        int gcdNum2 = b;
         while (gcdNum1 == 0) {
             gcdNum1 = 0;
         }
@@ -189,5 +197,11 @@ public class Overlay3 {
         }
         System.out.print(gcdNum1 + gcdNum2);
     }
+	public static long gcm(long a, long b) {
+	    return b == 0 ? a : gcm(b, a % b); // Not bad for one line of code :)
+	}
+	public getImage getTestCase() {
+		return testCase;
+	}
 }
-}
+
