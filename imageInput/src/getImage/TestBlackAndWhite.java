@@ -21,6 +21,9 @@ public class TestBlackAndWhite {  //https://stackoverflow.com/questions/14513542
         new TestBlackAndWhite();
     }
     	// this class is used by our letter recognition functions to make it easier for the computer to read and work with
+    	// you can run this and overlaytest
+    // small digital images are preferable but small regular pictures are allowed to
+    //the best way to get your image iis to just send your picture to yourslef via email and then just save it on to here 
     public TestBlackAndWhite() {
         EventQueue.invokeLater(new Runnable() {
             @Override
@@ -30,7 +33,7 @@ public class TestBlackAndWhite {  //https://stackoverflow.com/questions/14513542
                 } catch (Exception ex) {
                 }
 
-                JFrame frame = new JFrame("google.jpg"); // change this image file with your own, get an image and save it users>git>jfont>imageinput
+                JFrame frame = new JFrame("TEST.jpg"); // change this image file with your own, get an image and save it users>git>jfont>imageinput
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.add(new TestPane());
                 frame.pack();
@@ -49,9 +52,9 @@ public class TestBlackAndWhite {  //https://stackoverflow.com/questions/14513542
 
         public TestPane() {
             try {
-                master = ImageIO.read(new File("google.jpg")); //this one
-                grayScale = ImageIO.read(new File("google.jpg")); // this one
-                getImage og = new getImage("google.jpg");// and this one
+                master = ImageIO.read(new File("TEST.jpg")); //this one
+                grayScale = ImageIO.read(new File("TEST.jpg")); // this one
+                getImage og = new getImage("TEST.jpg");// and this one
                 blackWhite = og.getBW();
                 ColorConvertOp op = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
                 op.filter(grayScale, grayScale);
