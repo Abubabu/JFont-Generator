@@ -56,14 +56,14 @@ public class Overlay3 {
 		//System.out.println(bWidth + " " + bHeight + " : " + aWidth + " " + aHeight);
 		// THIS IS ALL FOR THE INCREMENT HEIGHT
 		//double aRatio = gcd(a.getHeight(),a.getWidth());// these are probably useless dont mind them
-		double bratio = b.getHeight()/b.getWidth();
+		/*double bratio = b.getHeight()/b.getWidth();
 		int aspectHeightA = asFractionnumerator(a.getHeight(),a.getWidth());
 		int aspectHeightB = asFractionnumerator(b.getHeight(),b.getWidth());
 		int scaleHeightA = a.getHeight() / aspectHeightA;
 		int scaleHeightB = b.getWidth() / aspectHeightB;
 		int heightDenomanator =  aspectHeightA * aspectHeightB;
 		int incrementHeightA = (scaleHeightA / heightDenomanator) * aspectHeightA;
-		int incrementHeightB = (scaleHeightB / heightDenomanator) * aspectHeightB;
+		int incrementHeightB = (scaleHeightB / heightDenomanator) * aspectHeightB;*/
 		// first get the aspect ration, then get the factor from the orignal size to their respective
 		// aspect ration, for example with an original size of 450 and the ratio 9 the factor is 50. Then multiply the respective RATIOS for each image. so in a 16:9 and 4:5 multiply 4 and 5
 		// put the ration(5 or 9) over the product of the two and make it equal to the factors denomanator, the resulting numerator is the increment 
@@ -72,7 +72,7 @@ public class Overlay3 {
 		// THIS IS ALL FOR THE INCREMENT WIDTHS
 		//double aRatio = gcd(a.getHeight(),a.getWidth());
 		//double bratio = b.getHeight()/b.getWidth();
-		int aspectWidthA = asFractiondenomanator(a.getHeight(),a.getWidth());
+		/*int aspectWidthA = asFractiondenomanator(a.getHeight(),a.getWidth());
 		int aspectWidthB = asFractiondenomanator(b.getHeight(),b.getWidth());
 		int scaleWidthA = a.getWidth() / aspectWidthA;
 		int scaleWidthB = b.getWidth() / aspectWidthB;
@@ -83,7 +83,7 @@ public class Overlay3 {
 		incrementHeightA = ((incrementHeightA == 0) ? 1 : incrementHeightA);
 		incrementHeightB = ((incrementHeightB == 0) ? 1 : incrementHeightB);
 		incrementWidthA = ((incrementWidthA == 0) ? 1 : incrementWidthA);
-		incrementWidthB = ((incrementWidthB == 0) ? 1 : incrementWidthB);
+		incrementWidthB = ((incrementWidthB == 0) ? 1 : incrementWidthB);*/
 		
 		for(int ay = alocation.getNorth().getyPos(), by = blocation.getNorth().getyPos(); ay < alocation.getSouth().getyPos() && by < blocation.getSouth().getyPos(); ay++ , by++)//y  apix[ycoord][xcoord]
 		{
@@ -165,12 +165,12 @@ public class Overlay3 {
 	    return a;
 	}
 
-	private static long gcd(long[] input)
+	/*private static long gcd(long[] input)
 	{
 	    long result = input[0];
 	    for(int i = 1; i < input.length; i++) result = (long) gcd(result, input[i]);
 	    return result;
-	}
+	}*/
 	private static long lcm(long a, long b)
 	{
 	    return (long) (a * (b / gcd(a, b)));
@@ -190,23 +190,35 @@ public class Overlay3 {
 	    long gcm = gcm(a, b);
 	    return (int) (b / gcm);
 	}
-	public static void gcd(int a, int b) {
+	/*public static void gcd(int a, int b) {
         System.out.print("Type in two numbers and I will print outs its Greatest Common Divisor: ");
         int gcdNum1 =a;
         int gcdNum2 = b;
         while (gcdNum1 == 0) {
             gcdNum1 = 0;
-        }
-        while (gcdNum2 > gcdNum1) {
+        }*/
+      /*  while (gcdNum2 > gcdNum1) {
             int gcd = gcdNum1 % gcdNum2;
         }
         System.out.print(gcdNum1 + gcdNum2);
-    }
+    }*/
 	public static long gcm(long a, long b) {
 	    return b == 0 ? a : gcm(b, a % b); // Not bad for one line of code :)
 	}
 	public getImage getTestCase() {
 		return testCase;
 	}
+	public static int gcd(int a, int b)
+	{
+	  if(a == 0 || b == 0) return a+b; // base case
+	  return gcd(b,a%b);
+	}
+	public getIncrementsHeightA(a,b){
+		if( gcd(a,b) < 1)
+			return a;
+		else
+			return gcd(a / gcd(a,b), b / gcd(a,b));
+	}
+			
 }
 
