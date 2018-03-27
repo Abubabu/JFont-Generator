@@ -22,7 +22,6 @@ public class OverlayTest {
 		
 		for(File x : library)
 		{
-			System.out.println(x.getName());
 			double d = comparator.overlay(x.getAbsolutePath());
 			display.put(d, x.getName());
 		}
