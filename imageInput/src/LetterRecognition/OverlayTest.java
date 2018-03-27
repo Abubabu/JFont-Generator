@@ -17,13 +17,14 @@ public class OverlayTest {
 		Map<Double,String> display = new TreeMap<Double,String>();
 		OverlayTest test = new OverlayTest();
 		File[] library = test.listOfImages("Alphabet");
-		  
+		
 		Overlay3 comparator = new Overlay3("MYB.PNG");  //here  goes the name of your handdrawn letter
 		
-		for(int i = 0; i < library.length; i++)
+		for(File x : library)
 		{
-			double d = comparator.overlay(library[i].getAbsolutePath());
-			display.put(d, library[i].getName());
+			System.out.println(x.getName());
+			double d = comparator.overlay(x.getAbsolutePath());
+			display.put(d, x.getName());
 		}
 		
 		
