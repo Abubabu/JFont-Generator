@@ -213,7 +213,7 @@ public class Overlay3 {
 	  if(a == 0 || b == 0) return a+b; // base case
 	  return gcd(b,a%b);
 	}
-	public getIncrementsHeightA(a,b){
+	public int  getIncrementsHeightA(int a,int b){
 		if( gcd(a,b) < 1)
 			return a;
 		else
@@ -221,4 +221,5 @@ public class Overlay3 {
 	}
 			
 }
+
 
