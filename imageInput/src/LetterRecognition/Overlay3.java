@@ -45,15 +45,15 @@ public class Overlay3 {
 		System.out.println("circleNorth: " + blocation.getNorth().getxPos() + "," + blocation.getNorth().getyPos());
 		System.out.println("circleSouth: " + blocation.getSouth().getxPos() + "," + blocation.getSouth().getyPos());
 		System.out.println("circleLeft: " + blocation.getLeft().getxPos() + "," + blocation.getLeft().getyPos());
-		System.out.println("circleRight: " + blocation.getRight().getxPos() + "," + blocation.getRight().getyPos());
-		*/
+		System.out.println("circleRight: " + blocation.getRight().getxPos() + "," + blocation.getRight().getyPos());  
+		*/  
 		int bWidth = blocation.getRight().getxPos()-blocation.getLeft().getxPos();
 		int bHeight = blocation.getSouth().getyPos()-blocation.getNorth().getyPos();
 		
 		int aWidth = alocation.getRight().getxPos()-alocation.getLeft().getxPos();
 		int aHeight = alocation.getSouth().getyPos()-alocation.getNorth().getyPos();
 		
-		System.out.println(bWidth + " " + bHeight + " : " + aWidth + " " + aHeight);
+		//System.out.println(bWidth + " " + bHeight + " : " + aWidth + " " + aHeight);
 		// THIS IS ALL FOR THE INCREMENT HEIGHT
 		//double aRatio = gcd(a.getHeight(),a.getWidth());// these are probably useless dont mind them
 		double bratio = b.getHeight()/b.getWidth();
@@ -80,7 +80,12 @@ public class Overlay3 {
 		int incrementWidthA = (scaleWidthA / widthDenomanator) * aspectWidthA;
 		int incrementWidthB = (scaleWidthB / widthDenomanator) * aspectWidthB;
 		
-		for(int ay = alocation.getNorth().getyPos(), by = blocation.getNorth().getyPos(); ay < alocation.getSouth().getyPos() && by < blocation.getSouth().getyPos(); ay++, by++)//y  apix[ycoord][xcoord]
+		incrementHeightA = ((incrementHeightA == 0) ? 1 : incrementHeightA);
+		incrementHeightB = ((incrementHeightB == 0) ? 1 : incrementHeightB);
+		incrementWidthA = ((incrementWidthA == 0) ? 1 : incrementWidthA);
+		incrementWidthB = ((incrementWidthB == 0) ? 1 : incrementWidthB);
+		
+		for(int ay = alocation.getNorth().getyPos(), by = blocation.getNorth().getyPos(); ay < alocation.getSouth().getyPos() && by < blocation.getSouth().getyPos(); ay++ , by++)//y  apix[ycoord][xcoord]
 		{
 			for(int ax = alocation.getLeft().getxPos(), bx = blocation.getLeft().getxPos(); ax < alocation.getRight().getxPos() && bx < blocation.getRight().getxPos(); ax++, bx++)//x
 			{
@@ -96,8 +101,8 @@ public class Overlay3 {
 			}
 		}
 		
-		System.out.println(overlap + " " + nolap);
-		System.out.print(((double) overlap/ (double) (nolap+overlap)));
+		//System.out.println(overlap + " " + nolap);
+		//System.out.print(((double) overlap/ (double) (nolap+overlap)));
 		return ((double) overlap/ (double) (nolap+overlap));
 	}
 	public static boolean isRGBEqual(RGBValue one, RGBValue two)

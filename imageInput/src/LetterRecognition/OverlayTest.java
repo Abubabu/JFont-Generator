@@ -17,17 +17,16 @@ public class OverlayTest {
 	{
 		OverlayTest test = new OverlayTest();
 		File[] library = test.listOfImages("Alphabet");
-		
-		Overlay3 comparator = new Overlay3("TEST.jpg");  //here goes the name of your handdrawn letter
+		  
+		Overlay3 comparator = new Overlay3("TEST.png");  //here  goes the name of your handdrawn letter
 		
 		double[] accuracy = new double[library.length];
 		for(int i = 0; i < library.length; i++)
 		{
 			accuracy[i] = comparator.overlay(library[i].getAbsolutePath());
-			System.out.println("W");
 		}
 		
-		/*double greatest = accuracy[0];
+		double greatest = accuracy[0];
 		int index = 0;
 		for(int i = 0; i < accuracy.length; i++)
 		{
@@ -36,15 +35,20 @@ public class OverlayTest {
 				greatest = accuracy[i];
 				index = i;
 			}
-		}*/
+		}
 		
 		//System.out.println(library[index].getName() + " " + index + " " + comparator.overlay(library[index].getAbsolutePath()));
+		
+		for(int i = 0; i < library.length; i++)
+		{
+			System.out.println("filename: " + library[i].getName() + " : " + comparator.overlay(library[i].getAbsolutePath()));
+		}
 		
 		Arrays.sort(accuracy);
 		System.out.println();
 		for(int i = 0; i < accuracy.length; i++)
 		{
-			System.out.println(library[i].getName() + "  " + comparator.overlay(library[i].getAbsolutePath()));
+			System.out.println(accuracy[i]);
 		}
 	}
 }
