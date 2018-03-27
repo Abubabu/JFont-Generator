@@ -32,6 +32,7 @@ public class OverlayTest {
     		String filename = display.get(key);
     		String split = filename.substring(0,(filename.indexOf('.')));
     		String percent = ((key.toString().length()>=4) ? key.toString().substring(2, 4) : key.toString().substring(2));
+    		percent = ((key == 1) ? "100" : percent);
     		System.out.println("Letter " + split + " Accuracy:  " + percent + "%");
     	}
 	}
