@@ -1,11 +1,10 @@
 package LetterRecognition;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-
-import javax.imageio.ImageIO;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
 public class OverlayTest {
 	public File[] listOfImages(String directoryName) throws IOException{
@@ -15,40 +14,26 @@ public class OverlayTest {
     }
 	public static void main(String[] args) throws IOException
 	{
+		Map<Double,String> display = new TreeMap<Double,String>();
 		OverlayTest test = new OverlayTest();
 		File[] library = test.listOfImages("Alphabet");
 		  
 		Overlay3 comparator = new Overlay3("TEST.png");  //here  goes the name of your handdrawn letter
 		
-		double[] accuracy = new double[library.length];
 		for(int i = 0; i < library.length; i++)
 		{
-			accuracy[i] = comparator.overlay(library[i].getAbsolutePath());
+			double d = comparator.overlay(library[i].getAbsolutePath());
+			display.put(d, library[i].getName());
 		}
 		
-		double greatest = accuracy[0];
-		int index = 0;
-		for(int i = 0; i < accuracy.length; i++)
-		{
-			if(greatest < accuracy[i])
-			{
-				greatest = accuracy[i];
-				index = i;
-			}
-		}
 		
-		//System.out.println(library[index].getName() + " " + index + " " + comparator.overlay(library[index].getAbsolutePath()));
-		
-		for(int i = 0; i < library.length; i++)
-		{
-			System.out.println("filename: " + library[i].getName() + " : " + comparator.overlay(library[i].getAbsolutePath()));
-		}
-		
-		Arrays.sort(accuracy);
-		System.out.println();
-		for(int i = 0; i < accuracy.length; i++)
-		{
-			System.out.println(accuracy[i]);
-		}
+		Set<Double> keys = display.keySet();
+    	for(Double key: keys){
+    		String filename = display.get(key);
+    		String split = filename.substring(0,(filename.indexOf('.')));
+    		String percent = ((key.toString().length()>=4) ? key.toString().substring(2, 4) : key.toString().substring(2));
+    		System.out.println("Letter " + split + " Accuracy:  " + percent + "%");
+    	}
 	}
+	
 }
