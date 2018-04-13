@@ -222,6 +222,25 @@ public class Overlay3 {
 		else
 			return gcd(a / gcd(a,b), b / gcd(a,b));
 	}
+	
+	public int getIncrementA(int a, int b) {
+		if(a < 10 || b < 10) {
+			return a;
+		}
+		if((a > 10 || b > 10) && gcd(a,b) == 1) {
+			return a /5;
+		}
+		 return gcd(a / gcd(a,b), b / gcd(a,b));
+	}															// this might actually fix the increments  yet to be tested
+	public int getIncrementB(int a, int b) {
+		if(a < 10 || b < 10) {
+			return b;
+		}
+		if((a > 10 || b > 10) && gcd(a,b) == 1) {
+			return b /5;
+		}
+		 return gcd(a / gcd(a,b), b / gcd(a,b));
+	}
 			
 }
 
