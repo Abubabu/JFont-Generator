@@ -72,7 +72,7 @@ public class Overlay3 {
 		// THIS IS ALL FOR THE INCREMENT WIDTHS
 		//double aRatio = gcd(a.getHeight(),a.getWidth());
 		//double bratio = b.getHeight()/b.getWidth();
-		int aspectWidthA = asFractiondenomanator(aHeight,aWidth);
+	/*	int aspectWidthA = asFractiondenomanator(aHeight,aWidth);
 		int aspectWidthB = asFractiondenomanator(bHeight,bWidth);
 		int scaleWidthA = aWidth / aspectWidthA;
 		int scaleWidthB = bWidth / aspectWidthB;
@@ -83,14 +83,18 @@ public class Overlay3 {
 		incrementHeightA = ((incrementHeightA == 0) ? 1 : incrementHeightA);
 		incrementHeightB = ((incrementHeightB == 0) ? 1 : incrementHeightB);
 		incrementWidthA = ((incrementWidthA == 0) ? 1 : incrementWidthA);
-		incrementWidthB = ((incrementWidthB == 0) ? 1 : incrementWidthB);
+		incrementWidthB = ((incrementWidthB == 0) ? 1 : incrementWidthB);*/
 		
-		gcdt(aHeight,bHeight);
-		gcdt(aWidth,aWidth);
+		//gcdt(aHeight,bHeight);
+		//gcdt(aWidth,aWidth);
 		
-		for(int ay = alocation.getNorth().getyPos(), by = blocation.getNorth().getyPos(); ay < alocation.getSouth().getyPos() && by < blocation.getSouth().getyPos(); ay = ay + incrementHeightA , by = by + incrementHeightB)//y  apix[ycoord][xcoord]
+		int aH = getIncrementA(aHeight,bHeight);
+		int aW = getIncrementA(aWidth,bWidth);
+		int bH = getIncrementB(aHeight,bHeight);
+		int bW = getIncrementB(aWidth,bWidth);
+		for(int ay = alocation.getNorth().getyPos(), by = blocation.getNorth().getyPos(); ay < alocation.getSouth().getyPos() && by < blocation.getSouth().getyPos(); ay += aH , by += bH)//y  apix[ycoord][xcoord]
 		{
-			for(int ax = alocation.getLeft().getxPos(), bx = blocation.getLeft().getxPos(); ax < alocation.getRight().getxPos() && bx < blocation.getRight().getxPos(); ax = ax + incrementWidthA, bx = bx + incrementWidthB)//x
+			for(int ax = alocation.getLeft().getxPos(), bx = blocation.getLeft().getxPos(); ax < alocation.getRight().getxPos() && bx < blocation.getRight().getxPos(); ax += aW, bx += bW)//x
 			{
 				//System.out.println(apix[j][i].getB() + "  " + bpix[j][i].getB());
 				//System.out.println("x:"+ ax + "  y:" + ay + "  " + "A:" + apix[ax][ay].getR() + ", " + bpix[bx][by].getR());
