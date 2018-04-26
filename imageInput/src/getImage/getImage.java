@@ -326,6 +326,9 @@ public class getImage
 		averager = averager / (this.height * this.width);
 		averageg = averageg / (this.height * this.width);
 		averageb = averageb / (this.height * this.width);
+		averager = averager - (averager / 2);
+		averageg = averageg - (averageg / 2);
+		averageb = averageb - (averageb / 2);
 		//sum = sum / (test.getHeight() * test.getWidth());
 		/*for(pixelPosition pixel : test.getPixels().keySet()) {  // the long list of colors is required. for each color we must get the orignal pixel using the pixellocation which is by gettingpixelsthenget class
 			Color color = new Color(test.getPixels().get(pixel).getR(),test.getPixels().get(pixel).getG(),test.getPixels().get(pixel).getB());
