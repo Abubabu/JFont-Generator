@@ -99,13 +99,14 @@ private final getImage testCase;
 		//gcdt(aWidth,aWidth);
 				
 		int aH = getIncrementA(TestSquareSideLength,UserSquareSideLength);
-		int aW = getIncrementA(TestSquareSideLength,UserSquareSideLength);
-		int bH = getIncrementB(TestSquareSideLength,UserSquareSideLength);
-		int bW = getIncrementB(TestSquareSideLength,UserSquareSideLength);
 		
-		for(int ay = TestCenterY - TestSquareSideLength/2, by = UserCenterY - UserSquareSideLength/2; ay < TestCenterY + TestSquareSideLength/2 && by < UserCenterY + UserSquareSideLength/2; ay ++ , by ++)//y  apix[ycoord][xcoord]
+		int aW = aH;
+		int bH = getIncrementB(TestSquareSideLength,UserSquareSideLength) ;
+		int bW = bH;
+		
+		for(int ay = TestCenterY - TestSquareSideLength/2, by = UserCenterY - UserSquareSideLength/2; ay < TestCenterY + TestSquareSideLength/2 && by < UserCenterY + UserSquareSideLength/2;  ay += aH , by += bH)//y  apix[ycoord][xcoord]
 		{
-			for(int ax = TestCenterX - TestSquareSideLength/2, bx = UserCenterX - UserSquareSideLength/2; ax < TestCenterX + TestSquareSideLength/2 && bx < UserCenterX + UserSquareSideLength/2; ax ++, bx ++)//x
+			for(int ax = TestCenterX - TestSquareSideLength/2, bx = UserCenterX - UserSquareSideLength/2; ax < TestCenterX + TestSquareSideLength/2 && bx < UserCenterX + UserSquareSideLength/2;  ax += aW, bx += bW)//x
 			{
 				//System.out.println(apix[j][i].getB() + "  " + bpix[j][i].getB());
 				//System.out.println("x:"+ ax + "  y:" + ay + "  " + "A:" + apix[ax][ay].getR() + ", " + bpix[bx][by].getR());
