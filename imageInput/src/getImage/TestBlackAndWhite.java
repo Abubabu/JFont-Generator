@@ -33,7 +33,7 @@ public class TestBlackAndWhite {  //https://stackoverflow.com/questions/14513542
                 } catch (Exception ex) {
                 }
 
-                JFrame frame = new JFrame("snake.jpeg"); // change this image file with your own, get an image and save it users>git>jfont>imageinput
+                JFrame frame = new JFrame("Alphabet/A.png"); // change this image file with your own, get an image and save it users>git>jfont>imageinput
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.add(new TestPane());
                 frame.pack();
@@ -52,9 +52,9 @@ public class TestBlackAndWhite {  //https://stackoverflow.com/questions/14513542
 
         public TestPane() {
             try {
-                master = ImageIO.read(new File("snake.jpeg")); //this one
-                grayScale = ImageIO.read(new File("snake.jpeg")); // this one
-                getImage og = new getImage("snake.jpeg");// and this one
+                master = ImageIO.read(new File("Alphabet/A.png")); //this one
+                grayScale = ImageIO.read(new File("Alphabet/A.png")); // this one
+                getImage og = new getImage("Alphabet/A.png");// and this one
                 blackWhite = og.getBW();
                 ColorConvertOp op = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
                 op.filter(grayScale, grayScale);
