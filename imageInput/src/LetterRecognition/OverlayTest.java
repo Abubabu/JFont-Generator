@@ -14,26 +14,25 @@ public class OverlayTest {
     }
 	public static void main(String[] args) throws IOException
 	{
-		Map<Double,String> display = new TreeMap<Double,String>();
+		Map<String,Double> display = new TreeMap<String,Double>();
 		OverlayTest test = new OverlayTest();
 		File[] library = test.listOfImages("Alphabet");
 		
-		Overlay3 comparator = new Overlay3("Alphabet/B.jpg");  //here  goes the name of your handdrawn letter
+		//Overlay3 comparator = new Overlay3("Alphabet/B.jpg");  //here  goes the name of your handdrawn letter
+		Overlay4 comparator = new Overlay4("Alphabet/B.jpg");	//here  goes the name of your handdrawn letter	
 		
 		for(File x : library)
 		{
 			double d = comparator.overlay(x.getAbsolutePath());
-			display.put(d, x.getName());
+			display.put(x.getName(), d);
 		}
 		
 		
-		Set<Double> keys = display.keySet();
-    	for(Double key: keys){
-    		String filename = display.get(key);
-    		String split = filename.substring(0,(filename.indexOf('.')));
-    		String percent = ((key.toString().length()>=4) ? key.toString().substring(2, 4) : key.toString().substring(2));
-    		percent = ((key == 1) ? "100" : percent);
-    		System.out.println("Letter " + split + " Accuracy:  " + percent + "%");
+		Set<String> keys = display.keySet();
+    	for(String key: keys){
+    		double value = display.get(key);
+    		String split = key.substring(0,(key.indexOf('.')));
+    		System.out.println("Letter " + split + " Accuracy: " + value);
     	}
 	}
 	
