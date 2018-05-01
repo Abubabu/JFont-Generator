@@ -19,13 +19,15 @@ public class OverlayTest {
 		File[] library = test.listOfImages("Alphabet");
 		
 		//Overlay3 comparator = new Overlay3("Alphabet/B.jpg");  //here  goes the name of your handdrawn letter
-		Overlay4 comparator = new Overlay4("Alphabet/B.jpg");	//here  goes the name of your handdrawn letter	
+		Overlay4 comparator = new Overlay4("MYA.png");	//here  goes the name of your handdrawn letter	
 		
 		for(File x : library)
 		{
 			double d = comparator.overlay(x.getAbsolutePath());
 			display.put(x.getName(), d);
+			System.out.print(".");
 		}
+		System.out.println();
 		
 		
 		Set<String> keys = display.keySet();

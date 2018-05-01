@@ -190,6 +190,10 @@ private final getImage testCase;
 	    for(int i = 1; i < input.length; i++) result = (long) gcd(result, input[i]);
 	    return result;
 	}*/
+	public static int makeEven(int x)
+	{
+		return ( (x % 2 == 0) ? x : x-1);
+	}
 	private static long lcm(long a, long b)
 	{
 	    return (long) (a * (b / gcd(a, b)));
@@ -240,20 +244,20 @@ private final getImage testCase;
 	}
 	
 	public int getIncrementA(int a, int b) {
-		if(a < 10 || b < 10) {
+		if(a < a * .01 || b < b * .01) {
 			return a;
 		}
-		if((a > 10 || b > 10) && gcd(a,b) == 1) {
-			return a /5;
+		if((a > a * .01|| b > b * .01) && gcd(a,b) == 1) {
+			return (int) ((int)a * .01);
 		}
 		 return gcd(a / gcd(a,b), b / gcd(a,b));
 	}															// this might actually fix the increments  yet to be tested
 	public int getIncrementB(int a, int b) {
-		if(a < 10 || b < 10) {
+		if(a < a * .01 || b < b * .01) {
 			return b;
 		}
-		if((a > 10 || b > 10) && gcd(a,b) == 1) {
-			return b /5;
+		if((a > a * .01|| b > b * .01) && gcd(a,b) == 1) {
+			return (int) ((int)b * .01);
 		}
 		 return gcd(a / gcd(a,b), b / gcd(a,b));
 	}
