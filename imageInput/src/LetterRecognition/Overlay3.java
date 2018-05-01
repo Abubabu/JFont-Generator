@@ -231,7 +231,7 @@ public class Overlay3 {
 		if(a < a * .05 || b < b * .05) {
 			return a;
 		}
-		if((a > 10 || b > 10) && gcd(a,b) == 1) {
+		if((a > a * .05|| b > b * .050) && gcd(a,b) == 1) {
 			return (int) ((int)a * .05);
 		}
 		 return gcd(a / gcd(a,b), b / gcd(a,b));
@@ -240,7 +240,7 @@ public class Overlay3 {
 		if(a < a * .05 || b < b * .05) {
 			return b;
 		}
-		if((a > 10 || b > 10) && gcd(a,b) == 1) {
+		if((a > a * .05|| b > b * .050) && gcd(a,b) == 1) {
 			return (int) ((int)b * .05);
 		}
 		 return gcd(a / gcd(a,b), b / gcd(a,b));
