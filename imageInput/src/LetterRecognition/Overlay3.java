@@ -228,20 +228,20 @@ public class Overlay3 {
 	}
 	
 	public int getIncrementA(int a, int b) {
-		if(a < a * .05 || b < b * .05) {
+		if(a < a * .01 || b < b * .01) {
 			return a;
 		}
-		if((a > a * .05|| b > b * .050) && gcd(a,b) == 1) {
-			return (int) ((int)a * .05);
+		if((a > a * .01|| b > b * .01) && gcd(a,b) == 1) {
+			return (int) ((int)a * .01);
 		}
 		 return gcd(a / gcd(a,b), b / gcd(a,b));
 	}															// this might actually fix the increments  yet to be tested
 	public int getIncrementB(int a, int b) {
-		if(a < a * .05 || b < b * .05) {
+		if(a < a * .01 || b < b * .01) {
 			return b;
 		}
-		if((a > a * .05|| b > b * .050) && gcd(a,b) == 1) {
-			return (int) ((int)b * .05);
+		if((a > a * .01|| b > b * .01) && gcd(a,b) == 1) {
+			return (int) ((int)b * .01);
 		}
 		 return gcd(a / gcd(a,b), b / gcd(a,b));
 	}
