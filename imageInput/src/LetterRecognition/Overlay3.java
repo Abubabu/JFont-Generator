@@ -232,7 +232,7 @@ public class Overlay3 {
 			return a;
 		}
 		if((a > 10 || b > 10) && gcd(a,b) == 1) {
-			return 1;
+			return (int) ((int)a * .05);
 		}
 		 return gcd(a / gcd(a,b), b / gcd(a,b));
 	}															// this might actually fix the increments  yet to be tested
@@ -241,7 +241,7 @@ public class Overlay3 {
 			return b;
 		}
 		if((a > 10 || b > 10) && gcd(a,b) == 1) {
-			return 1;
+			return (int) ((int)b * .05);
 		}
 		 return gcd(a / gcd(a,b), b / gcd(a,b));
 	}
