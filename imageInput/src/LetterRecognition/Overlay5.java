@@ -114,10 +114,11 @@ private final getImage testCase;
 		int TestyPos = 0;
 		int UserxPos = 0;
 		int UseryPos = 0;
+		int zxby = UserCenterY - UserSquareSideLength/2;
 		
-		for(int ay = TestCenterY - TestSquareSideLength/2, by = UserCenterY - UserSquareSideLength/2; ay < TestCenterY + TestSquareSideLength/2 && by < UserCenterY + UserSquareSideLength/2;  ay ++ , by ++)//y  apix[ycoord][xcoord]
+		for(int ay = TestCenterY - TestSquareSideLength/2, by = UserCenterY - UserSquareSideLength/2; ay < TestSquareSideLength / aH;  ay += aH , by += bH)//y  apix[ycoord][xcoord]
 		{
-			for(int ax = TestCenterX - TestSquareSideLength/2, bx = UserCenterX - UserSquareSideLength/2; ax < TestCenterX + TestSquareSideLength/2 && bx < UserCenterX + UserSquareSideLength/2;  ax ++, bx ++)//x
+			for(int ax = TestCenterX - TestSquareSideLength/2, bx = UserCenterX - UserSquareSideLength/2; ax < TestSquareSideLength / aW;  ax += aW, bx += bW)//x
 			{
 				//System.out.println(apix[j][i].getB() + "  " + bpix[j][i].getB());
 				//System.out.println("x:"+ ax + "  y:" + ay + "  " + "A:" + apix[ax][ay].getR() + ", " + bpix[bx][by].getR());
@@ -157,8 +158,11 @@ private final getImage testCase;
 		    	    }
 			}
 		}
-		ImageIO.write(test, "bmp",new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\TestCropout.bmp"));
-		ImageIO.write(user, "bmp",new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\UserCropout.bmp"));
+		ImageIO.write(test, "bmp",new File("C:\\Users\\BT_1N3_23\\git\\JFont-Generator\\imageInput\\TestCropout.bmp"));
+		ImageIO.write(user, "bmp",new File("C:\\Users\\BT_1N3_23\\git\\JFont-Generator\\imageInput\\UserCropout.bmp"));
+		//ImageIO.write(test, "bmp",new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\TestCropout.bmp"));
+		//ImageIO.write(user, "bmp",new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\UserCropout.bmp"));
+		
 		//System.out.println(overlap + " " + nolap);
 		//System.out.print(((double) overlap/ (double) (nolap+overlap)));
 		return ((double) overlap/ (double) (nolap+overlap));
@@ -288,22 +292,10 @@ private final getImage testCase;
 	}
 	
 	public int getIncrementA(int a, int b) {
-		if(a < a * .01 || b < b * .01) {
-			return a;
-		}
-		if((a > a * .01|| b > b * .01) && gcd(a,b) == 1) {
-			return (int) ((int)a * .01);
-		}
-		 return gcd(a / gcd(a,b), b / gcd(a,b));
+		return (int) (a * .1);
 	}															// this might actually fix the increments  yet to be tested
 	public int getIncrementB(int a, int b) {
-		if(a < a * .01 || b < b * .01) {
-			return b;
-		}
-		if((a > a * .01|| b > b * .01) && gcd(a,b) == 1) {
-			return (int) ((int)b * .01);
-		}
-		 return gcd(a / gcd(a,b), b / gcd(a,b));
+		return (int) (b * .1);
 	}
 			
 }
