@@ -98,7 +98,7 @@ private final getImage testCase;
 		    	    if(bNativeWidth-1 == UserxPos)
 		    	    {
 		    	    	UserxPos = 0;
-		    	    	UseryPos++;
+		    	    	UseryPos++;   // this seems overly complicated when one could use the exact cordinates given, may also be causuing an error
 		    	    }
 		    	    else
 		    	    {
