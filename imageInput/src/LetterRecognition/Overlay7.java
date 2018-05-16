@@ -53,7 +53,7 @@ private final getImage testCase;
 		int bH = getIncrementB(aNativeHeight,bNativeHeight) ;
 		int bW = getIncrementA(aNativeWidth,bNativeWidth);;
 		
-		BufferedImage test = new BufferedImage(aNativeWidth / aW, aNativeHeight / aH, BufferedImage.TYPE_INT_RGB);
+		BufferedImage test = new BufferedImage(aNativeWidth / aW, aNativeHeight / aH, BufferedImage.TYPE_INT_RGB); //i think you might have reversed these numbers but im not sure
 		BufferedImage user = new BufferedImage(bNativeWidth / bW, bNativeHeight / bH, BufferedImage.TYPE_INT_RGB);
 		int TestxPos = 0;
 		int TestyPos = 0;
