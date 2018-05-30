@@ -274,9 +274,8 @@ public class getImage
 				/* if(arrayHeight >= height - 1) {
 					 arrayWidth++;
 				 }*/
-				 if(pos.getyPos() < height && pos.getxPos() < width) {
-					 positions[pos.getxPos()][pos.getyPos()] = pos;
-				 }
+			
+				 positions[pos.getxPos()][pos.getyPos()] = pos;
 			 }
 			 return positions;
 	}
