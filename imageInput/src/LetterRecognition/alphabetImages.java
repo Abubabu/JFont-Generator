@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;	
+import java.util.TreeMap;
 
 import javax.imageio.ImageIO;
 
@@ -11,20 +13,25 @@ import getImage.CardinalPixels;
 import getImage.RGBValue;
 import getImage.getImage;
 
-public class Overlay8 {
+public class alphabetImages {
 	
-	private final getImage testCase;
+	private static int num = 0;
 	
-	public Overlay8(String filepath) throws IOException
+	public static void main(String[] args) throws IOException
 	{
-		getImage testcase = new getImage(filepath);
-		this.testCase = testcase;
+		Map<String,Double> display = new TreeMap<String,Double>();
+		OverlayTest test = new OverlayTest();
+		File[] library = test.listOfImages("Alphabet");
+		
+		for(File x : library)
+		{
+			overlay(x.getAbsolutePath(), "Alphabet/R.png");
+		}
 	}
-	
-	public double overlay(String filepath) throws IOException
+	public static double overlay(String filepath, String filepath2) throws IOException
 	{
-		getImage userImage = getTestCase();
-		getImage staticCase = new getImage(filepath); 
+		getImage userImage = new getImage(filepath);
+		getImage staticCase = new getImage(filepath2); 
 		
 		getImage userConverted = new getImage(userImage.getBW());
 		getImage staticConverted = new getImage(staticCase.getBW());
@@ -69,13 +76,14 @@ public class Overlay8 {
 		BufferedImage userCopy = new BufferedImage(100,100,BufferedImage.TYPE_INT_RGB);
 		System.out.println("im running here");
 		
+		
 		for(int userPosX = 0, staticPosX = 0, xinc = 0; xinc < 100; userPosX += userXInc, staticPosX += staticXInc, xinc++)
 		{
 			System.out.println("im running here first loop");
 			for(int userPosY = 0, staticPosY = 0, yinc= 0; yinc < 100; userPosY += userYInc, staticPosY += staticYInc, yinc++)
 			{
 				System.out.println(xinc + "," + yinc);
-				if ((isBlack(userpix[userPosX][userPosY]) || isBlack(staticpix[staticPosX][staticPosY]))  && isRGBEqual(userpix[userPosX][userPosY], staticpix[staticPosX][staticPosY])) {
+				if (isRGBEqual(userpix[userPosX][userPosY], staticpix[staticPosX][staticPosY])) {
 					overlap++;
 				} else {
 					nolap++;
@@ -88,20 +96,12 @@ public class Overlay8 {
 				
 			}
 		}
-		ImageIO.write(userCopy, "bmp",new File("C:\\Users\\BT_1N3_23\\git\\JFont-Generator\\imageInput\\TestCropout.bmp"));
+		ImageIO.write(userCopy, "bmp",new File("C:\\Users\\BT_1N3_23\\git\\JFont-Generator\\imageInput\\" + num + ".bmp"));
+		num++;
 		
 		System.out.println(overlap + " " + nolap);
 		System.out.print(((double) overlap/ (double) (nolap+overlap)));
 		return ((double) overlap/ (double) (nolap+overlap));
-	}
-	public static void main(String[] args) throws IOException
-	{
-		Overlay8 comparator = new Overlay8("Alphabet/Q.png");
-		comparator.overlay("Alphabet/R.png");
-	}
-	
-	public getImage getTestCase() {
-		return testCase;
 	}
 	
 	private static int getIncrement(double measurement) {
