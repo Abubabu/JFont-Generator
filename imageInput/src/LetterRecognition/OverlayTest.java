@@ -19,7 +19,7 @@ public class OverlayTest {
 		File[] library = test.listOfImages("Alphabet");
 		
 		//Overlay3 comparator = new Overlay3("Alphabet/B.jpg");  //here  goes the name of your handdrawn letter
-		Overlay8 comparator = new Overlay8("Random/MYA.png");	//here  goes the name of your handdrawn letter	
+		Overlay9 comparator = new Overlay9("Random/MYA.png");	//here  goes the name of your handdrawn letter	
 		
 		for(File x : library)
 		{
