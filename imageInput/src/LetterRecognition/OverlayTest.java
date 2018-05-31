@@ -16,7 +16,7 @@ public class OverlayTest {
 	{
 		Map<String,Double> display = new TreeMap<String,Double>();
 		OverlayTest test = new OverlayTest();
-		File[] library = test.listOfImages("Alphabet");
+		File[] library = test.listOfImages("CroppedAlphabet");
 		
 		//Overlay3 comparator = new Overlay3("Alphabet/B.jpg");  //here  goes the name of your handdrawn letter
 		Overlay9 comparator = new Overlay9("Random/MYA.png");	//here  goes the name of your handdrawn letter	

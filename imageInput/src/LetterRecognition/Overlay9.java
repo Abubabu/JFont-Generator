@@ -66,11 +66,9 @@ private final getImage testCase;
 		System.out.println(userYInc);
 		System.out.println(userNativeHeight);
 		BufferedImage userCopy = new BufferedImage(100,100,BufferedImage.TYPE_INT_RGB);
-		System.out.println("im running here");
 		
 		for(int userPosX = 0, staticPosX = 0, xinc = 0; xinc < 100; userPosX += userXInc, staticPosX += staticXInc, xinc++)
 		{
-			System.out.println("im running here first loop");
 			for(int userPosY = 0, staticPosY = 0, yinc= 0; yinc < 100; userPosY += userYInc, staticPosY += staticYInc, yinc++)
 			{
 				int userRed = userpix[userPosX][userPosY].getR();
@@ -81,11 +79,11 @@ private final getImage testCase;
 				
 			}
 		}
-		ImageIO.write(userCopy, "bmp",new File("C:\\Users\\BT_1N3_23\\git\\JFont-Generator\\imageInput\\TestCropout.bmp"));
-		getImage userCropCopy = new getImage("C:\\Users\\BT_1N3_23\\git\\JFont-Generator\\imageInput\\TestCropout.bmp");
+		ImageIO.write(userCopy, "bmp",new File("C:\\Users\\BT_1N3_22\\git\\JFont-Generator\\imageInput\\TestCropout.bmp"));
+		getImage userCropCopy = new getImage("C:\\Users\\BT_1N3_22\\git\\JFont-Generator\\imageInput\\TestCropout.bmp");
 		RGBValue[][] croppedUserPixels = userCropCopy.getPixelsArray();
 		CardinalPixels userCroppedCardinals = new CardinalPixels(userCropCopy);
-		CardinalPixels staticCroppedCardinals = new CardinalPixels(staticCase);
+		CardinalPixels staticCroppedCardinals = new CardinalPixels(staticConverted);
 		int largestNorth = 0;
 		int largestSouth = 0;
 		int largestEast = 0;
@@ -97,27 +95,38 @@ private final getImage testCase;
 		else
 			largestEast = staticCroppedCardinals.getLeft().getxPos();
 		
+		
+		
 		if(userCroppedCardinals.getRight().getxPos() < staticCroppedCardinals.getRight().getxPos()){
 			largestWest = staticCroppedCardinals.getRight().getxPos();
 		}
 		else
 			largestWest = userCroppedCardinals.getRight().getxPos();
 		
-		if(userCroppedCardinals.getLeft().getxPos() < staticCroppedCardinals.getLeft().getxPos()){
-			largestEast = userCroppedCardinals.getLeft().getxPos();
-		}
-		else
-			largestEast = staticCroppedCardinals.getLeft().getxPos();
 		
-		if(userCroppedCardinals.getLeft().getxPos() < staticCroppedCardinals.getLeft().getxPos()){
-			largestEast = userCroppedCardinals.getLeft().getxPos();
+		
+		if(userCroppedCardinals.getNorth().getyPos() > staticCroppedCardinals.getNorth().getyPos()){
+			largestNorth = userCroppedCardinals.getNorth().getyPos();
 		}
 		else
-			largestEast = staticCroppedCardinals.getLeft().getxPos();
+			largestNorth = staticCroppedCardinals.getNorth().getyPos();
+		
+		
+		
+		if(userCroppedCardinals.getSouth().getyPos() < staticCroppedCardinals.getSouth().getyPos()){
+			largestSouth = userCroppedCardinals.getSouth().getyPos();
+		}
+		else
+			largestSouth = staticCroppedCardinals.getSouth().getyPos();
+		
+		
 		for(int x = 0; x < 100; x++) {
 			for(int y = 0; y < 100; y++) {
-				if(x > userCroppedCardinals.getLeft().getxPos() && x < userCroppedCardinals.getRight().getxPos()) {
-					if(y < userCroppedCardinals.getNorth().getyPos() && y >userCroppedCardinals.getSouth().getyPos()) {
+				if(x >= largestEast && x <= largestWest) {
+					if(y <= largestNorth && y >= largestSouth) {
+						System.out.println(croppedUserPixels[x][y].getR() + "," + staticpix[x][y].getR());
+						System.out.println(croppedUserPixels[x][y].getG() + "," + staticpix[x][y].getR());
+						System.out.println(croppedUserPixels[x][y].getB() + "," + staticpix[x][y].getB());
 						if (isRGBEqual(croppedUserPixels[x][y], staticpix[x][y])) {
 							overlap++;
 						} else {
