@@ -105,36 +105,36 @@ private final getImage testCase;
 		
 		
 		
-		if(userCroppedCardinals.getNorth().getyPos() > staticCroppedCardinals.getNorth().getyPos()){
-			largestNorth = userCroppedCardinals.getNorth().getyPos();
+		if(userCroppedCardinals.getSouth().getyPos() > staticCroppedCardinals.getSouth().getyPos()){
+			largestNorth = userCroppedCardinals.getSouth().getyPos();
 		}
 		else
-			largestNorth = staticCroppedCardinals.getNorth().getyPos();
+			largestNorth = staticCroppedCardinals.getSouth().getyPos();
 		
 		
 		
-		if(userCroppedCardinals.getSouth().getyPos() < staticCroppedCardinals.getSouth().getyPos()){
-			largestSouth = userCroppedCardinals.getSouth().getyPos();
+		if(userCroppedCardinals.getNorth().getyPos() < staticCroppedCardinals.getNorth().getyPos()){
+			largestSouth = userCroppedCardinals.getNorth().getyPos();
 		}
 		else
-			largestSouth = staticCroppedCardinals.getSouth().getyPos();
+			largestSouth = staticCroppedCardinals.getNorth().getyPos();
 		
-		
+		System.out.println(largestNorth + "north");
+		System.out.println(largestEast + "east");
+		System.out.println(largestSouth + "south");
+		System.out.println(largestWest + "west");
 		for(int x = 0; x < 100; x++) {
 			for(int y = 0; y < 100; y++) {
-				if(x >= largestEast && x <= largestWest) {
-					if(y <= largestNorth && y >= largestSouth) {
-						System.out.println(croppedUserPixels[x][y].getR() + "," + staticpix[x][y].getR());
-						System.out.println(croppedUserPixels[x][y].getG() + "," + staticpix[x][y].getR());
-						System.out.println(croppedUserPixels[x][y].getB() + "," + staticpix[x][y].getB());
-						if (isRGBEqual(croppedUserPixels[x][y], staticpix[x][y])) {
-							overlap++;
-						} else {
-							nolap++;
-						} 	
-					}
+						if(isBlack(croppedUserPixels[x][y]) || isBlack(staticpix[x][y])){
+							if (isRGBEqual(croppedUserPixels[x][y], staticpix[x][y])) {
+								overlap++;
+							} else {
+								nolap++;
+							} 	
+						}
+					
 				}
-			}
+			
 		}
 		System.out.println(overlap + " " + nolap);
 		System.out.print(((double) overlap/ (double) (nolap+overlap)));
