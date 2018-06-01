@@ -11,12 +11,12 @@ import getImage.CardinalPixels;
 import getImage.RGBValue;
 import getImage.getImage;
 
-public class Overlay9 {
-private final getImage testCase;
+public class Overlay10 {
 	/* Ok so here me out. We have to bypass the inherent difference in the size of the drawn letter even in the crop. So what I propose is that we crop the initial letter using cardinal pixels to remove as much
 	 * white space as possible and then we crop it with increment into a 100x100 buffered image and then do a 1:1 comparisons with the cropped test cases
 	 */
-	public Overlay9(String filepath) throws IOException
+	private final getImage testCase;
+	public Overlay10(String filepath) throws IOException
 	{
 		getImage testcase = new getImage(filepath);
 		this.testCase = testcase;
