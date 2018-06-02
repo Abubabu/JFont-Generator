@@ -85,25 +85,23 @@ public class Overlay10 {
 				
 			}
 		}
-		ImageIO.write(userCopy, "bmp",new File(/*"C:\\Users\\Administrator\\git\\JFont-Generator\\imageInput\\TestCropout.bmp"*/"C:\\Users\\Salehaakter\\Desktop\\TestCropout.bmp"));
-		getImage userCropCopy = new getImage(/*"C:\\\\Users\\\\Administrator\\\\git\\\\JFont-Generator\\\\imageInput\\\\TestCropout.bmp"*/"C:\\Users\\Salehaakter\\Desktop\\TestCropout.bmp");
-		ImageIO.write(staticCopy, "bmp",new File(/*"C:\\Users\\Administrator\\git\\JFont-Generator\\imageInput\\staticCropout.bmp"*/"C:\\Users\\Salehaakter\\Desktop\\TestCropout.bmp"));
-		getImage staticCropCopy = new getImage(/*"C:\\\\Users\\\\Administrator\\\\git\\\\JFont-Generator\\\\imageInput\\\\staticCropout.bmp"*/"C:\\Users\\Salehaakter\\Desktop\\TestCropout.bmp");
+		ImageIO.write(userCopy, "bmp",new File(/*"C:\\Users\\Administrator\\git\\JFont-Generator\\imageInput\\TestCropout.bmp"*/"C:\\Users\\Salehaakter\\Desktop\\userCropout.bmp"));
+		getImage userCropCopy = new getImage(/*"C:\\\\Users\\\\Administrator\\\\git\\\\JFont-Generator\\\\imageInput\\\\TestCropout.bmp"*/"C:\\Users\\Salehaakter\\Desktop\\userCropout.bmp");
+		ImageIO.write(staticCopy, "bmp",new File(/*"C:\\Users\\Administrator\\git\\JFont-Generator\\imageInput\\staticCropout.bmp"*/"C:\\Users\\Salehaakter\\Desktop\\staticCropout.bmp"));
+		getImage staticCropCopy = new getImage(/*"C:\\\\Users\\\\Administrator\\\\git\\\\JFont-Generator\\\\imageInput\\\\staticCropout.bmp"*/"C:\\Users\\Salehaakter\\Desktop\\staticCropout.bmp");
 		RGBValue[][] croppedUserPixels = userCropCopy.getPixelsArray();
 		RGBValue[][] croppedStaticPixels = staticCropCopy.getPixelsArray();
 		CardinalPixels userCroppedCardinals = new CardinalPixels(userCropCopy);
 		CardinalPixels staticCroppedCardinals = new CardinalPixels(staticCropCopy);
 		
+		int counter = 0;
 		for(int x = 0; x < 100; x++) {
 			for(int y = 0; y < 100; y++) {
-						if(isBlack(croppedUserPixels[x][y]) || isBlack(croppedStaticPixels[x][y])){
-							if (isRGBEqual(croppedUserPixels[x][y], croppedStaticPixels[x][y])) {
+							if (checkNearbyPixels(x,y,croppedUserPixels,croppedStaticPixels)) {
 								overlap++;
 							} else {
 								nolap++;
 							} 	
-						}
-					
 				}
 			
 		}
@@ -115,7 +113,7 @@ public class Overlay10 {
 	{
 		
 		Overlay10 comparator = new Overlay10("Alphabet/Q.png");
-		comparator.overlay("Alphabet/W.png");
+		comparator.overlay("Random/MYA.png");
 	}
 	
 	public getImage getTestCase() {
@@ -134,5 +132,32 @@ public class Overlay10 {
 	public static boolean isBlack(RGBValue rgb)
 	{
 		return rgb.getR() == 0 && rgb.getG() == 0 && rgb.getB() == 0;
+	}
+	
+	public static boolean checkNearbyPixels(int x, int y, RGBValue[][] userPix, RGBValue[][] staticPix)
+	{
+		int match = 0;
+		int noMatch = 0;
+		for(int i = x-1; i < x+2; i++)
+		{
+			for(int j = y-1; j < y +2; j++)
+			{
+				if( (j <0 || j > 99) || (i < 0 || i > 99)  )
+				{
+					break;
+				}
+				
+				if (isBlack(userPix[x][y]) || isBlack(staticPix[x][y]) ) {
+					if (isRGBEqual(userPix[x][y], staticPix[x][y])) {
+						match++;
+					} else {
+						noMatch++;
+					} 
+				}
+				else
+					noMatch++;
+			}
+		}
+		return match >= noMatch-1;
 	}
 }
