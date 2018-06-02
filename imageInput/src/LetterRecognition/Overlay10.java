@@ -53,14 +53,18 @@ public class Overlay10 {
 		int staticXInc = getIncrement(staticWidth);
 		int staticYInc = getIncrement(staticHeight);
 		
+		System.out.println(userWidth + ":" + userXInc + " " + userHeight + ":" +  userYInc);
+		System.out.println(staticWidth  + ":" + staticXInc + " " + staticHeight + ":" + staticYInc);
 		
 		int overlap = 0;
 		int nolap = 0;
 		
-		
 		System.out.println(userYInc);
 		System.out.println(userNativeHeight);
 		BufferedImage userCopy = new BufferedImage(100,100,BufferedImage.TYPE_INT_RGB);
+		
+		System.out.println(staticlocation.getLeft().getxPos() + " " + staticlocation.getLeft().getyPos());
+		System.out.println(staticlocation.getNorth().getxPos() + " " + staticlocation.getNorth().getyPos());
 		
 		for(int userPosX = userlocation.getLeft().getxPos(), staticPosX = staticlocation.getLeft().getxPos(), xinc = 0; xinc < 100; userPosX += userXInc, staticPosX += staticXInc, xinc++)
 		{
@@ -72,58 +76,20 @@ public class Overlay10 {
 				Color userColor = new Color(userRed,userGreen,userBlue);
 				userCopy.setRGB(xinc, yinc,userColor.getRGB());*/
 				
-				int userRed = staticpix[staticPosX][staticPosY].getR();
-				int userGreen = staticpix[staticPosX][staticPosY].getG();
-				int userBlue = staticpix[staticPosX][staticPosY].getB();
-				Color userColor = new Color(userRed,userGreen,userBlue);
+				int staticRed = staticpix[staticPosX][staticPosY].getR();
+				int staticGreen = staticpix[staticPosX][staticPosY].getG();
+				int staticBlue = staticpix[staticPosX][staticPosY].getB();
+				Color userColor = new Color(staticRed,staticGreen,staticBlue);
 				userCopy.setRGB(xinc, yinc,userColor.getRGB());
 				
 			}
 		}
-		ImageIO.write(userCopy, "bmp",new File("C:\\Users\\Administrator\\git\\JFont-Generator\\imageInput\\TestCropout.bmp"));
-		getImage userCropCopy = new getImage("C:\\\\Users\\\\Administrator\\\\git\\\\JFont-Generator\\\\imageInput\\\\TestCropout.bmp");
+		ImageIO.write(userCopy, "bmp",new File(/*"C:\\Users\\Administrator\\git\\JFont-Generator\\imageInput\\TestCropout.bmp"*/"C:\\Users\\Salehaakter\\Desktop\\TestCropout.bmp"));
+		getImage userCropCopy = new getImage(/*"C:\\\\Users\\\\Administrator\\\\git\\\\JFont-Generator\\\\imageInput\\\\TestCropout.bmp"*/"C:\\Users\\Salehaakter\\Desktop\\TestCropout.bmp");
 		RGBValue[][] croppedUserPixels = userCropCopy.getPixelsArray();
 		CardinalPixels userCroppedCardinals = new CardinalPixels(userCropCopy);
 		CardinalPixels staticCroppedCardinals = new CardinalPixels(staticConverted);
-		int largestNorth = 0;
-		int largestSouth = 0;
-		int largestEast = 0;
-		int largestWest = 0;
 		
-		if(userCroppedCardinals.getLeft().getxPos() < staticCroppedCardinals.getLeft().getxPos()){
-			largestEast = userCroppedCardinals.getLeft().getxPos();
-		}
-		else
-			largestEast = staticCroppedCardinals.getLeft().getxPos();
-		
-		
-		
-		if(userCroppedCardinals.getRight().getxPos() < staticCroppedCardinals.getRight().getxPos()){
-			largestWest = staticCroppedCardinals.getRight().getxPos();
-		}
-		else
-			largestWest = userCroppedCardinals.getRight().getxPos();
-		
-		
-		
-		if(userCroppedCardinals.getSouth().getyPos() > staticCroppedCardinals.getSouth().getyPos()){
-			largestNorth = userCroppedCardinals.getSouth().getyPos();
-		}
-		else
-			largestNorth = staticCroppedCardinals.getSouth().getyPos();
-		
-		
-		
-		if(userCroppedCardinals.getNorth().getyPos() < staticCroppedCardinals.getNorth().getyPos()){
-			largestSouth = userCroppedCardinals.getNorth().getyPos();
-		}
-		else
-			largestSouth = staticCroppedCardinals.getNorth().getyPos();
-		
-		System.out.println(largestNorth + "north");
-		System.out.println(largestEast + "east");
-		System.out.println(largestSouth + "south");
-		System.out.println(largestWest + "west");
 		for(int x = 0; x < 100; x++) {
 			for(int y = 0; y < 100; y++) {
 						if(isBlack(croppedUserPixels[x][y]) || isBlack(staticpix[x][y])){
@@ -145,7 +111,7 @@ public class Overlay10 {
 	{
 		
 		Overlay10 comparator = new Overlay10("Alphabet/Q.png");
-		comparator.overlay("Random/MYA.png");
+		comparator.overlay("Alphabet/W.png");
 	}
 	
 	public getImage getTestCase() {
