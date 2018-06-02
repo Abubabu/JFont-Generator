@@ -24,14 +24,12 @@ public class Overlay10 {
 	
 	public double overlay(String filepath) throws IOException
 	{
+		
 		getImage userImage = getTestCase();
 		getImage staticCase = new getImage(filepath); 
 		
 		getImage userConverted = new getImage(userImage.getBW());
 		getImage staticConverted = new getImage(staticCase.getBW());
-		
-		CardinalPixels originalCardinals = new CardinalPixels(userConverted);
-		CardinalPixels originalStatic = new CardinalPixels(staticConverted);
 		
 		int userNativeHeight = userConverted.getHeight();
 		int userNativeWidth = userConverted.getWidth();
@@ -44,24 +42,16 @@ public class Overlay10 {
 		CardinalPixels userlocation = new CardinalPixels(userConverted);
 		CardinalPixels staticlocation = new CardinalPixels(staticConverted);
 		
-		int userXInc = getIncrement(userNativeWidth);
-		int userYInc = getIncrement(userNativeHeight);
-		int staticXInc = getIncrement(staticNativeWidth);
-		int staticYInc = getIncrement(staticNativeHeight);
 		
 		int staticHeight = staticlocation.getSouth().getyPos()- staticlocation.getNorth().getyPos();
 		int staticWidth = staticlocation.getRight().getxPos() - staticlocation.getLeft().getxPos();
 		int userHeight = userlocation.getSouth().getyPos() - userlocation.getNorth().getyPos();
 		int userWidth = userlocation.getRight().getxPos() - userlocation.getLeft().getxPos();
 		
-		int staticSquareSideLength = ((staticHeight > staticWidth) ? staticHeight : staticWidth);
-		int userSquareSideLength = ((userHeight > userWidth) ? userHeight: userWidth);
-		
-		int staticCenterX = staticlocation.getRight().getxPos() - (staticWidth/2);
-		int staticCenterY = staticlocation.getSouth().getyPos() - (staticHeight/2);
-		int userCenterX = userlocation.getRight().getxPos() - (userWidth/2);
-		int userCenterY = userlocation.getSouth().getyPos() - (userHeight/2);
-		
+		int userXInc = getIncrement(userWidth);
+		int userYInc = getIncrement(userHeight);
+		int staticXInc = getIncrement(staticWidth);
+		int staticYInc = getIncrement(staticHeight);
 		
 		
 		int overlap = 0;
@@ -72,9 +62,9 @@ public class Overlay10 {
 		System.out.println(userNativeHeight);
 		BufferedImage userCopy = new BufferedImage(100,100,BufferedImage.TYPE_INT_RGB);
 		
-		for(int userPosX = 0, staticPosX = 0, xinc = 0; xinc < 100; userPosX += userXInc, staticPosX += staticXInc, xinc++)
+		for(int userPosX = userlocation.getLeft().getxPos(), staticPosX = staticlocation.getLeft().getxPos(), xinc = 0; xinc < 100; userPosX += userXInc, staticPosX += staticXInc, xinc++)
 		{
-			for(int userPosY = 0, staticPosY = 0, yinc= 0; yinc < 100; userPosY += userYInc, staticPosY += staticYInc, yinc++)
+			for(int userPosY = userlocation.getNorth().getyPos(), staticPosY = staticlocation.getNorth().getyPos(), yinc= 0; yinc < 100; userPosY += userYInc, staticPosY += staticYInc, yinc++)
 			{
 				int userRed = userpix[userPosX][userPosY].getR();
 				int userGreen = userpix[userPosX][userPosY].getG();
@@ -84,8 +74,8 @@ public class Overlay10 {
 				
 			}
 		}
-		ImageIO.write(userCopy, "bmp",new File("C:\\Users\\BT_1N3_22\\git\\JFont-Generator\\imageInput\\TestCropout.bmp"));
-		getImage userCropCopy = new getImage("C:\\Users\\BT_1N3_22\\git\\JFont-Generator\\imageInput\\TestCropout.bmp");
+		ImageIO.write(userCopy, "bmp",new File("C:\\Users\\Administrator\\git\\JFont-Generator\\imageInput\\TestCropout.bmp"));
+		getImage userCropCopy = new getImage("C:\\\\Users\\\\Administrator\\\\git\\\\JFont-Generator\\\\imageInput\\\\TestCropout.bmp");
 		RGBValue[][] croppedUserPixels = userCropCopy.getPixelsArray();
 		CardinalPixels userCroppedCardinals = new CardinalPixels(userCropCopy);
 		CardinalPixels staticCroppedCardinals = new CardinalPixels(staticConverted);
@@ -147,7 +137,8 @@ public class Overlay10 {
 	}
 	public static void main(String[] args) throws IOException
 	{
-		Overlay9 comparator = new Overlay9("Alphabet/Q.png");
+		
+		Overlay10 comparator = new Overlay10("Alphabet/Q.png");
 		comparator.overlay("Alphabet/R.png");
 	}
 	
