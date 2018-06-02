@@ -66,9 +66,15 @@ public class Overlay10 {
 		{
 			for(int userPosY = userlocation.getNorth().getyPos(), staticPosY = staticlocation.getNorth().getyPos(), yinc= 0; yinc < 100; userPosY += userYInc, staticPosY += staticYInc, yinc++)
 			{
-				int userRed = userpix[userPosX][userPosY].getR();
+				/*int userRed = userpix[userPosX][userPosY].getR();
 				int userGreen = userpix[userPosX][userPosY].getG();
 				int userBlue = userpix[userPosX][userPosY].getB();
+				Color userColor = new Color(userRed,userGreen,userBlue);
+				userCopy.setRGB(xinc, yinc,userColor.getRGB());*/
+				
+				int userRed = staticpix[staticPosX][staticPosY].getR();
+				int userGreen = staticpix[staticPosX][staticPosY].getG();
+				int userBlue = staticpix[staticPosX][staticPosY].getB();
 				Color userColor = new Color(userRed,userGreen,userBlue);
 				userCopy.setRGB(xinc, yinc,userColor.getRGB());
 				
@@ -139,7 +145,7 @@ public class Overlay10 {
 	{
 		
 		Overlay10 comparator = new Overlay10("Alphabet/Q.png");
-		comparator.overlay("Alphabet/R.png");
+		comparator.overlay("Random/MYA.png");
 	}
 	
 	public getImage getTestCase() {
