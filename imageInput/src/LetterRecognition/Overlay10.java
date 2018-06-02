@@ -62,6 +62,7 @@ public class Overlay10 {
 		System.out.println(userYInc);
 		System.out.println(userNativeHeight);
 		BufferedImage userCopy = new BufferedImage(100,100,BufferedImage.TYPE_INT_RGB);
+		BufferedImage staticCopy = new BufferedImage(100,100,BufferedImage.TYPE_INT_RGB);
 		
 		System.out.println(staticlocation.getLeft().getxPos() + " " + staticlocation.getLeft().getyPos());
 		System.out.println(staticlocation.getNorth().getxPos() + " " + staticlocation.getNorth().getyPos());
@@ -70,30 +71,33 @@ public class Overlay10 {
 		{
 			for(int userPosY = userlocation.getNorth().getyPos(), staticPosY = staticlocation.getNorth().getyPos(), yinc= 0; yinc < 100; userPosY += userYInc, staticPosY += staticYInc, yinc++)
 			{
-				/*int userRed = userpix[userPosX][userPosY].getR();
+				int userRed = userpix[userPosX][userPosY].getR();
 				int userGreen = userpix[userPosX][userPosY].getG();
 				int userBlue = userpix[userPosX][userPosY].getB();
 				Color userColor = new Color(userRed,userGreen,userBlue);
-				userCopy.setRGB(xinc, yinc,userColor.getRGB());*/
+				userCopy.setRGB(xinc, yinc,userColor.getRGB());
 				
 				int staticRed = staticpix[staticPosX][staticPosY].getR();
 				int staticGreen = staticpix[staticPosX][staticPosY].getG();
 				int staticBlue = staticpix[staticPosX][staticPosY].getB();
-				Color userColor = new Color(staticRed,staticGreen,staticBlue);
-				userCopy.setRGB(xinc, yinc,userColor.getRGB());
+				Color staticColor = new Color(staticRed,staticGreen,staticBlue);
+				staticCopy.setRGB(xinc, yinc,staticColor.getRGB());
 				
 			}
 		}
 		ImageIO.write(userCopy, "bmp",new File(/*"C:\\Users\\Administrator\\git\\JFont-Generator\\imageInput\\TestCropout.bmp"*/"C:\\Users\\Salehaakter\\Desktop\\TestCropout.bmp"));
 		getImage userCropCopy = new getImage(/*"C:\\\\Users\\\\Administrator\\\\git\\\\JFont-Generator\\\\imageInput\\\\TestCropout.bmp"*/"C:\\Users\\Salehaakter\\Desktop\\TestCropout.bmp");
+		ImageIO.write(staticCopy, "bmp",new File(/*"C:\\Users\\Administrator\\git\\JFont-Generator\\imageInput\\staticCropout.bmp"*/"C:\\Users\\Salehaakter\\Desktop\\TestCropout.bmp"));
+		getImage staticCropCopy = new getImage(/*"C:\\\\Users\\\\Administrator\\\\git\\\\JFont-Generator\\\\imageInput\\\\staticCropout.bmp"*/"C:\\Users\\Salehaakter\\Desktop\\TestCropout.bmp");
 		RGBValue[][] croppedUserPixels = userCropCopy.getPixelsArray();
+		RGBValue[][] croppedStaticPixels = staticCropCopy.getPixelsArray();
 		CardinalPixels userCroppedCardinals = new CardinalPixels(userCropCopy);
-		CardinalPixels staticCroppedCardinals = new CardinalPixels(staticConverted);
+		CardinalPixels staticCroppedCardinals = new CardinalPixels(staticCropCopy);
 		
 		for(int x = 0; x < 100; x++) {
 			for(int y = 0; y < 100; y++) {
-						if(isBlack(croppedUserPixels[x][y]) || isBlack(staticpix[x][y])){
-							if (isRGBEqual(croppedUserPixels[x][y], staticpix[x][y])) {
+						if(isBlack(croppedUserPixels[x][y]) || isBlack(croppedStaticPixels[x][y])){
+							if (isRGBEqual(croppedUserPixels[x][y], croppedStaticPixels[x][y])) {
 								overlap++;
 							} else {
 								nolap++;
