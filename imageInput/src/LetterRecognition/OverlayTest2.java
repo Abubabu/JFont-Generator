@@ -2,11 +2,14 @@ package LetterRecognition;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
 public class OverlayTest2 {
+	
+	private static ArrayList<Integer> positions = new ArrayList<Integer>();
 	public File[] listOfImages(String directoryName) throws IOException{
         File directory = new File(directoryName);
         //get all the files from a directory
@@ -41,11 +44,11 @@ public class OverlayTest2 {
         		String split = name.substring(0,(name.indexOf('.')));
     			if(split.equals(target))
     			{
-    				System.out.println(counter);
+    				positions.add(counter);
     				break;
     			}
     	}
-    	System.out.println(keys.size());
+    	
 	}
 	public static void main(String[] args) throws IOException
 	{
@@ -54,6 +57,11 @@ public class OverlayTest2 {
 		for(File x : library)
 		{
 			compare("A",x.getAbsolutePath());
+		}
+		
+		for(int i = 0; i < positions.size(); i++)
+		{
+			System.out.println(positions.get(i));
 		}
 	}
 }
