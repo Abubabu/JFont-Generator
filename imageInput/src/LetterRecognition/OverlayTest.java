@@ -15,6 +15,7 @@ public class OverlayTest {
 	public static void main(String[] args) throws IOException
 	{
 		Map<String,Double> display = new TreeMap<String,Double>();
+		Map<Double,String> sortByValue = new TreeMap<Double,String>();
 		OverlayTest test = new OverlayTest();
 		File[] library = test.listOfImages("Alphabet");
 		
@@ -26,16 +27,24 @@ public class OverlayTest {
 			System.out.print(x.getAbsolutePath());
 			double d = comparator.overlay(x.getAbsolutePath());
 			display.put(x.getName(), d);
+			sortByValue.put(d, x.getName());
 			System.out.print(".");
 		}
 		System.out.println();
 		
 		
-		Set<String> keys = display.keySet();
+	/*	Set<String> keys = display.keySet();
     	for(String key: keys){
     		double value = display.get(key);
     		String split = key.substring(0,(key.indexOf('.')));
     		System.out.println("Letter " + split + " Accuracy: " + value);
+    	}	*/
+    	
+    	Set<Double> keys = sortByValue.keySet();
+    	for(Double key: keys){
+    		String name = sortByValue.get(key);
+    		String split = name.substring(0,(name.indexOf('.')));
+    		System.out.println("Letter " + split + " Accuracy: " + key);
     	}
 	}
 	
