@@ -95,8 +95,8 @@ public class Overlay10 {
 		CardinalPixels staticCroppedCardinals = new CardinalPixels(staticCropCopy);
 		
 		int counter = 0;
-		for(int x = 0; x < 100; x++) {
-			for(int y = 0; y < 100; y++) {
+		for(int x = 0; x < 100; x+=5) {
+			for(int y = 0; y < 100; y+=5) {
 							if (checkNearbyPixels(x,y,croppedUserPixels,croppedStaticPixels)) {
 								overlap++;
 							} else {
@@ -157,14 +157,14 @@ public class Overlay10 {
 			}
 		}
 		if(blackpixelsUser > blackPixelsStatic ) {
-			if(blackPixelsStatic + 5 > blackpixelsUser) {
+			if(blackPixelsStatic + 1 >= blackpixelsUser) {
 				return true;
 			}
 			else 
 				return false;
 		}
 		else if(blackPixelsStatic > blackpixelsUser ) {
-			if(blackpixelsUser + 5 > blackPixelsStatic) {
+			if(blackpixelsUser + 1 >= blackPixelsStatic) {
 				return true;
 			}
 			else 
