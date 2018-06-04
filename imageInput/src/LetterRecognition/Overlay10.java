@@ -85,10 +85,10 @@ public class Overlay10 {
 				
 			}
 		}
-		ImageIO.write(userCopy, "bmp",new File("C:\\Users\\BT_1N3_22\\git\\JFont-Generator\\imageInput\\TestCropout.bmp"));/*"C:\\Users\\Salehaakter\\Desktop\\userCropout.bmp"));*/
-		getImage userCropCopy = new getImage("C:\\\\Users\\\\BT_1N3_22\\\\git\\\\JFont-Generator\\\\imageInput\\\\TestCropout.bmp");/*"C:\\Users\\Salehaakter\\Desktop\\userCropout.bmp");*/
-		ImageIO.write(staticCopy, "bmp",new File("C:\\Users\\BT_1N3_22\\git\\JFont-Generator\\imageInput\\staticCropout.bmp"));/*"C:\\Users\\Salehaakter\\Desktop\\staticCropout.bmp"));*/
-		getImage staticCropCopy = new getImage("C:\\\\Users\\\\BT_1N3_22\\\\git\\\\JFont-Generator\\\\imageInput\\\\staticCropout.bmp");/*"C:\\Users\\Salehaakter\\Desktop\\staticCropout.bmp");*/
+		ImageIO.write(userCopy, "bmp",new File("C:\\Users\\BT_1N3_23\\git\\JFont-Generator\\imageInput\\TestCropout.bmp"));/*"C:\\Users\\Salehaakter\\Desktop\\userCropout.bmp"));*/
+		getImage userCropCopy = new getImage("C:\\\\Users\\\\BT_1N3_23\\\\git\\\\JFont-Generator\\\\imageInput\\\\TestCropout.bmp");/*"C:\\Users\\Salehaakter\\Desktop\\userCropout.bmp");*/
+		ImageIO.write(staticCopy, "bmp",new File("C:\\Users\\BT_1N3_23\\git\\JFont-Generator\\imageInput\\staticCropout.bmp"));/*"C:\\Users\\Salehaakter\\Desktop\\staticCropout.bmp"));*/
+		getImage staticCropCopy = new getImage("C:\\\\Users\\\\BT_1N3_23\\\\git\\\\JFont-Generator\\\\imageInput\\\\staticCropout.bmp");/*"C:\\Users\\Salehaakter\\Desktop\\staticCropout.bmp");*/
 		RGBValue[][] croppedUserPixels = userCropCopy.getPixelsArray();
 		RGBValue[][] croppedStaticPixels = staticCropCopy.getPixelsArray();
 		CardinalPixels userCroppedCardinals = new CardinalPixels(userCropCopy);
