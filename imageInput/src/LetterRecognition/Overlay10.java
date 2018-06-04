@@ -85,10 +85,10 @@ public class Overlay10 {
 				
 			}
 		}
-		ImageIO.write(userCopy, "bmp",new File(/*"C:\\Users\\Administrator\\git\\JFont-Generator\\imageInput\\TestCropout.bmp"*/"C:\\Users\\Salehaakter\\Desktop\\userCropout.bmp"));
-		getImage userCropCopy = new getImage(/*"C:\\\\Users\\\\Administrator\\\\git\\\\JFont-Generator\\\\imageInput\\\\TestCropout.bmp"*/"C:\\Users\\Salehaakter\\Desktop\\userCropout.bmp");
-		ImageIO.write(staticCopy, "bmp",new File(/*"C:\\Users\\Administrator\\git\\JFont-Generator\\imageInput\\staticCropout.bmp"*/"C:\\Users\\Salehaakter\\Desktop\\staticCropout.bmp"));
-		getImage staticCropCopy = new getImage(/*"C:\\\\Users\\\\Administrator\\\\git\\\\JFont-Generator\\\\imageInput\\\\staticCropout.bmp"*/"C:\\Users\\Salehaakter\\Desktop\\staticCropout.bmp");
+		ImageIO.write(userCopy, "bmp",new File("C:\\Users\\BT_1N3_22\\git\\JFont-Generator\\imageInput\\TestCropout.bmp"));/*"C:\\Users\\Salehaakter\\Desktop\\userCropout.bmp"));*/
+		getImage userCropCopy = new getImage("C:\\\\Users\\\\BT_1N3_22\\\\git\\\\JFont-Generator\\\\imageInput\\\\TestCropout.bmp");/*"C:\\Users\\Salehaakter\\Desktop\\userCropout.bmp");*/
+		ImageIO.write(staticCopy, "bmp",new File("C:\\Users\\BT_1N3_22\\git\\JFont-Generator\\imageInput\\staticCropout.bmp"));/*"C:\\Users\\Salehaakter\\Desktop\\staticCropout.bmp"));*/
+		getImage staticCropCopy = new getImage("C:\\\\Users\\\\BT_1N3_22\\\\git\\\\JFont-Generator\\\\imageInput\\\\staticCropout.bmp");/*"C:\\Users\\Salehaakter\\Desktop\\staticCropout.bmp");*/
 		RGBValue[][] croppedUserPixels = userCropCopy.getPixelsArray();
 		RGBValue[][] croppedStaticPixels = staticCropCopy.getPixelsArray();
 		CardinalPixels userCroppedCardinals = new CardinalPixels(userCropCopy);
@@ -136,6 +136,8 @@ public class Overlay10 {
 	
 	public static boolean checkNearbyPixels(int x, int y, RGBValue[][] userPix, RGBValue[][] staticPix)
 	{
+		int blackpixelsUser = 0;
+		int blackPixelsStatic = 0;
 		int match = 0;
 		int noMatch = 0;
 		for(int i = x-1; i < x+2; i++)
@@ -147,17 +149,28 @@ public class Overlay10 {
 					break;
 				}
 				
-				if (isBlack(userPix[x][y]) || isBlack(staticPix[x][y]) ) {
-					if (isRGBEqual(userPix[x][y], staticPix[x][y])) {
-						match++;
-					} else {
-						noMatch++;
-					} 
+				if (isBlack(userPix[x][y])) {
+					blackpixelsUser++;
 				}
-				else
-					noMatch++;
+				if(isBlack(staticPix[x][y]))
+					blackPixelsStatic++;
 			}
 		}
-		return match >= noMatch-1;
+		if(blackpixelsUser > blackPixelsStatic ) {
+			if(blackPixelsStatic + 5 > blackpixelsUser) {
+				return true;
+			}
+			else 
+				return false;
+		}
+		else if(blackPixelsStatic > blackpixelsUser ) {
+			if(blackpixelsUser + 5 > blackPixelsStatic) {
+				return true;
+			}
+			else 
+				return false;
+		}
+		else
+			return true;
 	}
 }
