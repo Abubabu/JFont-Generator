@@ -84,8 +84,8 @@ private final getImage testCase;
 				
 			}
 		}
-		ImageIO.write(userCopy, "bmp",new File("C:\\Users\\BT_1N3_22\\git\\JFont-Generator\\imageInput\\TestCropout.bmp"));
-		getImage userCropCopy = new getImage("C:\\Users\\BT_1N3_22\\git\\JFont-Generator\\imageInput\\TestCropout.bmp");
+		ImageIO.write(userCopy, "bmp",new File("C:\\Users\\Salehaakter\\Desktop\\TestCropout.bmp"));
+		getImage userCropCopy = new getImage("C:\\Users\\Salehaakter\\Desktop\\TestCropout.bmp");
 		RGBValue[][] croppedUserPixels = userCropCopy.getPixelsArray();
 		CardinalPixels userCroppedCardinals = new CardinalPixels(userCropCopy);
 		CardinalPixels staticCroppedCardinals = new CardinalPixels(staticConverted);

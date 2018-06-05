@@ -53,19 +53,17 @@ public class Overlay10 {
 		int staticXInc = getIncrement(staticWidth);
 		int staticYInc = getIncrement(staticHeight);
 		
-		System.out.println(userWidth + ":" + userXInc + " " + userHeight + ":" +  userYInc);
-		System.out.println(staticWidth  + ":" + staticXInc + " " + staticHeight + ":" + staticYInc);
+		//System.out.println(userWidth + ":" + userXInc + " " + userHeight + ":" +  userYInc);
+		//System.out.println(staticWidth  + ":" + staticXInc + " " + staticHeight + ":" + staticYInc);
 		
 		int overlap = 0;
 		int nolap = 0;
 		
-		System.out.println(userYInc);
-		System.out.println(userNativeHeight);
 		BufferedImage userCopy = new BufferedImage(100,100,BufferedImage.TYPE_INT_RGB);
 		BufferedImage staticCopy = new BufferedImage(100,100,BufferedImage.TYPE_INT_RGB);
 		
-		System.out.println(staticlocation.getLeft().getxPos() + " " + staticlocation.getLeft().getyPos());
-		System.out.println(staticlocation.getNorth().getxPos() + " " + staticlocation.getNorth().getyPos());
+		//System.out.println(staticlocation.getLeft().getxPos() + " " + staticlocation.getLeft().getyPos());
+		//System.out.println(staticlocation.getNorth().getxPos() + " " + staticlocation.getNorth().getyPos());
 		
 		for(int userPosX = userlocation.getLeft().getxPos(), staticPosX = staticlocation.getLeft().getxPos(), xinc = 0; xinc < 100; userPosX += userXInc, staticPosX += staticXInc, xinc++)
 		{
@@ -85,10 +83,10 @@ public class Overlay10 {
 				
 			}
 		}
-		ImageIO.write(userCopy, "bmp",new File("C:\\Users\\BT_1N3_23\\git\\JFont-Generator\\imageInput\\TestCropout.bmp"));/*"C:\\Users\\Salehaakter\\Desktop\\userCropout.bmp"));*/
-		getImage userCropCopy = new getImage("C:\\\\Users\\\\BT_1N3_23\\\\git\\\\JFont-Generator\\\\imageInput\\\\TestCropout.bmp");/*"C:\\Users\\Salehaakter\\Desktop\\userCropout.bmp");*/
-		ImageIO.write(staticCopy, "bmp",new File("C:\\Users\\BT_1N3_23\\git\\JFont-Generator\\imageInput\\staticCropout.bmp"));/*"C:\\Users\\Salehaakter\\Desktop\\staticCropout.bmp"));*/
-		getImage staticCropCopy = new getImage("C:\\\\Users\\\\BT_1N3_23\\\\git\\\\JFont-Generator\\\\imageInput\\\\staticCropout.bmp");/*"C:\\Users\\Salehaakter\\Desktop\\staticCropout.bmp");*/
+		ImageIO.write(userCopy, "bmp",new File(/*"C:\\Users\\BT_1N3_23\\git\\JFont-Generator\\imageInput\\TestCropout.bmp"));*/"C:\\Users\\Salehaakter\\Desktop\\userCropout.bmp"));
+		getImage userCropCopy = new getImage(/*"C:\\\\Users\\\\BT_1N3_23\\\\git\\\\JFont-Generator\\\\imageInput\\\\TestCropout.bmp");*/"C:\\Users\\Salehaakter\\Desktop\\userCropout.bmp");
+		ImageIO.write(staticCopy, "bmp",new File(/*"C:\\Users\\BT_1N3_23\\git\\JFont-Generator\\imageInput\\staticCropout.bmp"));*/"C:\\Users\\Salehaakter\\Desktop\\staticCropout.bmp"));
+		getImage staticCropCopy = new getImage(/*"C:\\\\Users\\\\BT_1N3_23\\\\git\\\\JFont-Generator\\\\imageInput\\\\staticCropout.bmp");*/"C:\\Users\\Salehaakter\\Desktop\\staticCropout.bmp");
 		RGBValue[][] croppedUserPixels = userCropCopy.getPixelsArray();
 		RGBValue[][] croppedStaticPixels = staticCropCopy.getPixelsArray();
 		CardinalPixels userCroppedCardinals = new CardinalPixels(userCropCopy);
@@ -97,16 +95,16 @@ public class Overlay10 {
 		int counter = 0;
 		for(int x = 0; x < 100; x+=5) {
 			for(int y = 0; y < 100; y+=5) {
-							if (checkNearbyPixels(x,y,croppedUserPixels,croppedStaticPixels)) {
-								overlap++;
-							} else {
-								nolap++;
-							} 	
-				}
+				if (checkNearbyPixels(x,y,croppedUserPixels,croppedStaticPixels)) {
+					overlap++;
+				} else {
+					nolap++;
+				} 	
+			}
 			
 		}
-		System.out.println(overlap + " " + nolap);
-		System.out.print(((double) overlap/ (double) (nolap+overlap)));
+		//System.out.println(overlap + " " + nolap);
+		//System.out.print(((double) overlap/ (double) (nolap+overlap)));
 		return ((double) overlap/ (double) (nolap+overlap));
 	}
 	public static void main(String[] args) throws IOException

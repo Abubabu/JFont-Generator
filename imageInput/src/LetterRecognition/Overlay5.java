@@ -158,8 +158,8 @@ private final getImage testCase;
 		    	    }
 			}
 		}
-		ImageIO.write(test, "bmp",new File("C:\\Users\\BT_1N3_23\\git\\JFont-Generator\\imageInput\\TestCropout.bmp"));
-		ImageIO.write(user, "bmp",new File("C:\\Users\\BT_1N3_23\\git\\JFont-Generator\\imageInput\\UserCropout.bmp"));
+		ImageIO.write(test, "bmp",new File("C:\\\\Users\\\\Salehaakter\\\\Desktop\\\\TestCropout.bmp"));
+		ImageIO.write(user, "bmp",new File("C:\\\\Users\\\\Salehaakter\\\\Desktop\\\\UserCropout.bmp"));
 		//ImageIO.write(test, "bmp",new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\TestCropout.bmp"));
 		//ImageIO.write(user, "bmp",new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\UserCropout.bmp"));
 		

@@ -88,7 +88,7 @@ public class Overlay8 {
 				
 			}
 		}
-		ImageIO.write(userCopy, "bmp",new File("C:\\Users\\BT_1N3_23\\git\\JFont-Generator\\imageInput\\TestCropout.bmp"));
+		ImageIO.write(userCopy, "bmp",new File("C:\\Users\\Salehaakter\\Desktop\\TestCropout.bmp"));
 		
 		System.out.println(overlap + " " + nolap);
 		System.out.print(((double) overlap/ (double) (nolap+overlap)));
