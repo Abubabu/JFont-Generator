@@ -158,8 +158,8 @@ private final getImage testCase;
 		    	    }
 			}
 		}
-		ImageIO.write(test, "bmp",new File("C:\\\\Users\\\\Salehaakter\\\\Desktop\\\\TestCropout.bmp"));
-		ImageIO.write(user, "bmp",new File("C:\\\\Users\\\\Salehaakter\\\\Desktop\\\\UserCropout.bmp"));
+		ImageIO.write(test, "bmp",new File("C:\\Users\\Salehaakter\\Desktop\\TestCropout.bmp"));
+		ImageIO.write(user, "bmp",new File("C:\\Users\\Salehaakter\\Desktop\\UserCropout.bmp"));
 		//ImageIO.write(test, "bmp",new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\TestCropout.bmp"));
 		//ImageIO.write(user, "bmp",new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\UserCropout.bmp"));
 		
@@ -170,7 +170,7 @@ private final getImage testCase;
 	public static void main(String[] args) throws IOException
 	{
 		Overlay5 comparator = new Overlay5("Alphabet/A.png");
-		comparator.overlay("Alphabet/B.jpg");
+		System.out.print(comparator.overlay("Alphabet/B.jpg"));
 	}
 	public static boolean isRGBEqual(RGBValue one, RGBValue two)
 	{

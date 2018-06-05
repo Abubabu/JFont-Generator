@@ -23,7 +23,7 @@ public class OverlayTest2 {
 		OverlayTest2 test = new OverlayTest2();
 		File[] library = test.listOfImages("Alphabet");
 		
-		Overlay10 comparator = new Overlay10(target);	
+		Overlay3 comparator = new Overlay3(target);	
 		
 		for(File file: library)
 		{
