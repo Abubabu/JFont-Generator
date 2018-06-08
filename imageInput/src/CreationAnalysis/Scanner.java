@@ -15,21 +15,5 @@ public class Scanner {
 		RGBValue[][] imagePix = imageConverted.getPixelsArray();		
 		CardinalPixels imagelocation = new CardinalPixels(imageConverted);
 		
-		for(int ay = imagelocation.getNorth().getyPos(), by = blocation.getNorth().getyPos(); ay < alocation.getSouth().getyPos() && by < blocation.getSouth().getyPos(); ay += aH , by += bH)//y  apix[ycoord][xcoord]
-		{
-			for(int ax = alocation.getLeft().getxPos(), bx = blocation.getLeft().getxPos(); ax < alocation.getRight().getxPos() && bx < blocation.getRight().getxPos(); ax += aW, bx += bW)//x
-			{
-				//System.out.println(apix[j][i].getB() + "  " + bpix[j][i].getB());
-				//System.out.println("x:"+ ax + "  y:" + ay + "  " + "A:" + apix[ax][ay].getR() + ", " + bpix[bx][by].getR());
-				if (isBlack(bpix[bx][by]) || isBlack(apix[ax][ay])) {
-					if (isRGBEqual(apix[ax][ay], bpix[bx][by])) {
-						overlap++;
-					} else {
-						nolap++;
-					} 
-				}
-			}
-		}
-		
 	}
 }
