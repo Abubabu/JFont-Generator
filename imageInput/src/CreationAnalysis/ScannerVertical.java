@@ -39,7 +39,7 @@ public class ScannerVertical {
 				}
 				if(foundBotTop && foundTopBot) {
 					foundTopBot = false;
-				    foundBotTop = false;
+				    foundBotTop = false; 
 					break;
 				}
 			}
