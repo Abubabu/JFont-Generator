@@ -70,9 +70,9 @@ public class ScannerHorizontal {
 		RGBValue[][] imagePix = imageConverted.getPixelsArray();		
 		pixelPosition[][] foundPix = new pixelPosition[imageConverted.getWidth()][imageConverted.getHeight()];
 		
-		for(int y = imageConverted.getHeight()-1; y >= 0 ; y++)
+		for(int y = imageConverted.getHeight()-1; y >= 0 ; y--)
 		{
-			for(int x = imageConverted.getWidth()-1 ; x >= 0 ; x++)
+			for(int x = imageConverted.getWidth()-1 ; x >= 0 ; x--)
 			{
 				if(isBlack(imagePix[x][y]))
 				{
