@@ -28,7 +28,7 @@ public class ScannerVertical {
 		pixelPosition[][] botTopLeft = new pixelPosition[imagePix.length][imagePix[1].length];
 		pixelPosition[][] topBotRight = new pixelPosition[imagePix.length][imagePix[1].length];
 		pixelPosition[][] botTopRight = new pixelPosition[imagePix.length][imagePix[1].length];
-		int midway = cardinalColors.getRight().getxPos() - cardinalColors.getLeft().getxPos();
+		int midway = cardinalColors.getLeft().getxPos() + (  (cardinalColors.getRight().getxPos() - cardinalColors.getLeft().getxPos())  /2);
 		System.out.println(midway);
 		for(int x = 0; x < imagePix.length ; x++) {
 			boolean foundtopBotLeft = false;
@@ -86,7 +86,7 @@ public class ScannerVertical {
 				}
 			}
 		}
-		ImageIO.write(VerTop, "bmp",new File("C:\\Users\\Administrator\\git\\JFont-GeneratorVerTop.bmp"));	
+		ImageIO.write(VerTop, "bmp",new File("C:\\\\Users\\\\Administrator\\\\git\\\\JFont-Generator\\\\imageInput\\\\JFont-GeneratorVerTop.bmp"));	
 		//System.out.println("fifth");
 	}
 	
