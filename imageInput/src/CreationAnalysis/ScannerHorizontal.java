@@ -5,8 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-
-import getImage.CardinalPixels;
+import LetterRecognition.Overlay3;
 import getImage.RGBValue;
 import getImage.getImage;
 import getImage.pixelPosition;
@@ -21,14 +20,16 @@ public class ScannerHorizontal {
 		BufferedImage Right = scannerHRight("Random/MYA.png");
 		BufferedImage leftFlip = Reflection.reflector(new getImage(Left));
 		BufferedImage rightFlip = Reflection.reflector(new getImage(Right));
+		
+		Overlay3 symmetry = new Overlay3(Left);
+		System.out.println(symmetry.overlay(rightFlip));
+		
+		Overlay3 symmetry2 = new Overlay3(Right);
+		System.out.println(symmetry2.overlay(leftFlip));
 		/*ScannerHorizontal.setLeft(Left);
 		ScannerHorizontal.setRight(Right);
 		CleanCrops();*/
-		System.out.println("?");
-		ImageIO.write(leftFlip, "bmp",new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\HorizontalFLeft.bmp"));	
-		ImageIO.write(rightFlip, "bmp",new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\HorizontalFRight.bmp"));	
-		System.out.println("?");
-
+		
 	}
 	
 	

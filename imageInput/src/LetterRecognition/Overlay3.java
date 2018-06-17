@@ -19,6 +19,11 @@ public class Overlay3 {
 		getImage testcase = new getImage(filepath);
 		this.testCase = testcase;
 	}
+	public Overlay3(BufferedImage buff) throws IOException
+	{
+		getImage testcase = new getImage(buff);
+		this.testCase = testcase;
+	}
 	public double overlay(String filepath) throws IOException
 	{
 		 
@@ -110,6 +115,57 @@ public class Overlay3 {
 		
 		//System.out.println(overlap + " " + nolap);
 		//System.out.print(((double) overlap/ (double) (nolap+overlap)));
+		return ((double) overlap/ (double) (nolap+overlap));
+	}
+	
+	public double overlay(BufferedImage img) throws IOException
+	{
+		 
+		getImage bConverted = getTestCase();
+		getImage aConverted = new getImage(img); 
+		
+		RGBValue[][] apix = aConverted.getPixelsArray();
+		RGBValue[][] bpix = bConverted.getPixelsArray();
+		
+		int overlap = 0;
+		int nolap = 0;
+		
+		CardinalPixels alocation = new CardinalPixels(aConverted);
+		CardinalPixels blocation = new CardinalPixels(bConverted);
+		
+		int bWidth = blocation.getRight().getxPos()-blocation.getLeft().getxPos();
+		int bHeight = blocation.getSouth().getyPos()-blocation.getNorth().getyPos();
+		
+		int aWidth = alocation.getRight().getxPos()-alocation.getLeft().getxPos();
+		int aHeight = alocation.getSouth().getyPos()-alocation.getNorth().getyPos();
+		
+		int aspectHeightA = asFractionnumerator(aHeight,aWidth);
+		int aspectHeightB = asFractionnumerator(bHeight,bWidth);
+		int scaleHeightA = aHeight / aspectHeightA;
+		int scaleHeightB = bHeight / aspectHeightB;
+		int heightDenomanator =  aspectHeightA * aspectHeightB;
+		int incrementHeightA = (scaleHeightA / heightDenomanator) * aspectHeightA;
+		int incrementHeightB = (scaleHeightB / heightDenomanator) * aspectHeightB;
+		
+		
+		int aH = getIncrementA(aHeight,bHeight);
+		int aW = getIncrementA(aWidth,bWidth);
+		int bH = getIncrementB(aHeight,bHeight);
+		int bW = getIncrementB(aWidth,bWidth);
+		for(int ay = alocation.getNorth().getyPos(), by = blocation.getNorth().getyPos(); ay < alocation.getSouth().getyPos() && by < blocation.getSouth().getyPos(); ay += aH , by += bH)//y  apix[ycoord][xcoord]
+		{
+			for(int ax = alocation.getLeft().getxPos(), bx = blocation.getLeft().getxPos(); ax < alocation.getRight().getxPos() && bx < blocation.getRight().getxPos(); ax += aW, bx += bW)//x
+			{
+				if (isBlack(bpix[bx][by]) || isBlack(apix[ax][ay])) {
+					if (isRGBEqual(apix[ax][ay], bpix[bx][by])) {
+						overlap++;
+					} else {
+						nolap++;
+					} 
+				}
+			}
+		}
+		
 		return ((double) overlap/ (double) (nolap+overlap));
 	}
 	public static boolean isRGBEqual(RGBValue one, RGBValue two)
