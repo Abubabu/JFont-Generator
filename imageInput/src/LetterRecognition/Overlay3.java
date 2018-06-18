@@ -132,7 +132,7 @@ public class Overlay3 {
 		
 		CardinalPixels alocation = new CardinalPixels(aConverted);
 		CardinalPixels blocation = new CardinalPixels(bConverted);
-		
+		/*
 		int bWidth = blocation.getRight().getxPos()-blocation.getLeft().getxPos();
 		int bHeight = blocation.getSouth().getyPos()-blocation.getNorth().getyPos();
 		
@@ -151,11 +151,12 @@ public class Overlay3 {
 		int aH = getIncrementA(aHeight,bHeight);
 		int aW = getIncrementA(aWidth,bWidth);
 		int bH = getIncrementB(aHeight,bHeight);
-		int bW = getIncrementB(aWidth,bWidth);
-		for(int ay = alocation.getNorth().getyPos(), by = blocation.getNorth().getyPos(); ay < alocation.getSouth().getyPos() && by < blocation.getSouth().getyPos(); ay += aH , by += bH)//y  apix[ycoord][xcoord]
+		int bW = getIncrementB(aWidth,bWidth);*/
+		for(int ay = alocation.getNorth().getyPos(), by = blocation.getNorth().getyPos(); ay < alocation.getSouth().getyPos() && by < blocation.getSouth().getyPos(); ay ++ , by ++)//y  apix[ycoord][xcoord]
 		{
-			for(int ax = alocation.getLeft().getxPos(), bx = blocation.getLeft().getxPos(); ax < alocation.getRight().getxPos() && bx < blocation.getRight().getxPos(); ax += aW, bx += bW)//x
+			for(int ax = alocation.getLeft().getxPos(), bx = blocation.getLeft().getxPos(); ax < alocation.getRight().getxPos() && bx < blocation.getRight().getxPos(); ax ++, bx ++)//x
 			{
+				System.out.println(ax + " " + ay + " " + bx + " " + by);
 				if (isBlack(bpix[bx][by]) || isBlack(apix[ax][ay])) {
 					if (isRGBEqual(apix[ax][ay], bpix[bx][by])) {
 						overlap++;
