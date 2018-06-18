@@ -5,7 +5,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+
+import LetterRecognition.Overlay10;
 import LetterRecognition.Overlay3;
+import LetterRecognition.OverlayTest;
 import getImage.RGBValue;
 import getImage.getImage;
 import getImage.pixelPosition;
@@ -16,16 +19,38 @@ public class ScannerHorizontal {
 	
 	public static void main(String[] args) throws IOException
 	{
-		BufferedImage Left = scannerHLeft("Random/MYA.png");
-		BufferedImage Right = scannerHRight("Random/MYA.png");
-		BufferedImage leftFlip = Reflection.reflector(new getImage(Left));
-		BufferedImage rightFlip = Reflection.reflector(new getImage(Right));
 		
-		Overlay3 symmetry = new Overlay3(Left);
-		System.out.println(symmetry.overlay(rightFlip));
+		OverlayTest test = new OverlayTest();
+		File[] library = test.listOfImages("Alphabet");
 		
-		Overlay3 symmetry2 = new Overlay3(Right);
-		System.out.println(symmetry2.overlay(leftFlip));
+		for(File x : library)
+		{
+			if(x.getName().equals("I.PNG"))
+			{
+				continue;
+			}
+			BufferedImage Left = scannerHLeft(x.getAbsolutePath());
+			BufferedImage Right = scannerHRight(x.getAbsolutePath());
+			BufferedImage leftFlip = Reflection.reflector(new getImage(Left));
+			BufferedImage rightFlip = Reflection.reflector(new getImage(Right));
+			
+			ImageIO.write(leftFlip, "bmp",new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\HorizontalFLeft.bmp"));	
+			ImageIO.write(rightFlip, "bmp",new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\HorizontalFRight.bmp"));	
+
+			System.out.println(x.getName());
+			Overlay10 symmetry3 = new Overlay10("HorizontalLeft.bmp");
+			System.out.print("O10  " + symmetry3.overlay("HorizontalFRight.bmp") + "  ");
+			
+			Overlay10 symmetry4 = new Overlay10("HorizontalRight.bmp");
+			System.out.println(symmetry4.overlay("HorizontalFLeft.bmp"));
+			
+			Overlay3 symmetry = new Overlay3(Left);
+			System.out.print("O3  " + symmetry.overlay(rightFlip) + "  ");
+			
+			Overlay3 symmetry2 = new Overlay3(Right);
+			System.out.println(symmetry2.overlay(leftFlip));
+		}
+		
 		/*ScannerHorizontal.setLeft(Left);
 		ScannerHorizontal.setRight(Right);
 		CleanCrops();*/
