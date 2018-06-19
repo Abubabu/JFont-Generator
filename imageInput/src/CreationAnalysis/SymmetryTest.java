@@ -22,7 +22,7 @@ public class SymmetryTest {
 		File[] library = test.listOfImages("Alphabet");
 		
 		
-			getImage image = new getImage("Alphabet/A.png");
+			getImage image = new getImage((new getImage(library[0].getAbsolutePath())).getBW());
 			BufferedImage YFlip = Reflection.reflectorYAxis(image);
 			BufferedImage XFlip = Reflection.reflectorXAxis(image);
 			
@@ -31,7 +31,7 @@ public class SymmetryTest {
 			
 			System.out.println(library[0].getName().substring(library[0].getName().length()-5));
 			
-			Overlay3 symmetry = new Overlay3("Alphabet/A.png");
+			Overlay3 symmetry = new Overlay3(library[0].getAbsolutePath());
 			System.out.print("Verticle: " + symmetry.overlay(YFlip) + "  ");
 			System.out.println("Horizontal: " + symmetry.overlay(XFlip));
 		
