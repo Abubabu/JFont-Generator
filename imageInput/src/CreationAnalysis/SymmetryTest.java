@@ -7,27 +7,33 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import LetterRecognition.Overlay3;
+import LetterRecognition.OverlayTest;
 import getImage.getImage;
 
 public class SymmetryTest {
 	public static void main(String[] args) throws IOException
 	{
-		test("Alphabet/A.png");
+		test();
 	}
 
-	public static void test(String filepath) throws IOException
+	public static void test() throws IOException
 	{
-			getImage image = new getImage(filepath);
+		OverlayTest test = new OverlayTest();
+		File[] library = test.listOfImages("Alphabet");
+		
+		
+			getImage image = new getImage("Random/MYA.png");
 			BufferedImage YFlip = Reflection.reflectorYAxis(image);
 			BufferedImage XFlip = Reflection.reflectorXAxis(image);
 			
 			ImageIO.write(YFlip, "bmp",new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\YFlip.bmp"));	
 			ImageIO.write(XFlip, "bmp",new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\XFlip.bmp"));	
 			
-			System.out.println(filepath.substring(filepath.length()-5));
+		//	System.out.println(library[0].getName().substring(library[0].getName().length()-5));
 			
-			Overlay3 symmetry = new Overlay3(image.getBW());
+			/*Overlay3 symmetry = new Overlay3(x.getAbsolutePath());
 			System.out.print("Verticle: " + symmetry.overlay(YFlip) + "  ");
-			System.out.println("Horizontal: " + symmetry.overlay(XFlip));
+			System.out.println("Horizontal: " + symmetry.overlay(XFlip));*/
+		
 	}
 }

@@ -20,10 +20,12 @@ public class Reflection {
 		for(int x = 0; x < img.getWidth(); x++) {
 			for(int y = 0; y < img.getHeight();y++) {
 				if(isBlack(colors[x][y])) {
+					System.out.print("B");
 					ReflectedImg.setRGB(img.getWidth()-x-1, y, new Color(0,0,0).getRGB());
 				}
 				else
 				{
+					
 					ReflectedImg.setRGB(img.getWidth()-x-1,y, new Color(255,255,255).getRGB());
 				}
 			}
@@ -37,9 +39,11 @@ public class Reflection {
 			for(int y = 0; y < img.getHeight();y++) {
 				if(isBlack(colors[x][y])) {
 					ReflectedImg.setRGB(x, img.getHeight()-y-1, new Color(0,0,0).getRGB());
+					System.out.print("B");
 				}
 				else
 				{
+					
 					ReflectedImg.setRGB(x,img.getHeight()-y-1, new Color(255,255,255).getRGB());
 				}
 			}
