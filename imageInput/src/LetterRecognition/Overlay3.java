@@ -152,9 +152,9 @@ public class Overlay3 {
 		int aW = getIncrementA(aWidth,bWidth);
 		int bH = getIncrementB(aHeight,bHeight);
 		int bW = getIncrementB(aWidth,bWidth);*/
-		for(int ay = alocation.getNorth().getyPos(), by = blocation.getNorth().getyPos(); ay < alocation.getSouth().getyPos() && by < blocation.getSouth().getyPos(); ay ++ , by ++)//y  apix[ycoord][xcoord]
+		for(int ay = alocation.getNorth().getyPos(), by = blocation.getNorth().getyPos(); ay < alocation.getSouth().getyPos() && by < blocation.getSouth().getyPos(); ay++ , by++)//y  apix[ycoord][xcoord]
 		{
-			for(int ax = alocation.getLeft().getxPos(), bx = blocation.getLeft().getxPos(); ax < alocation.getRight().getxPos() && bx < blocation.getRight().getxPos(); ax ++, bx ++)//x
+			for(int ax = alocation.getLeft().getxPos(), bx = blocation.getLeft().getxPos(); ax < alocation.getRight().getxPos() && bx < blocation.getRight().getxPos(); ax++, bx++)//x
 			{
 				System.out.println(ax + " " + ay + " " + bx + " " + by);
 				if (isBlack(bpix[bx][by]) || isBlack(apix[ax][ay])) {

@@ -21,19 +21,34 @@ public class SymmetryTest {
 		OverlayTest test = new OverlayTest();
 		File[] library = test.listOfImages("Alphabet");
 		
-		
-			getImage image = new getImage((new getImage(library[0].getAbsolutePath())).getBW());
+			/*getImage image = new getImage((new getImage(library[0].getAbsolutePath())).getBW());
 			BufferedImage YFlip = Reflection.reflectorYAxis(image);
 			BufferedImage XFlip = Reflection.reflectorXAxis(image);
 			
-			ImageIO.write(YFlip, "bmp",new File("C:\\Users\\Administrator\\git\\JFont-Generator\\imageInput\\YFlip.bmp"));	
-			ImageIO.write(XFlip, "bmp",new File("C:\\Users\\Administrator\\git\\JFont-Generator\\imageInput\\XFlip.bmp"));	
+			ImageIO.write(YFlip, "bmp",new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\YFlip.bmp"));	
+			ImageIO.write(XFlip, "bmp",new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\XFlip.bmp"));	
 			
 			System.out.println(library[0].getName().substring(library[0].getName().length()-5));
 			
 			Overlay3 symmetry = new Overlay3(library[0].getAbsolutePath());
-			System.out.print("Verticle: " + symmetry.overlay(YFlip) + "  ");
-			System.out.println("Horizontal: " + symmetry.overlay(XFlip));
+			System.out.print("Verticle: " + symmetry.overlay("YFlip.bmp") + "  ");
+			System.out.println("Horizontal: " + symmetry.overlay("XFlip.bmp"));*/
 		
+			
+		for(File x : library)
+		{
+			getImage image = new getImage((new getImage(x.getAbsolutePath())).getBW());
+			BufferedImage YFlip = Reflection.reflectorYAxis(image);
+			BufferedImage XFlip = Reflection.reflectorXAxis(image);
+			
+			ImageIO.write(YFlip, "bmp",new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\YFlip.bmp"));	
+			ImageIO.write(XFlip, "bmp",new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\XFlip.bmp"));	
+			
+			System.out.println(x.getName());
+			
+			Overlay3 symmetry = new Overlay3(x.getAbsolutePath());
+			System.out.print("Verticle: " + symmetry.overlay("YFlip.bmp") + "  ");
+			System.out.println("Horizontal: " + symmetry.overlay("XFlip.bmp"));
+		}
 	}
 }
