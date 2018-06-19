@@ -36,8 +36,28 @@ public class LineDirections {
 		return differences;
 	}
 	
-	public static double[] findLines(double[] differences) {
+	public static double[][] findLines(double[] differences) {
+		int lineCount= 0;
+		String currentChange = "";
+		for(int x = 0; x < differences.length; x++) {
+			if(x != 0) {
+				if(differences[x] - differences[x - 1] > 5 && !currentChange.equals("+")) {
+					lineCount++;
+					currentChange = "+";
+				}
+				else if(differences[x] - differences[x - 1] < 5 && !currentChange.equals("-")) {
+					lineCount++;
+					currentChange = "-";
+				}
+				else if(!currentChange.equals("0")) {
+					lineCount++;
+					currentChange = "0";
+				}
+			}
+		}
+		double[][] allLines = new double[lineCount][differences.length];
 		
+		for(int a = 0; a < differences.length;)
 	}
 	public static boolean isBlack(RGBValue rgb)
 	{

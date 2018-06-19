@@ -22,18 +22,18 @@ public class SymmetryTest {
 		File[] library = test.listOfImages("Alphabet");
 		
 		
-			getImage image = new getImage("Random/MYA.png");
+			getImage image = new getImage("Alphabet/A.png");
 			BufferedImage YFlip = Reflection.reflectorYAxis(image);
 			BufferedImage XFlip = Reflection.reflectorXAxis(image);
 			
-			ImageIO.write(YFlip, "bmp",new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\YFlip.bmp"));	
-			ImageIO.write(XFlip, "bmp",new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\XFlip.bmp"));	
+			ImageIO.write(YFlip, "bmp",new File("C:\\Users\\Administrator\\git\\JFont-Generator\\imageInput\\YFlip.bmp"));	
+			ImageIO.write(XFlip, "bmp",new File("C:\\Users\\Administrator\\git\\JFont-Generator\\imageInput\\XFlip.bmp"));	
 			
-		//	System.out.println(library[0].getName().substring(library[0].getName().length()-5));
+			System.out.println(library[0].getName().substring(library[0].getName().length()-5));
 			
-			/*Overlay3 symmetry = new Overlay3(x.getAbsolutePath());
+			Overlay3 symmetry = new Overlay3("Alphabet/A.png");
 			System.out.print("Verticle: " + symmetry.overlay(YFlip) + "  ");
-			System.out.println("Horizontal: " + symmetry.overlay(XFlip));*/
+			System.out.println("Horizontal: " + symmetry.overlay(XFlip));
 		
 	}
 }
