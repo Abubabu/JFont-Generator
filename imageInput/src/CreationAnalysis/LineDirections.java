@@ -13,6 +13,34 @@ import getImage.pixelPosition;
 public class LineDirections {
 
 	
+	String[] topA = {"+","-"};
+	String[] topB = {"0","-"};
+	String[] TopC = {"+","0","-"};
+	String[] topD = {"0","-"};
+	String[] topE = {"0"};
+	String[] topF = {"0"};
+	String[] topG = {"+"};
+	String[] topH = {"0","-","0","+"};
+	String[] topI = {"0"};
+	String[] topJ = {"+","0"};
+	String[] topK = {"0","-","+","0"};
+	String[] topL = {"0","-","0"};
+	String[] topM = {"0","-","0","+","0"};
+	String[] topN = {"0","-","0","+","0"};
+	String[] topO = {"+","0","-"};
+	String[] topP = {"0","-"};
+	String[] topQ = {"+","O","-"};
+	String[] TopR = {"0","-"};
+	String[] topS = {"+","0","-"};
+	String[] topT = {"0"};
+	String[] topU = {"0","-","0","+","0"};
+	String[] topV = {"0","-","0","+","0"};
+	String[] topW = {"0","-","0","+","0","-","0","+","0"};
+	String[] topY = {"-","+"};
+	String[] topZ = {"0"};
+	
+	
+	
 	public static double[] findDifferences(getImage img) {
 		boolean foundFirst = false;
 		int prevX = 0;
@@ -108,6 +136,38 @@ public class LineDirections {
 		}
 		allDirections = directions;
 		return allLines;
+	}
+	
+	public static double compareAll(String[] staticCase, String[] user) {
+		if(staticCase.length < user.length) {
+			int minLength = staticCase.length;
+		}
+	}
+	public static double compareStrict(String[] staticCase, String[] user) {
+		int misses = 0;
+		int hit = 0;
+		int difference = 0;
+		int minLength = 0;
+		if(staticCase.length < user.length) {
+			 minLength = staticCase.length;
+			 difference = user.length - staticCase.length;
+		}
+		else if(staticCase.length > user.length) {
+			 minLength = user.length;
+			 difference = staticCase.length - user.length;
+		}
+		else {
+			  minLength = user.length;
+		}
+		for(int i = 0; i < minLength; i++) {
+			if(staticCase[i].equals(user[i])){
+				hit++;
+			}
+			else 
+				misses++;
+		}
+		int total = misses + difference + hit;
+		return hit / (double) total;
 	}
 	public static boolean isBlack(RGBValue rgb)
 	{
