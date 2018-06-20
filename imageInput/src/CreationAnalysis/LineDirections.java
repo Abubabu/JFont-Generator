@@ -13,7 +13,7 @@ import getImage.pixelPosition;
 public class LineDirections {
 
 	
-	String[] topA = {"+","-"};
+	static String[] topA = {"+","-"};
 	String[] topB = {"0","-"};
 	String[] TopC = {"+","0","-"};
 	String[] topD = {"0","-"};
@@ -34,13 +34,20 @@ public class LineDirections {
 	String[] topS = {"+","0","-"};
 	String[] topT = {"0"};
 	String[] topU = {"0","-","0","+","0"};
-	String[] topV = {"0","-","0","+","0"};
+	static String[] topV = {"0","-","0","+","0"};
 	String[] topW = {"0","-","0","+","0","-","0","+","0"};
 	String[] topY = {"-","+"};
 	String[] topZ = {"0"};
 	
 	
-	
+	public static void main(String[] args) throws IOException {
+		double[] differences = findDifferences(new getImage("JFont-GeneratorVerTop.BMP"));
+		String[] userLines = findLines(differences);
+		double[] differences2 = findDifferences(new getImage("staticA.BMP"));
+		String[] staticLines = findLines(differences2);
+		System.out.println(compareStrict(staticLines, userLines));
+		
+	}
 	public static double[] findDifferences(getImage img) {
 		boolean foundFirst = false;
 		int prevX = 0;
@@ -48,7 +55,7 @@ public class LineDirections {
 		int count = 0;
 		RGBValue[][] colors = img.getPixelsArray();
 		double[] differences = new double[img.getWidth()];
-		for(int x = 0; x < img.getWidth(); x++) {
+		for(int x = 0; x < img.getWidth(); x+=4) {
 			for(int y = 0; y < img.getHeight();y++) {
 				if(isBlack(colors[x][y]) && !foundFirst) {
 					prevX = x;
@@ -56,7 +63,8 @@ public class LineDirections {
 					foundFirst = true;
 				}
 				else if(isBlack(colors[x][y]) && foundFirst) {
-					differences[count] = y - prevY;
+					differences[count] = prevY - y;
+					prevY = y;
 					count++;
 				}
 			}
@@ -66,41 +74,41 @@ public class LineDirections {
 	
 	private static String[] allDirections;
 	
-	public static double[][] findLines(double[] differences) {
+	public static String[] findLines(double[] differences) {
 		int lineCount= 0;
 		String currentChange = "";
 		for(int x = 0; x < differences.length; x++) {
 			if(x != 0) {
-				if(differences[x] - differences[x - 1] > 5 && !currentChange.equals("+")) {
+				if(differences[x] > 2 && !currentChange.equals("+")) {
 					lineCount++;
 					currentChange = "+";
 				}
-				else if(differences[x] - differences[x - 1] < 5 && !currentChange.equals("-")) {
+				else if(differences[x] < -2 && !(currentChange.equals("-"))) {
 					lineCount++;
 					currentChange = "-";
 				}
-				else if(!currentChange.equals("0")) {
+				else if(!(currentChange.equals("0"))) {
 					lineCount++;
 					currentChange = "0";
 				}
 			}
 		}
 		double[][] allLines = new double[lineCount][differences.length];
-		String[] directions = new String[lineCount];
+		String[] directions = new String[differences.length];
 		int currentLine = 0;
 		int currentRow = 0;
 		String currentChange2 = "";
-		for(int a = 0; a < differences.length;) {
+		for(int a = 0; a < differences.length; a++) {
 			if(a == 0) {
 				allLines[currentLine][currentRow] = differences[a];
 				currentRow++;	
 			}
-			if(a == 1) {
-				if(differences[a] - differences[a - 1] > 5 && !currentChange2.equals("+")) {
+			/*if(a == 1) {
+				/*if(differences[a] > 5 && !currentChange2.equals("+")) {
 					directions[currentLine] = "+";
 					currentChange2 = "+";
 				}
-				else if(differences[a] - differences[a - 1] < 5 && !currentChange2.equals("-")) {
+				else if(differences[a] < 5 && !currentChange2.equals("-")) {
 					directions[currentLine] = "-";
 					currentChange2 = "-";
 				}
@@ -110,32 +118,32 @@ public class LineDirections {
 				}
 				allLines[currentLine][currentRow] = differences[a];
 				currentRow++;
-			}	
+			}	*/
 			else if(a != 0) {
-				if(differences[a] - differences[a - 1] > 5 && !currentChange2.equals("+")) {
-					currentLine++;
+				if(differences[a] > 2 && !currentChange2.equals("+")) {
 					currentRow = 0;
 					currentChange2 = "+";
 					directions[currentLine] = "+";
-				}
-				else if(differences[a] - differences[a - 1] < 5 && !currentChange2.equals("-")) {
 					currentLine++;
+				}
+				else if(differences[a] < -2 && !currentChange2.equals("-")) {
+	
 					directions[currentLine] = "-";
 					currentRow = 0;
 					currentChange2 = "-";
+					currentLine++;
 				}
 				else if(!currentChange2.equals("0")) {
-					currentLine++;
 					directions[currentLine] = "0";
 					currentRow = 0;
-					currentChange = "0";
+					currentChange2 = "0";
+					currentLine++;
 				}
-				allLines[currentLine][currentRow] = differences[a];
 				currentRow++;
 			}	
 		}
 		allDirections = directions;
-		return allLines;
+		return directions;
 	}
 	
 	public static double compareAll(String[] staticCase, String[] user) {
@@ -159,14 +167,16 @@ public class LineDirections {
 		else {
 			  minLength = user.length;
 		}
-		for(int i = 0; i < minLength; i++) {
-			if(staticCase[i].equals(user[i])){
+		for(int i = 1; i < minLength; i++) {
+			if(staticCase[i] == null || user[i] == null)
+				break;
+				else if(staticCase[i].equals(user[i])){
 				hit++;
 			}
 			else 
 				misses++;
 		}
-		int total = misses + difference + hit;
+		int total = misses + hit;
 		return hit / (double) total;
 	}
 	public static boolean isBlack(RGBValue rgb)

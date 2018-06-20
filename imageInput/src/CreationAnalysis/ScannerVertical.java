@@ -15,7 +15,7 @@ import getImage.pixelPosition;
 public class ScannerVertical {
 	public static void main(String[] args) throws IOException
 	{
-		scanImage("Random/MYA.png");
+		scanImage("Random/MyA.png");
 	}
 	public static void scanImage(String filepath) throws IOException
 	{
@@ -29,50 +29,50 @@ public class ScannerVertical {
 		pixelPosition[][] topBotRight = new pixelPosition[imagePix.length][imagePix[1].length];
 		pixelPosition[][] botTopRight = new pixelPosition[imagePix.length][imagePix[1].length];
 		int midway = cardinalColors.getLeft().getxPos() + (  (cardinalColors.getRight().getxPos() - cardinalColors.getLeft().getxPos())  /2);
-		System.out.println(midway);
+		//System.out.println(midway);
+		System.out.println(imagePix.length);
 		for(int x = 0; x < imagePix.length ; x++) {
 			boolean foundtopBotLeft = false;
 			boolean foundbotTopLeft = false;
 			boolean foundtopBotRight = false;
 			boolean foundbotTopRight= false;
 			for(int y = 0; y < imagePix[x].length; y++) {
-				if(x < midway) { // seperates the left hand array code and right hand for efficiency 
+				 // seperates the left hand array code and right hand for efficiency 
 					if(!foundtopBotLeft && isBlack(imageColors[x][y])) { // checks for a found in order to keep the loop going to find both pixels in one loop without accidentally replacing one
 						topBotLeft[x][y] = imagePix[x][y];
 						foundtopBotLeft = true;
 					}
-					if(!foundbotTopLeft && isBlack(imageColors[x][imageColors.length - 1 - y])) {
-						botTopLeft[x][imageColors.length - 1 - y] = imagePix[x][imageColors.length - 1 - y];
+					if(!foundbotTopLeft && isBlack(imageColors[x][imageColors[x].length - 1 - y])) {
+						botTopLeft[x][imageColors[x].length - 1 - y] = imagePix[x][imageColors[x].length - 1 - y];
 						foundbotTopLeft = true;
 					}
 					if(foundbotTopLeft && foundtopBotLeft) {// if both are found move on
 						break;
 					}
-				}
-				else {
+				/*else {
 					if(!foundtopBotRight&& isBlack(imageColors[x][y])) { // checks for a found in order to keep the loop going to find both pixels in one loop without accidentally replacing one
 						topBotRight[x][y] = imagePix[x][y];
 						foundtopBotRight = true;
 					}
-					if(!foundbotTopRight && isBlack(imageColors[x][imageColors.length - 1 - y])) {
-						botTopRight[x][imageColors.length - 1 - y] = imagePix[x][imageColors.length - 1 - y];
+					if(!foundbotTopRight && isBlack(imageColors[x][imageColors[x].length - 1 - y])) {
+						botTopRight[x][imageColors[x].length - 1 - y] = imagePix[x][imageColors[x].length - 1 - y];
 						foundbotTopRight = true;
 					}
 					if(foundbotTopRight && foundtopBotRight) {// if both are found move on
 						break;
 					}
 					
-				}
+				}*/
 					
-			}
+			
 		}
-		BufferedImage VerTop = new BufferedImage(botTopLeft.length,botTopLeft[0].length,BufferedImage.TYPE_INT_RGB);
+		BufferedImage VerTop = new BufferedImage(topBotLeft.length,topBotLeft[0].length,BufferedImage.TYPE_INT_RGB);
 	//	System.out.println("first");
 		for(int v = 0; v < VerTop.getWidth(); v++)
 		{
 			//System.out.println("second");
 			for(int w = 0; w < VerTop.getHeight();w++) {
-				if(botTopLeft[v][w] != null) { 
+				if(topBotLeft[v][w] != null) { 
 				//System.out.println("third");
 					Color staticColor = new Color(0,0,0);
 					VerTop.setRGB(v,w,staticColor.getRGB());
@@ -88,6 +88,7 @@ public class ScannerVertical {
 		}
 		ImageIO.write(VerTop, "bmp",new File("C:\\\\Users\\\\Administrator\\\\git\\\\JFont-Generator\\\\imageInput\\\\JFont-GeneratorVerTop.bmp"));	
 		//System.out.println("fifth");
+		}
 	}
 	
 	public static boolean isBlack(RGBValue rgb){
