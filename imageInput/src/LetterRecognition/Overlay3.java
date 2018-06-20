@@ -156,7 +156,7 @@ public class Overlay3 {
 		{
 			for(int ax = alocation.getLeft().getxPos(), bx = blocation.getLeft().getxPos(); ax < alocation.getRight().getxPos() && bx < blocation.getRight().getxPos(); ax++, bx++)//x
 			{
-				System.out.println(ax + " " + ay + " " + bx + " " + by);
+
 				if (isBlack(bpix[bx][by]) || isBlack(apix[ax][ay])) {
 					if (isRGBEqual(apix[ax][ay], bpix[bx][by])) {
 						overlap++;

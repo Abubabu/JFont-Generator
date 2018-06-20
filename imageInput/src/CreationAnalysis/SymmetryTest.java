@@ -6,49 +6,68 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import LetterRecognition.Overlay10;
+import LetterRecognition.Overlay11;
 import LetterRecognition.Overlay3;
+import LetterRecognition.Overlay9;
 import LetterRecognition.OverlayTest;
 import getImage.getImage;
 
 public class SymmetryTest {
-	public static void main(String[] args) throws IOException
+	public static void main(String[] args)
 	{
-		test();
+		double[] y = test("MYA.png");
 	}
-
-	public static void test() throws IOException
+	public static double[] test(String filename)
 	{
-		OverlayTest test = new OverlayTest();
-		File[] library = test.listOfImages("Alphabet");
-		
-			/*getImage image = new getImage((new getImage(library[0].getAbsolutePath())).getBW());
-			BufferedImage YFlip = Reflection.reflectorYAxis(image);
-			BufferedImage XFlip = Reflection.reflectorXAxis(image);
+		double[] data = new double[2];
 			
-			ImageIO.write(YFlip, "bmp",new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\YFlip.bmp"));	
-			ImageIO.write(XFlip, "bmp",new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\XFlip.bmp"));	
-			
-			System.out.println(library[0].getName().substring(library[0].getName().length()-5));
-			
-			Overlay3 symmetry = new Overlay3(library[0].getAbsolutePath());
-			System.out.print("Verticle: " + symmetry.overlay("YFlip.bmp") + "  ");
-			System.out.println("Horizontal: " + symmetry.overlay("XFlip.bmp"));*/
-		
-			
-		for(File x : library)
-		{
-			getImage image = new getImage((new getImage(x.getAbsolutePath())).getBW());
-			BufferedImage YFlip = Reflection.reflectorYAxis(image);
-			BufferedImage XFlip = Reflection.reflectorXAxis(image);
-			
-			ImageIO.write(YFlip, "bmp",new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\YFlip.bmp"));	
-			ImageIO.write(XFlip, "bmp",new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\XFlip.bmp"));	
-			
-			System.out.println(x.getName());
-			
-			Overlay3 symmetry = new Overlay3(x.getAbsolutePath());
-			System.out.print("Verticle: " + symmetry.overlay("YFlip.bmp") + "  ");
-			System.out.println("Horizontal: " + symmetry.overlay("XFlip.bmp"));
+		File x = new File(filename);
+		getImage image = null;
+		try {
+			image = new getImage((new getImage(x.getAbsolutePath())).getBW());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		BufferedImage YFlip = Reflection.reflectorYAxis(image);
+		BufferedImage XFlip = Reflection.reflectorXAxis(image);
+		
+		try {
+			ImageIO.write(YFlip, "bmp",new File(x.getAbsolutePath().substring(0, x.getAbsolutePath().length()-filename.length()) + "YFlip.bmp"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		try {
+			ImageIO.write(XFlip, "bmp",new File(x.getAbsolutePath().substring(0, x.getAbsolutePath().length()-filename.length()) + "XFlip.bmp"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		
+		System.out.println(x.getName());
+		
+		Overlay3 symmetry = null;
+		try {
+			symmetry = new Overlay3(x.getAbsolutePath());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			data[0] = symmetry.overlay("YFlip.bmp");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			data[1] = symmetry.overlay("XFlip.bmp");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return data;
 	}
 }
