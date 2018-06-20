@@ -13,11 +13,18 @@ import getImage.getImage;
 import getImage.pixelPosition;
 
 public class ScannerVertical {
-	public static void main(String[] args) throws IOException
-	{
-		scanImage("Random/MyA.png");
+	 //String[] alphabet = {"A","B","C","D","E","F","G","H","I","G","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
+	
+	public static void ScannerVertical() throws IOException {
+		
 	}
-	public static void scanImage(String filepath) throws IOException
+	/*public static void main(String[] args) throws IOException
+	{
+		/*for(int i = 8; i < alphabet.length;  i++) {
+			ScannerVertical("alphabet/" + alphabet[i] + ".png",alphabet[i]);
+		}
+	}*/
+	public void scanImage(String filepath) throws IOException
 	{
 		getImage image = new getImage(filepath); 	
 		getImage imageConverted = new getImage(image.getBW());	
@@ -86,7 +93,7 @@ public class ScannerVertical {
 				}
 			}
 		}
-		ImageIO.write(VerTop, "bmp",new File("C:\\\\Users\\\\Administrator\\\\git\\\\JFont-Generator\\\\imageInput\\\\JFont-GeneratorVerTop.bmp"));	
+		ImageIO.write(VerTop, "bmp",new File("C:\\\\Users\\\\Administrator\\\\git\\\\JFont-Generator\\\\imageInput\\\\usersScannedImage.bmp"));	
 		//System.out.println("fifth");
 		}
 	}

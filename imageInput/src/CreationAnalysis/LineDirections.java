@@ -13,7 +13,7 @@ import getImage.pixelPosition;
 public class LineDirections {
 
 	
-	static String[] topA = {"+","-"};
+	/*static String[] topA = {"+","-"};			thought i would need these but i didnt
 	String[] topB = {"0","-"};
 	String[] TopC = {"+","0","-"};
 	String[] topD = {"0","-"};
@@ -37,16 +37,18 @@ public class LineDirections {
 	static String[] topV = {"0","-","0","+","0"};
 	String[] topW = {"0","-","0","+","0","-","0","+","0"};
 	String[] topY = {"-","+"};
-	String[] topZ = {"0"};
+	String[] topZ = {"0"};*/
 	
 	
 	public static void main(String[] args) throws IOException {
-		double[] differences = findDifferences(new getImage("JFont-GeneratorVerTop.BMP"));
+		/*double[] differences = findDifferences(new getImage("JFont-GeneratorVerTop.BMP"));
 		String[] userLines = findLines(differences);
 		double[] differences2 = findDifferences(new getImage("staticA.BMP"));
 		String[] staticLines = findLines(differences2);
 		System.out.println(compareStrict(staticLines, userLines));
-		
+		*/
+		double percents[] = compareAllLetters("random/myA.png");
+			
 	}
 	public static double[] findDifferences(getImage img) {
 		boolean foundFirst = false;
@@ -146,16 +148,17 @@ public class LineDirections {
 		return directions;
 	}
 	
-	public static double compareAll(String[] staticCase, String[] user) {
+/*	public static double compareAll(String[] staticCase, String[] user) {
 		if(staticCase.length < user.length) {
 			int minLength = staticCase.length;
 		}
-	}
+	}*/
 	public static double compareStrict(String[] staticCase, String[] user) {
 		int misses = 0;
 		int hit = 0;
 		int difference = 0;
 		int minLength = 0;
+		int total = 0;
 		if(staticCase.length < user.length) {
 			 minLength = staticCase.length;
 			 difference = user.length - staticCase.length;
@@ -172,12 +175,33 @@ public class LineDirections {
 				break;
 				else if(staticCase[i].equals(user[i])){
 				hit++;
+				total++;
 			}
-			else 
+			else {
 				misses++;
+				total++;
+			}
 		}
-		int total = misses + hit;
-		return hit / (double) total;
+		//System.out.println("hit " + hit + " total " + (double) total);
+		if(hit == 0)
+			return 0;
+		else
+			return hit / (double) total;
+	}
+	static ScannerVertical scan = new ScannerVertical();
+	public static double[] compareAllLetters(String filepath) throws IOException { // the filepath is the orignal image not the scanner cropped
+		double[] percents = new double[26];
+		scan.scanImage(filepath);
+		double[] userDifferences = findDifferences(new getImage("C:\\Users\\Administrator\\git\\JFont-Generator\\imageInput\\usersScannedImage.bmp"));
+		String[] userlines = findLines(userDifferences);
+		String[] alphabet = {"A","B","C","D","E","F","G","H","I","G","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
+		for(int i = 0; i < 26; i++) {
+			double[] staticDifferences = findDifferences(new getImage("C:\\Users\\Administrator\\git\\JFont-Generator\\imageInput\\scannedTopLetters\\" + alphabet[i] + ".bmp"));
+			String[] staticLines = findLines(staticDifferences);
+			//System.out.println(compareStrict(staticLines,userlines));
+			percents[i] = compareStrict(staticLines,userlines);
+		}
+		return percents;
 	}
 	public static boolean isBlack(RGBValue rgb)
 	{
