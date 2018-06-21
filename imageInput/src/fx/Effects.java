@@ -36,7 +36,10 @@ public class Effects extends Application {
 	double[] data1 = SymmetryTest.test(relativeFilePath + "Random\\MyA.PNG");  // user image filepath goes here
 	double data2[] = LineDirections.compareAllLetters("random/myA.png");
 	double[] masterData = whatIsIt.compile(data,data2,data1);
+	
+	
 	public void start(Stage primaryStage) throws Exception {
+		findTop5(masterData);
 		primaryStage.setWidth(1500);
 		primaryStage.setHeight(800);
 		BorderPane border = new BorderPane();
@@ -46,20 +49,31 @@ public class Effects extends Application {
 		userLetter.setFitWidth(700);
 		userLetter.setImage(userImage);
 		border.setLeft(userLetter);
-		
+		count = 0;
 		if(timeLeft == 0) {
-			timeLeft = 50;
+			timeLeft = 54;
 			secondcounter = System.nanoTime() + 2000000000L;
 			new AnimationTimer() {	
 				@Override
 				public void handle(long now) {
 					// TODO Auto-generated method stub
 					if(timeLeft == 0) {
+						Label finalScores = new Label("");
+						String firstPlace = "1st : " + masterData[top5[0]] + "\n";
+						String secondPlace = "2nd : " + masterData[top5[1]] + "\n";
+						String thirdPlace = "3rd : " + masterData[top5[2]] + "\n";
+						String fourthPlace = "4th : " + masterData[top5[3]] + "\n";
+						String fifthPlace = "5th : " + masterData[top5[4]] + "\n";
+						finalScores.setText(firstPlace + secondPlace + thirdPlace + fourthPlace + fifthPlace);
+						border.setBottom(finalScores);
 						stop();
 					}
 				   if(now > secondcounter) {
-					  
-					   count++;
+					  if(timeLeft <= 52) {
+						  count++;
+						  if(timeLeft == 52) {
+							  count = 0;
+						  }
 					   ImageView staticLetter = new ImageView();
 						Image staticImage = null;
 						try {
@@ -77,7 +91,7 @@ public class Effects extends Application {
 					//	String symmetryResult = ("Verticle Sym % : " + numberFormat.format(data1[0]) + " %" + " Horizontal Sym % : " + numberFormat.format(data1[1]) + "%"); // this is where the % goes
 						String directionResult = (data2[count] * 100) + "%";
 						Label result = new Label("");
-						result.setText("Overlay Result" +overlayResult + "\n" + "Line Direction Result " + directionResult );
+						result.setText("Overlay Result" +overlayResult + "\n" + "Line Direction Result " + directionResult + " time left : " + timeLeft + "   count" + count);
 						result.setMaxHeight(300);
 						result.setMinHeight(300);
 						result.setMinWidth(700);
@@ -87,8 +101,8 @@ public class Effects extends Application {
 						result.setTranslateX(450);
 						border.setBottom(result);
 					//	border.setBottom(symmetryResult);
-
-						timeLeft = timeLeft - 1;
+					  }
+						timeLeft = timeLeft - 2;
 						secondcounter += 2000000000L;
 						
 					}
@@ -105,8 +119,32 @@ public class Effects extends Application {
 		primaryStage.show();
 		
 	}
-	
+	int[] top5 = new int[5];
 	public static void main(String[] args) throws IOException {
 		Application.launch(args);
 	}
+	
+	public void findTop5(double[] masterData) {
+		count = 0;
+			for(int c = 0; c < 24; c++) {
+				int largest = c;
+				for(int d = 1; d < 25; d++) {
+					boolean notExist = true;
+					if(masterData[c] < masterData[d] ) {
+						for(int i = 0; i < count; i++) {
+							if(top5[i] == largest) {
+								notExist = false;
+							}
+						}
+						if(notExist)
+							largest = d;
+					}
+				}
+				top5[count] = largest;
+				count++;
+				if(count > 5);
+					break;
+			}
+		}
+	
 }
