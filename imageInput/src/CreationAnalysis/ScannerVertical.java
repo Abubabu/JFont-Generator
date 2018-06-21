@@ -73,28 +73,9 @@ public class ScannerVertical {
 				 */
 
 			}
-			BufferedImage VerBot = new BufferedImage(botTopLeft.length, botTopLeft[0].length,
+			BufferedImage VerTop = new BufferedImage(topBotLeft.length, topBotLeft[0].length,
 					BufferedImage.TYPE_INT_RGB);
-			// System.out.println("first"); 
-			for (int v = 0; v < VerBot.getWidth(); v++) {
-				// System.out.println("second");
-				for (int w = 0; w < VerBot.getHeight(); w++) {
-					if (botTopLeft[v][w] != null) {
-						// System.out.println("third"); 
-						Color staticColor = new Color(0, 0, 0); 
-						VerBot.setRGB(v, w, staticColor.getRGB());
-						// System.out.println("fourth");
-					} else {
-
-						Color staticColor = new Color(255, 255, 255);
-						VerBot.setRGB(v, w, staticColor.getRGB());
-					}
-				}
-			}
-			ImageIO.write(VerBot, "bmp", new File(
-					"C:\\\\Users\\\\Administrator\\\\git\\\\JFont-Generator\\\\imageInput\\\\usersScannedImageBot.bmp"));
-			
-			BufferedImage VerTop = new BufferedImage(topBotLeft.length, topBotLeft[0].length,BufferedImage.TYPE_INT_RGB);
+			// System.out.println("first");
 			for (int v = 0; v < VerTop.getWidth(); v++) {
 				// System.out.println("second");
 				for (int w = 0; w < VerTop.getHeight(); w++) {
@@ -111,7 +92,7 @@ public class ScannerVertical {
 				}
 			}
 			ImageIO.write(VerTop, "bmp", new File(
-					"C:\\\\Users\\\\Administrator\\\\git\\\\JFont-Generator\\\\imageInput\\\\usersScannedImageTop.bmp"));
+					"C:\\\\Users\\\\Administrator\\\\git\\\\JFont-Generator\\\\imageInput\\\\usersScannedImage.bmp"));
 			// System.out.println("fifth");
 		}
 	}

@@ -184,7 +184,7 @@ public class LineDirections {
 		}
 		//System.out.println("hit " + hit + " total " + (double) total);
 		if(hit == 0)
-			return 0; 
+			return 0;
 		else
 			return hit / (double) total;
 	}
@@ -192,18 +192,14 @@ public class LineDirections {
 	public static double[] compareAllLetters(String filepath) throws IOException { // the filepath is the orignal image not the scanner cropped
 		double[] percents = new double[26];
 		scan.scanImage(filepath);
-		double[] userDifferences = findDifferences(new getImage("C:\\Users\\Administrator\\git\\JFont-Generator\\imageInput\\usersScannedImageTop.bmp"));
-		String[] userlinesTop = findLines(userDifferences);
-		double[] userDifferencesBot = findDifferences(new getImage("C:\\Users\\Administrator\\git\\JFont-Generator\\imageInput\\usersScannedImageBot.bmp"));
-		String[] userLinesBot = findLines(userDifferencesBot);
+		double[] userDifferences = findDifferences(new getImage("C:\\Users\\Administrator\\git\\JFont-Generator\\imageInput\\usersScannedImage.bmp"));
+		String[] userlines = findLines(userDifferences);
 		String[] alphabet = {"A","B","C","D","E","F","G","H","I","G","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 		for(int i = 0; i < 26; i++) {
 			double[] staticDifferences = findDifferences(new getImage("C:\\Users\\Administrator\\git\\JFont-Generator\\imageInput\\scannedTopLetters\\" + alphabet[i] + ".bmp"));
 			String[] staticLines = findLines(staticDifferences);
-			double[] staticDifferencesBot = findDifferences(new getImage("C:\\Users\\Administrator\\git\\JFont-Generator\\imageInput\\scannedBotLetters\\" + alphabet[i] + ".bmp"));
-			String[] staticLinesBot = findLines(staticDifferencesBot);
 			//System.out.println(compareStrict(staticLines,userlines));
-			percents[i] = (compareStrict(staticLines,userlinesTop) + compareStrict(staticLinesBot,userLinesBot)) / 2;
+			percents[i] = compareStrict(staticLines,userlines);
 		}
 		return percents;
 	}
