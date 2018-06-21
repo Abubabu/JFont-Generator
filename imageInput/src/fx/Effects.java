@@ -33,7 +33,9 @@ public class Effects extends Application {
 	String path = new File(".").getAbsolutePath();
 	String relativeFilePath = path.substring(0, path.length()-2)+ "\\";
 	ArrayList<Double> data = OverlayTest3.getPercentages(relativeFilePath+"Random\\MyA.PNG"); // user image filepath goes here
+	double[] data1 = SymmetryTest.test("Alphabet/" + alphabet[count] + ".png");  // user image filepath goes here
 	double data2[] = LineDirections.compareAllLetters("random/myA.png");
+	double[] masterData = whatIsIt.compile(data,data2,data1);
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setWidth(1500);
 		primaryStage.setHeight(800);
@@ -72,7 +74,6 @@ public class Effects extends Application {
 						border.setRight(staticLetter);
 						DecimalFormat numberFormat = new DecimalFormat("#.00###");
 						String overlayResult = (numberFormat.format(data.get(count)) + " %"); // this is where the % goes
-						double[] data1 = SymmetryTest.test("Alphabet/" + alphabet[count] + ".png");  // user image filepath goes here
 					//	String symmetryResult = ("Verticle Sym % : " + numberFormat.format(data1[0]) + " %" + " Horizontal Sym % : " + numberFormat.format(data1[1]) + "%"); // this is where the % goes
 						String directionResult = (data2[count] * 100) + "%";
 						Label result = new Label("");
