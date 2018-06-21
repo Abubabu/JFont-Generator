@@ -165,7 +165,7 @@ public class LineDirections {
 		}
 		else if(staticCase.length > user.length) {
 			 minLength = user.length;
-			 difference = staticCase.length - user.length;
+			 difference = staticCase.length - user.length; 
 		}
 		else {
 			  minLength = user.length;
