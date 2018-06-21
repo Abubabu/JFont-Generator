@@ -14,16 +14,23 @@ import getImage.getImage;
 public class SymmetryTest {
 	public static void main(String[] args)
 	{
-		test("MYA.png");
+		File directory = new File("DrawnLetters");
+		for(File x : directory.listFiles())
+		{
+			double[] y = test(x.getAbsolutePath());
+			System.out.println(y[0] + " " + y[1] + "  " + x.getName());
+		}
+		
 	}
 	public static double[] test(String filename)
 	{
 		double[] data = new double[2];
 			
-		File x = new File(filename);
+		String path = new File(".").getAbsolutePath();
+		String relativeFilePath = path.substring(0, path.length()-2)+ "\\";
 		getImage image = null;
 		try {
-			image = new getImage((new getImage(x.getAbsolutePath())).getBW());
+			image = new getImage((new getImage(filename).getBW()));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -32,23 +39,22 @@ public class SymmetryTest {
 		BufferedImage XFlip = Reflection.reflectorXAxis(image);
 		
 		try {
-			ImageIO.write(YFlip, "bmp",new File(x.getAbsolutePath().substring(0, x.getAbsolutePath().length()-filename.length()) + "YFlip.bmp"));
+			ImageIO.write(YFlip, "bmp",new File(relativeFilePath + "YFlip.bmp"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 		try {
-			ImageIO.write(XFlip, "bmp",new File(x.getAbsolutePath().substring(0, x.getAbsolutePath().length()-filename.length()) + "XFlip.bmp"));
+			ImageIO.write(XFlip, "bmp",new File(relativeFilePath + "XFlip.bmp"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 		
-		System.out.println(x.getName());
 		
 		Overlay3 symmetry = null;
 		try {
-			symmetry = new Overlay3(x.getAbsolutePath());
+			symmetry = new Overlay3(filename);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
