@@ -46,8 +46,18 @@ public class LineDirections {
 		String[] staticLines = findLines(differences2);
 		System.out.println(compareStrict(staticLines, userLines));
 		*/
-		double percents[] = compareAllLetters("random/myA.png");
+		double percents[] = null;
+			percents = compareAllLetters("random/myA.png");
+		
+		for(double x: percents)
+		{
+			System.out.println(x);
+		}
 			
+	}
+	public LineDirections() throws IOException
+	{
+		
 	}
 	public static double[] findDifferences(getImage img) {
 		boolean foundFirst = false;
