@@ -26,7 +26,7 @@ import javafx.scene.text.TextAlignment;
 
 
 public class Effects extends Application {
-	String[] alphabet = {"A","B","C","D","E","F","G","H","I","G","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
+	String[] alphabet = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 	int count = 0;
 	int timeLeft = 0;
 	long secondcounter = System.nanoTime();

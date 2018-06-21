@@ -14,7 +14,7 @@ import getImage.pixelPosition;
 
 public class ScannerVertical {
 	private String newFile;
-	static String[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "G", "K", "L", "M", "N", "O", "P", "Q",
+	static String[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q",
 			"R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
 
 	public ScannerVertical() throws IOException {
@@ -23,7 +23,7 @@ public class ScannerVertical {
 
 	public static void main(String[] args) throws IOException
 	{
-		System.out.println(new File("usersScannedImage.bmp").getAbsolutePath());
+		//System.out.println(new File("usersScannedImage.bmp").getAbsolutePath());
 	}
 	
 	public String getNewFile() {
