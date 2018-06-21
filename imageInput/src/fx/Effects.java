@@ -6,39 +6,38 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Map;
 
+import CreationAnalysis.SymmetryTest;
+import LetterRecognition.OverlayTest3;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
+
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
-import LetterRecognition.OverlayTest3;
-import CreationAnalysis.SymmetryTest;
+
 
 public class Effects extends Application {
 	String[] alphabet = {"A","B","C","D","E","F","G","H","I","G","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 	int count = 0;
 	int timeLeft = 0;
 	long secondcounter = System.nanoTime();
-	ArrayList<Double> data = OverlayTest3.getPercentages("Random/MyA.PNG"); // user image filepath goes here
+		String path = new File(".").getAbsolutePath();
+		String relativeFilePath = path.substring(0, path.length()-2)+ "\\";
+	ArrayList<Double> data = OverlayTest3.getPercentages(relativeFilePath+"Random\\MyA.PNG"); // user image filepath goes here
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setWidth(1500);
 		primaryStage.setHeight(800);
 		BorderPane border = new BorderPane();
 		ImageView userLetter = new ImageView();
-		Image userImage = new Image( new File("C:\\Users\\\\Administrator\\git\\JFont-Generator\\imageInput\\Random\\MyA.PNG").toURI().toURL().toExternalForm());  // user image filepath goes here
+		Image userImage = new Image( new File(relativeFilePath + "Random\\MyA.PNG").toURI().toURL().toExternalForm());  // user image filepath goes here
 		userLetter.setFitHeight(500);
 		userLetter.setFitWidth(700);
 		userLetter.setImage(userImage);
@@ -60,7 +59,7 @@ public class Effects extends Application {
 					   ImageView staticLetter = new ImageView();
 						Image staticImage = null;
 						try {
-							staticImage = new Image(new File("C:\\Users\\\\Administrator\\git\\JFont-Generator\\imageInput\\alphabet\\" + alphabet[count] + ".png").toURI().toURL().toExternalForm());
+							staticImage = new Image(new File(relativeFilePath + "alphabet\\" + alphabet[count] + ".png").toURI().toURL().toExternalForm());
 						} catch (MalformedURLException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();

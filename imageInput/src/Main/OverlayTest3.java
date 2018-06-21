@@ -9,10 +9,10 @@ public class OverlayTest3 {
 	public static ArrayList<Double> getPercentages(String filepath)
 	{
 		ArrayList<Double> display = new ArrayList<Double>();
-		OverlayTest test = new OverlayTest();
+		
 		File[] library = null;
 		try {
-			library = test.listOfImages("Alphabet");
+			library = listOfImages("Alphabet");
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -40,4 +40,9 @@ public class OverlayTest3 {
 		
 		return display;
 	}
+	public static File[] listOfImages(String directoryName) throws IOException{
+        File directory = new File(directoryName);
+        //get all the files from a directory
+       return directory.listFiles();
+    }
 }

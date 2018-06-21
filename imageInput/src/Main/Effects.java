@@ -28,13 +28,15 @@ public class Effects extends Application {
 	int count = 0;
 	int timeLeft = 0;
 	long secondcounter = System.nanoTime();
-	ArrayList<Double> data = OverlayTest3.getPercentages("Random/MyA.PNG"); // user image filepath goes here
+		String path = new File(".").getAbsolutePath();
+		String relativeFilePath = path.substring(0, path.length()-2)+ "\\";
+	ArrayList<Double> data = OverlayTest3.getPercentages(relativeFilePath+"Random\\MyA.PNG"); // user image filepath goes here
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setWidth(1500);
 		primaryStage.setHeight(800);
 		BorderPane border = new BorderPane();
 		ImageView userLetter = new ImageView();
-		Image userImage = new Image( new File("C:\\Users\\\\Administrator\\git\\JFont-Generator\\imageInput\\Random\\MyA.PNG").toURI().toURL().toExternalForm());  // user image filepath goes here
+		Image userImage = new Image( new File(relativeFilePath + "Random\\MyA.PNG").toURI().toURL().toExternalForm());  // user image filepath goes here
 		userLetter.setFitHeight(500);
 		userLetter.setFitWidth(700);
 		userLetter.setImage(userImage);
@@ -56,7 +58,7 @@ public class Effects extends Application {
 					   ImageView staticLetter = new ImageView();
 						Image staticImage = null;
 						try {
-							staticImage = new Image(new File("C:\\Users\\\\Administrator\\git\\JFont-Generator\\imageInput\\alphabet\\" + alphabet[count] + ".png").toURI().toURL().toExternalForm());
+							staticImage = new Image(new File(relativeFilePath + "alphabet\\" + alphabet[count] + ".png").toURI().toURL().toExternalForm());
 						} catch (MalformedURLException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();

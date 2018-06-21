@@ -23,6 +23,7 @@ public class Debug
 
     //	  File outputFile = new File("/output.bmp");
     //	  ImageIO.write(image, "bmp", outputFile);
+    	System.out.println(new File(".").getAbsolutePath());
     }
     public static void createImg(BufferedImage image)
     {
