@@ -59,11 +59,11 @@ public class Effects extends Application {
 					// TODO Auto-generated method stub
 					if(timeLeft == 0) {
 						Label finalScores = new Label("");
-						String firstPlace = "1st : " + masterData[top5[0]] + "\n";
-						String secondPlace = "2nd : " + masterData[top5[1]] + "\n";
-						String thirdPlace = "3rd : " + masterData[top5[2]] + "\n";
-						String fourthPlace = "4th : " + masterData[top5[3]] + "\n";
-						String fifthPlace = "5th : " + masterData[top5[4]] + "\n";
+						String firstPlace = "1st " + alphabet[top5[0]]  + ": " + masterData[top5[0]] + "\n";
+						String secondPlace = "2nd " + alphabet[top5[1]]  + ": " + masterData[top5[1]] + "\n";
+						String thirdPlace = "3rd " + alphabet[top5[2]]  + ": " + masterData[top5[2]] + "\n";
+						String fourthPlace = "4th " + alphabet[top5[3]]  + ": " + masterData[top5[3]] + "\n";
+						String fifthPlace = "5th " + alphabet[top5[4]]  + ": " + masterData[top5[4]] + "\n";
 						finalScores.setText(firstPlace + secondPlace + thirdPlace + fourthPlace + fifthPlace);
 						finalScores.setTranslateX(450);
 						finalScores.setFont(new Font("Arial", 22));
