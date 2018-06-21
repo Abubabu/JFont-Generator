@@ -38,15 +38,15 @@ public class Effects extends Application {
 		primaryStage.setHeight(800);
 		BorderPane border = new BorderPane();
 		ImageView userLetter = new ImageView();
-		Image userImage = new Image( new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\Random\\MyA.PNG").toURI().toURL().toExternalForm());  // user image filepath goes here
+		Image userImage = new Image( new File("C:\\Users\\\\Administrator\\git\\JFont-Generator\\imageInput\\Random\\MyA.PNG").toURI().toURL().toExternalForm());  // user image filepath goes here
 		userLetter.setFitHeight(500);
 		userLetter.setFitWidth(700);
 		userLetter.setImage(userImage);
 		border.setLeft(userLetter);
 		
 		if(timeLeft == 0) {
-			timeLeft = 25;
-			secondcounter = System.nanoTime() + 1000000000L;
+			timeLeft = 75;
+			secondcounter = System.nanoTime() + 3000000000L;
 			new AnimationTimer() {	
 				@Override
 				public void handle(long now) {
@@ -60,7 +60,7 @@ public class Effects extends Application {
 					   ImageView staticLetter = new ImageView();
 						Image staticImage = null;
 						try {
-							staticImage = new Image(new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\alphabet\\" + alphabet[count] + ".png").toURI().toURL().toExternalForm());
+							staticImage = new Image(new File("C:\\Users\\\\Administrator\\git\\JFont-Generator\\imageInput\\alphabet\\" + alphabet[count] + ".png").toURI().toURL().toExternalForm());
 						} catch (MalformedURLException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -69,20 +69,22 @@ public class Effects extends Application {
 						staticLetter.setFitHeight(500);
 						staticLetter.setFitWidth(700);
 						border.setRight(staticLetter);
-						Label overlayResult = new Label(String.valueOf(data.get(count)) + " %"); // this is where the % goes
-						Label symmetryResult = new Label("Verticle Sym % : " + String.valueOf(data1[0]) + " %" + " Horizontal Sym % : " + String.valueOf(data1[1]) + "%"); // this is where the % goes
-						overlayResult.setMaxHeight(300);
-						overlayResult.setMinHeight(300);
-						overlayResult.setMaxWidth(300);
-						overlayResult.setMaxWidth(300);
-						overlayResult.setTextAlignment(TextAlignment.CENTER);
-						overlayResult.setFont(new Font("Arial", 30));
-						overlayResult.setTranslateX(700);
-						border.setBottom(overlayResult);
-						
+						String overlayResult = (String.valueOf(data.get(count)) + " %"); // this is where the % goes
+						String symmetryResult = ("Verticle Sym % : " + String.valueOf(data1[0]) + " %" + " Horizontal Sym % : " + String.valueOf(data1[1]) + "%"); // this is where the % goes
+						Label result = new Label("");
+						result.setText(overlayResult + "\n" + symmetryResult);
+						result.setMaxHeight(300);
+						result.setMinHeight(300);
+						result.setMaxWidth(300);
+						result.setMaxWidth(300);
+						result.setTextAlignment(TextAlignment.CENTER);
+						result.setFont(new Font("Arial", 15));
+						result.setTranslateX(700);
+						border.setBottom(result);
+					//	border.setBottom(symmetryResult);
 
 						timeLeft = timeLeft - 1;
-						secondcounter += 1000000000L;
+						secondcounter += 3000000000L;
 						
 					}
 				}
