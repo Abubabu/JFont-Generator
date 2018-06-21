@@ -223,7 +223,7 @@ public class LineDirections {
 		String[] userlines = findLines(userDifferences);
 		String[] alphabet = {"A","B","C","D","E","F","G","H","I","G","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 		for(int i = 0; i < 26; i++) {
-			System.out.println(new File("scannedTopLetters").getAbsolutePath() + "\\"  + alphabet[i] + ".bmp");
+			//System.out.println(new File("scannedTopLetters").getAbsolutePath() + "\\"  + alphabet[i] + ".bmp");
 			double[] staticDifferences = null;
 			try {
 				staticDifferences = findDifferences(new getImage(new File("scannedTopLetters").getAbsolutePath() + "\\"  + alphabet[i] + ".bmp"));

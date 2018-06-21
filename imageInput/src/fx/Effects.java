@@ -46,8 +46,8 @@ public class Effects extends Application {
 		border.setLeft(userLetter);
 		
 		if(timeLeft == 0) {
-			timeLeft = 75;
-			secondcounter = System.nanoTime() + 3000000000L;
+			timeLeft = 50;
+			secondcounter = System.nanoTime() + 2000000000L;
 			new AnimationTimer() {	
 				@Override
 				public void handle(long now) {
@@ -73,9 +73,10 @@ public class Effects extends Application {
 						DecimalFormat numberFormat = new DecimalFormat("#.00###");
 						String overlayResult = (numberFormat.format(data.get(count)) + " %"); // this is where the % goes
 						double[] data1 = SymmetryTest.test("Alphabet/" + alphabet[count] + ".png");  // user image filepath goes here
-						String symmetryResult = ("Verticle Sym % : " + numberFormat.format(data1[0]) + " %" + " Horizontal Sym % : " + numberFormat.format(data1[1]) + "%"); // this is where the % goes
+					//	String symmetryResult = ("Verticle Sym % : " + numberFormat.format(data1[0]) + " %" + " Horizontal Sym % : " + numberFormat.format(data1[1]) + "%"); // this is where the % goes
+						String directionResult = (data2[count] * 100) + "%";
 						Label result = new Label("");
-						result.setText(overlayResult + "\n" + symmetryResult);
+						result.setText("Overlay Result" +overlayResult + "\n" + "Line Direction Result " + directionResult );
 						result.setMaxHeight(300);
 						result.setMinHeight(300);
 						result.setMinWidth(700);
@@ -87,7 +88,7 @@ public class Effects extends Application {
 					//	border.setBottom(symmetryResult);
 
 						timeLeft = timeLeft - 1;
-						secondcounter += 3000000000L;
+						secondcounter += 2000000000L;
 						
 					}
 				}
