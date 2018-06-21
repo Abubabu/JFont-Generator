@@ -75,7 +75,7 @@ public class ScannerVertical {
 			}
 			BufferedImage VerBot = new BufferedImage(botTopLeft.length, botTopLeft[0].length,
 					BufferedImage.TYPE_INT_RGB);
-			// System.out.println("first");
+			// System.out.println("first"); 
 			for (int v = 0; v < VerBot.getWidth(); v++) {
 				// System.out.println("second");
 				for (int w = 0; w < VerBot.getHeight(); w++) {

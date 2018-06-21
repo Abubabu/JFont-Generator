@@ -184,7 +184,7 @@ public class LineDirections {
 		}
 		//System.out.println("hit " + hit + " total " + (double) total);
 		if(hit == 0)
-			return 0;
+			return 0; 
 		else
 			return hit / (double) total;
 	}
