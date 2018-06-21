@@ -33,7 +33,7 @@ public class Effects extends Application {
 	String path = new File(".").getAbsolutePath();
 	String relativeFilePath = path.substring(0, path.length()-2)+ "\\";
 	ArrayList<Double> data = OverlayTest3.getPercentages(relativeFilePath+"Random\\MyA.PNG"); // user image filepath goes here
-	double[] data1 = SymmetryTest.test("Alphabet/" + alphabet[count] + ".png");  // user image filepath goes here
+	double[] data1 = SymmetryTest.test(relativeFilePath + "Random\\MyA.PNG");  // user image filepath goes here
 	double data2[] = LineDirections.compareAllLetters("random/myA.png");
 	double[] masterData = whatIsIt.compile(data,data2,data1);
 	public void start(Stage primaryStage) throws Exception {
