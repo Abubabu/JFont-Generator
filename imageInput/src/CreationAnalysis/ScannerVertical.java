@@ -16,8 +16,7 @@ public class ScannerVertical {
 	static String[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "G", "K", "L", "M", "N", "O", "P", "Q",
 			"R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
 
-	public static void ScannerVertical(String filepath, String letter) throws IOException {
-		scanImage(filepath, letter);
+	public static void ScannerVertical() throws IOException {
 	}
 
 	public static void main(String[] args) throws IOException
@@ -25,7 +24,7 @@ public class ScannerVertical {
 		System.out.println(new File("DFAASD").getAbsolutePath());
 	}
 
-	public static void scanImage(String filepath, String letter) throws IOException {
+	public static void scanImage(String filepath) throws IOException {
 		getImage image = new getImage(filepath);
 		getImage imageConverted = new getImage(image.getBW());
 		pixelPosition[][] imagePix = imageConverted.getArrayPixels();
@@ -93,8 +92,7 @@ public class ScannerVertical {
 				}
 			}
 			ImageIO.write(VerTop, "bmp", new File(
-					"C:\\\\Users\\\\Administrator\\\\git\\\\JFont-Generator\\\\imageInput\\\\scannedBotLetters\\"
-							+ letter + ".bmp"));
+					"C:\\\\Users\\\\Administrator\\\\git\\\\JFont-Generator\\\\imageInput\\\\usersScannedImage\\bmp"));
 			// System.out.println("fifth");
 		}
 	}
