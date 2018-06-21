@@ -12,7 +12,6 @@ import getImage.getImage;
 import getImage.pixelPosition;
 public class LineDirections {
 
-	
 	/*static String[] topA = {"+","-"};			thought i would need these but i didnt
 	String[] topB = {"0","-"};
 	String[] TopC = {"+","0","-"};
@@ -188,15 +187,17 @@ public class LineDirections {
 		else
 			return hit / (double) total;
 	}
-	static ScannerVertical scan = new ScannerVertical();
 	public static double[] compareAllLetters(String filepath) throws IOException { // the filepath is the orignal image not the scanner cropped
+		 ScannerVertical scan = new ScannerVertical();
 		double[] percents = new double[26];
 		scan.scanImage(filepath);
-		double[] userDifferences = findDifferences(new getImage("C:\\Users\\Administrator\\git\\JFont-Generator\\imageInput\\usersScannedImage.bmp"));
+		System.out.println(scan.getNewFile());
+		double[] userDifferences = findDifferences(new getImage(scan.getNewFile()));
 		String[] userlines = findLines(userDifferences);
 		String[] alphabet = {"A","B","C","D","E","F","G","H","I","G","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 		for(int i = 0; i < 26; i++) {
-			double[] staticDifferences = findDifferences(new getImage("C:\\Users\\Administrator\\git\\JFont-Generator\\imageInput\\scannedTopLetters\\" + alphabet[i] + ".bmp"));
+			System.out.println(new File("scannedTopLetters").getAbsolutePath() + "\\"  + alphabet[i] + ".bmp");
+			double[] staticDifferences = findDifferences(new getImage(new File("scannedTopLetters").getAbsolutePath() + "\\"  + alphabet[i] + ".bmp"));
 			String[] staticLines = findLines(staticDifferences);
 			//System.out.println(compareStrict(staticLines,userlines));
 			percents[i] = compareStrict(staticLines,userlines);
