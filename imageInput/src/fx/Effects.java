@@ -93,7 +93,7 @@ public class Effects extends Application {
 					//	String symmetryResult = ("Verticle Sym % : " + numberFormat.format(data1[0]) + " %" + " Horizontal Sym % : " + numberFormat.format(data1[1]) + "%"); // this is where the % goes
 						String directionResult = (data2[count] * 100) + "%";
 						Label result = new Label("");
-						result.setText("Overlay Result" +overlayResult + "\n" + "Line Direction Result " + directionResult + " time left : " + timeLeft + "   count" + count);
+						result.setText("Overlay Result" +overlayResult + "\n" + "Line Direction Result " + directionResult);
 						result.setMaxHeight(300);
 						result.setMinHeight(300);
 						result.setMinWidth(700);
