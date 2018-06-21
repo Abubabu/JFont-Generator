@@ -197,17 +197,40 @@ public class LineDirections {
 		else
 			return hit / (double) total;
 	}
-	public static double[] compareAllLetters(String filepath) throws IOException { // the filepath is the orignal image not the scanner cropped
-		 ScannerVertical scan = new ScannerVertical();
+	public static double[] compareAllLetters(String filepath){ // the filepath is the orignal image not the scanner cropped
+		 ScannerVertical scan = null;
+		try {
+			scan = new ScannerVertical();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		double[] percents = new double[26];
-		scan.scanImage(filepath);
+		try {
+			scan.scanImage(filepath);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		System.out.println(scan.getNewFile());
-		double[] userDifferences = findDifferences(new getImage(scan.getNewFile()));
+		double[] userDifferences = null;
+		try {
+			userDifferences = findDifferences(new getImage(scan.getNewFile()));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		String[] userlines = findLines(userDifferences);
 		String[] alphabet = {"A","B","C","D","E","F","G","H","I","G","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 		for(int i = 0; i < 26; i++) {
 			System.out.println(new File("scannedTopLetters").getAbsolutePath() + "\\"  + alphabet[i] + ".bmp");
-			double[] staticDifferences = findDifferences(new getImage(new File("scannedTopLetters").getAbsolutePath() + "\\"  + alphabet[i] + ".bmp"));
+			double[] staticDifferences = null;
+			try {
+				staticDifferences = findDifferences(new getImage(new File("scannedTopLetters").getAbsolutePath() + "\\"  + alphabet[i] + ".bmp"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			String[] staticLines = findLines(staticDifferences);
 			//System.out.println(compareStrict(staticLines,userlines));
 			percents[i] = compareStrict(staticLines,userlines);
