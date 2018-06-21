@@ -65,6 +65,8 @@ public class Effects extends Application {
 						String fourthPlace = "4th : " + masterData[top5[3]] + "\n";
 						String fifthPlace = "5th : " + masterData[top5[4]] + "\n";
 						finalScores.setText(firstPlace + secondPlace + thirdPlace + fourthPlace + fifthPlace);
+						finalScores.setTranslateX(450);
+						finalScores.setFont(new Font("Arial", 22));
 						border.setBottom(finalScores);
 						stop();
 					}
@@ -125,25 +127,29 @@ public class Effects extends Application {
 	}
 	
 	public void findTop5(double[] masterData) {
-		count = 0;
+		int count = 0;
 			for(int c = 0; c < 24; c++) {
+				if(count >= 5)
+					return;
 				int largest = c;
-				for(int d = 1; d < 25; d++) {
+				for(int d = 0; d < 25; d++) {
 					boolean notExist = true;
-					if(masterData[c] < masterData[d] ) {
+					if(c != d) {
+					if(masterData[largest] < masterData[d] ) {
 						for(int i = 0; i < count; i++) {
-							if(top5[i] == largest) {
+							if(top5[i] == d) {
 								notExist = false;
 							}
 						}
 						if(notExist)
 							largest = d;
 					}
+					}
 				}
+				if(count >= 5)
+					return;
 				top5[count] = largest;
 				count++;
-				if(count > 5);
-					break;
 			}
 		}
 	
