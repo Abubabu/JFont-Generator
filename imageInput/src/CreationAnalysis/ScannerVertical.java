@@ -81,7 +81,7 @@ public class ScannerVertical {
 				for (int w = 0; w < VerTop.getHeight(); w++) {
 					if (botTopLeft[v][w] != null) {
 						// System.out.println("third");
-						Color staticColor = new Color(0, 0, 0);
+						Color staticColor = new Color(0, 0, 0); 
 						VerTop.setRGB(v, w, staticColor.getRGB());
 						// System.out.println("fourth");
 					} else {
