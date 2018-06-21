@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -32,7 +33,6 @@ public class Effects extends Application {
 	int timeLeft = 0;
 	long secondcounter = System.nanoTime();
 	ArrayList<Double> data = OverlayTest3.getPercentages("Random/MyA.PNG"); // user image filepath goes here
-	double[] data1 = SymmetryTest.test("Random/MyA.PNG");  // user image filepath goes here
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setWidth(1500);
 		primaryStage.setHeight(800);
@@ -69,17 +69,19 @@ public class Effects extends Application {
 						staticLetter.setFitHeight(500);
 						staticLetter.setFitWidth(700);
 						border.setRight(staticLetter);
-						String overlayResult = (String.valueOf(data.get(count)) + " %"); // this is where the % goes
-						String symmetryResult = ("Verticle Sym % : " + String.valueOf(data1[0]) + " %" + " Horizontal Sym % : " + String.valueOf(data1[1]) + "%"); // this is where the % goes
+						DecimalFormat numberFormat = new DecimalFormat("#.00###");
+						String overlayResult = (numberFormat.format(data.get(count)) + " %"); // this is where the % goes
+						double[] data1 = SymmetryTest.test("Alphabet/" + alphabet[count] + ".png");  // user image filepath goes here
+						String symmetryResult = ("Verticle Sym % : " + numberFormat.format(data1[0]) + " %" + " Horizontal Sym % : " + numberFormat.format(data1[1]) + "%"); // this is where the % goes
 						Label result = new Label("");
 						result.setText(overlayResult + "\n" + symmetryResult);
 						result.setMaxHeight(300);
 						result.setMinHeight(300);
-						result.setMaxWidth(300);
-						result.setMaxWidth(300);
+						result.setMinWidth(700);
+						result.setMaxWidth(700);
 						result.setTextAlignment(TextAlignment.CENTER);
-						result.setFont(new Font("Arial", 15));
-						result.setTranslateX(700);
+						result.setFont(new Font("Arial", 22));
+						result.setTranslateX(450);
 						border.setBottom(result);
 					//	border.setBottom(symmetryResult);
 
@@ -88,6 +90,7 @@ public class Effects extends Application {
 						
 					}
 				}
+
 				
 			}.start();
 		}
