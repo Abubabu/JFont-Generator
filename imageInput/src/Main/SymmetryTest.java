@@ -1,4 +1,4 @@
-package CreationAnalysis;
+package Main;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -6,10 +6,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-
-import LetterRecognition.Overlay3;
-
-import getImage.getImage;
 
 public class SymmetryTest {
 	public static void main(String[] args)

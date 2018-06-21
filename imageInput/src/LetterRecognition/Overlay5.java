@@ -211,7 +211,7 @@ private final getImage testCase;
 			{
 				yinc++;
 			}
-			imageresizer.resize(filepath, filepath, scale.getWidth()+xinc, scale.getHeight()+yinc);
+			ImageResizer.resize(filepath, filepath, scale.getWidth()+xinc, scale.getHeight()+yinc);
 			xinc = 0;
 			yinc = 0;
 		}

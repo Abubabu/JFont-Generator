@@ -4,12 +4,9 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;	
-import java.util.TreeMap;
 
 import javax.imageio.ImageIO;
 
-import getImage.CardinalPixels;
 import getImage.RGBValue;
 import getImage.getImage;
 
@@ -19,7 +16,6 @@ public class alphabetImages {
 	
 	public static void main(String[] args) throws IOException
 	{
-		Map<String,Double> display = new TreeMap<String,Double>();
 		OverlayTest test = new OverlayTest();
 		File[] library = test.listOfImages("Alphabet");
 		
@@ -44,26 +40,13 @@ public class alphabetImages {
 		RGBValue[][] userpix = userConverted.getPixelsArray();
 		RGBValue[][] staticpix = staticConverted.getPixelsArray();
 		
-		CardinalPixels userlocation = new CardinalPixels(userConverted);
-		CardinalPixels staticlocation = new CardinalPixels(staticConverted);
 		
 		int userXInc = getIncrement(userNativeWidth);
 		int userYInc = getIncrement(userNativeHeight);
 		int staticXInc = getIncrement(staticNativeWidth);
 		int staticYInc = getIncrement(staticNativeHeight);
 		
-		int staticHeight = staticlocation.getSouth().getyPos()- staticlocation.getNorth().getyPos();
-		int staticWidth = staticlocation.getRight().getxPos() - staticlocation.getLeft().getxPos();
-		int userHeight = userlocation.getSouth().getyPos() - userlocation.getNorth().getyPos();
-		int userWidth = userlocation.getRight().getxPos() - userlocation.getLeft().getxPos();
-		
-		int staticSquareSideLength = ((staticHeight > staticWidth) ? staticHeight : staticWidth);
-		int userSquareSideLength = ((userHeight > userWidth) ? userHeight: userWidth);
-		
-		int staticCenterX = staticlocation.getRight().getxPos() - (staticWidth/2);
-		int staticCenterY = staticlocation.getSouth().getyPos() - (staticHeight/2);
-		int userCenterX = userlocation.getRight().getxPos() - (userWidth/2);
-		int userCenterY = userlocation.getSouth().getyPos() - (userHeight/2);
+	
 		
 		
 		

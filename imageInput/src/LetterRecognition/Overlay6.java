@@ -155,7 +155,7 @@ private final getImage testCase;
 			{
 				yinc++;
 			}
-			imageresizer.resize(filepath, filepath, scale.getWidth()+xinc, scale.getHeight()+yinc);
+			ImageResizer.resize(filepath, filepath, scale.getWidth()+xinc, scale.getHeight()+yinc);
 			xinc = 0;
 			yinc = 0;
 		}
@@ -240,7 +240,7 @@ private final getImage testCase;
 			return a;
 		}
 		if((a > a * .01|| b > b * .01) && gcd(a,b) == 1) {
-			return (int) ((int)a * .01);
+			return (int) (a * .01);
 		}
 		 return gcd(a / gcd(a,b), b / gcd(a,b));
 	}															// this might actually fix the increments  yet to be tested
@@ -249,7 +249,7 @@ private final getImage testCase;
 			return b;
 		}
 		if((a > a * .01|| b > b * .01) && gcd(a,b) == 1) {
-			return (int) ((int)b * .01);
+			return (int) (b * .01);
 		}
 		 return gcd(a / gcd(a,b), b / gcd(a,b));
 	}

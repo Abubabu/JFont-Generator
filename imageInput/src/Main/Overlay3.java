@@ -1,11 +1,7 @@
-package LetterRecognition;
+package Main;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
-import getImage.CardinalPixels;
-import getImage.RGBValue;
-import getImage.getImage;
 
 public class Overlay3 {
 	private final getImage testCase;
@@ -58,13 +54,13 @@ public class Overlay3 {
 		// THIS IS ALL FOR THE INCREMENT HEIGHT
 		//double aRatio = gcd(a.getHeight(),a.getWidth());// these are probably useless dont mind them
 		//double bratio = b.getHeight()/b.getWidth();
-		int aspectHeightA = asFractionnumerator(aHeight,aWidth);
-		int aspectHeightB = asFractionnumerator(bHeight,bWidth);
-		int scaleHeightA = aHeight / aspectHeightA;
+		/*int aspectHeightA = asFractionnumerator(aHeight,aWidth);
+		int aspectHeightB = asFractionnumerator(bHeight,bWidth);*/
+		/*int scaleHeightA = aHeight / aspectHeightA;
 		int scaleHeightB = bHeight / aspectHeightB;
-		int heightDenomanator =  aspectHeightA * aspectHeightB;
-		int incrementHeightA = (scaleHeightA / heightDenomanator) * aspectHeightA;
-		int incrementHeightB = (scaleHeightB / heightDenomanator) * aspectHeightB;
+		int heightDenomanator =  aspectHeightA * aspectHeightB;*/
+		/*int incrementHeightA = (scaleHeightA / heightDenomanator) * aspectHeightA;
+		int incrementHeightB = (scaleHeightB / heightDenomanator) * aspectHeightB;*/
 		// first get the aspect ration, then get the factor from the orignal size to their respective
 		// aspect ration, for example with an original size of 450 and the ratio 9 the factor is 50. Then multiply the respective RATIOS for each image. so in a 16:9 and 4:5 multiply 4 and 5
 		// put the ration(5 or 9) over the product of the two and make it equal to the factors denomanator, the resulting numerator is the increment 
@@ -169,7 +165,7 @@ public class Overlay3 {
 	{
 		return (one.getR() == two.getR() && one.getG() == two.getG() && one.getB() == two.getB());
 	}
-	public static void scale(int bWidth, int bHeight, String filepath) throws IOException
+	/*public static void scale(int bWidth, int bHeight, String filepath) throws IOException
 	{
 		getImage scale = null;
 		CardinalPixels alocation = null;
@@ -209,12 +205,12 @@ public class Overlay3 {
 			yinc = 0;
 		}
 		
-	}
+	}*/
 	public static boolean isBlack(RGBValue rgb)
 	{
 		return rgb.getR() == 0 && rgb.getG() == 0 && rgb.getB() == 0;
 	}
-	private static double gcd(double a, double b)
+	/*private static double gcd(double a, double b)
 	{
 	    while (b > 0)
 	    {
@@ -223,7 +219,7 @@ public class Overlay3 {
 	        a = temp;
 	    }
 	    return a;
-	}
+	}*/
 
 	/*private static long gcd(long[] input)
 	{
@@ -231,17 +227,17 @@ public class Overlay3 {
 	    for(int i = 1; i < input.length; i++) result = (long) gcd(result, input[i]);
 	    return result;
 	}*/
-	private static long lcm(long a, long b)
+	/*private static long lcm(long a, long b)
 	{
 	    return (long) (a * (b / gcd(a, b)));
-	}
+	}*/
 
-	private static long lcm(long[] input)
+	/*private static long lcm(long[] input)
 	{
 	    long result = input[0];
 	    for(int i = 1; i < input.length; i++) result = lcm(result, input[i]);
 	    return result;
-	}
+	}*/
 	public static int asFractionnumerator(long a, long b) {
 	    long gcm = gcm(a, b);
 	    return (int) (a / gcm);
@@ -250,7 +246,7 @@ public class Overlay3 {
 	    long gcm = gcm(a, b);
 	    return (int) (b / gcm);
 	}
-	public static void gcdt(int a, int b) {
+	/*public static void gcdt(int a, int b) {
         System.out.print("Type in two numbers and I will print outs its Greatest Common Divisor: ");
         int gcdNum1 =a;
         int gcdNum2 = b;
@@ -261,7 +257,7 @@ public class Overlay3 {
             int gcd = gcdNum1 % gcdNum2;
         }
         System.out.print(gcdNum1 + gcdNum2);
-    }
+    }*/
 	public static long gcm(long a, long b) {
 	    return b == 0 ? a : gcm(b, a % b); // Not bad for one line of code :)
 	}

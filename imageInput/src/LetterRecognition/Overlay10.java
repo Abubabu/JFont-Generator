@@ -31,10 +31,6 @@ public class Overlay10 {
 		getImage userConverted = new getImage(userImage.getBW());
 		getImage staticConverted = new getImage(staticCase.getBW());
 		
-		int userNativeHeight = userConverted.getHeight();
-		int userNativeWidth = userConverted.getWidth();
-		int staticNativeHeight = staticConverted.getHeight();
-		int staticNativeWidth = staticConverted.getWidth();
 		
 		RGBValue[][] userpix = userConverted.getPixelsArray();
 		RGBValue[][] staticpix = staticConverted.getPixelsArray();
@@ -89,10 +85,7 @@ public class Overlay10 {
 		getImage staticCropCopy = new getImage(/*"C:\\\\Users\\\\BT_1N3_23\\\\git\\\\JFont-Generator\\\\imageInput\\\\staticCropout.bmp");*/"C:\\Users\\Salehaakter\\Desktop\\staticCropout.bmp");
 		RGBValue[][] croppedUserPixels = userCropCopy.getPixelsArray();
 		RGBValue[][] croppedStaticPixels = staticCropCopy.getPixelsArray();
-		CardinalPixels userCroppedCardinals = new CardinalPixels(userCropCopy);
-		CardinalPixels staticCroppedCardinals = new CardinalPixels(staticCropCopy);
 		
-		int counter = 0;
 		for(int x = 0; x < 100; x+=5) {
 			for(int y = 0; y < 100; y+=5) {
 				if (checkNearbyPixels(x,y,croppedUserPixels,croppedStaticPixels)) {
@@ -136,8 +129,6 @@ public class Overlay10 {
 	{
 		int blackpixelsUser = 0;
 		int blackPixelsStatic = 0;
-		int match = 0;
-		int noMatch = 0;
 		for(int i = x-1; i < x+2; i++)
 		{
 			for(int j = y-1; j < y +2; j++)

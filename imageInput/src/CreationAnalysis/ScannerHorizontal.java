@@ -27,8 +27,8 @@ public class ScannerHorizontal {
 		{
 			BufferedImage Left = scannerHLeft(x.getAbsolutePath());
 			BufferedImage Right = scannerHRight(x.getAbsolutePath());
-			BufferedImage leftFlip = Reflection.reflector(new getImage(Left));
-			BufferedImage rightFlip = Reflection.reflector(new getImage(Right));
+			BufferedImage leftFlip = Reflection.reflectorXAxis(new getImage(Left));
+			BufferedImage rightFlip = Reflection.reflectorXAxis(new getImage(Right));
 			
 			ImageIO.write(leftFlip, "bmp",new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\HorizontalFLeft.bmp"));	
 			ImageIO.write(rightFlip, "bmp",new File("C:\\Users\\Salehaakter\\git\\JFont-Generator\\imageInput\\HorizontalFRight.bmp"));	

@@ -1,11 +1,6 @@
 package LetterRecognition;
 
-import java.awt.Color;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 import getImage.RGBValue;
 import getImage.getImage;
@@ -19,8 +14,7 @@ public class Overlay2 {
 		 
 		getImage b = new getImage("letters.jpg");
 		
-		ImageResizer imageresizer = new ImageResizer();
-		imageresizer.resize("lettertest.jpg", "lettertest.jpg", b.getWidth(), b.getHeight());
+		ImageResizer.resize("lettertest.jpg", "lettertest.jpg", b.getWidth(), b.getHeight());
 		
 		getImage a = new getImage("lettertest.jpg"); 
 		

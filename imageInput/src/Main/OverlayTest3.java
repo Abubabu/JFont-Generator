@@ -1,4 +1,4 @@
-package LetterRecognition;
+package Main;
 
 import java.io.File;
 import java.io.IOException;
